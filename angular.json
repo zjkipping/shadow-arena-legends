@@ -1,0 +1,261 @@
+{
+  "version": 1,
+  "projects": {
+    "leaderboard": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/leaderboard",
+      "sourceRoot": "apps/leaderboard/src",
+      "prefix": "shadow-arena-legends",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/leaderboard",
+            "index": "apps/leaderboard/src/index.html",
+            "main": "apps/leaderboard/src/main.ts",
+            "polyfills": "apps/leaderboard/src/polyfills.ts",
+            "tsConfig": "apps/leaderboard/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/leaderboard/src/favicon.ico",
+              "apps/leaderboard/src/assets"
+            ],
+            "styles": ["apps/leaderboard/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/leaderboard/src/environments/environment.ts",
+                  "with": "apps/leaderboard/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "leaderboard:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "leaderboard:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "leaderboard:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/leaderboard/tsconfig.app.json",
+              "apps/leaderboard/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/leaderboard/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/leaderboard/jest.config.js",
+            "tsConfig": "apps/leaderboard/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "apps/leaderboard/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "leaderboard-e2e": {
+      "root": "apps/leaderboard-e2e",
+      "sourceRoot": "apps/leaderboard-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/leaderboard-e2e/cypress.json",
+            "tsConfig": "apps/leaderboard-e2e/tsconfig.e2e.json",
+            "devServerTarget": "leaderboard:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "leaderboard:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/leaderboard-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/leaderboard-e2e/**"]
+          }
+        }
+      }
+    },
+    "admin-system": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "apps/admin-system",
+      "sourceRoot": "apps/admin-system/src",
+      "prefix": "shadow-arena-legends",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/admin-system",
+            "index": "apps/admin-system/src/index.html",
+            "main": "apps/admin-system/src/main.ts",
+            "polyfills": "apps/admin-system/src/polyfills.ts",
+            "tsConfig": "apps/admin-system/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/admin-system/src/favicon.ico",
+              "apps/admin-system/src/assets"
+            ],
+            "styles": ["apps/admin-system/src/styles.css"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/admin-system/src/environments/environment.ts",
+                  "with": "apps/admin-system/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "admin-system:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "admin-system:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "admin-system:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/admin-system/tsconfig.app.json",
+              "apps/admin-system/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/admin-system/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/admin-system/jest.config.js",
+            "tsConfig": "apps/admin-system/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "apps/admin-system/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "admin-system-e2e": {
+      "root": "apps/admin-system-e2e",
+      "sourceRoot": "apps/admin-system-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/admin-system-e2e/cypress.json",
+            "tsConfig": "apps/admin-system-e2e/tsconfig.e2e.json",
+            "devServerTarget": "admin-system:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "admin-system:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/admin-system-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/admin-system-e2e/**"]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular",
+    "analytics": false
+  },
+  "schematics": {
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    }
+  },
+  "defaultProject": "leaderboard"
+}

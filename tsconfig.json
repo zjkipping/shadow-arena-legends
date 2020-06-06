@@ -7,7 +7,11 @@
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
@@ -16,7 +20,56 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@shadow-arena-legends/admin/feature-navigation": [
+        "libs/admin/feature-navigation/src/index.ts"
+      ],
+      "@shadow-arena-legends/admin/feature-dashboard": [
+        "libs/admin/feature-dashboard/src/index.ts"
+      ],
+      "@shadow-arena-legends/tournaments/data-layer": [
+        "libs/tournaments/data-layer/src/index.ts"
+      ],
+      "@shadow-arena-legends/teams/data-layer": [
+        "libs/teams/data-layer/src/index.ts"
+      ],
+      "@shadow-arena-legends/players/data-layer": [
+        "libs/players/data-layer/src/index.ts"
+      ],
+      "@shadow-arena-legends/auth/data-layer": [
+        "libs/auth/data-layer/src/index.ts"
+      ],
+      "@shadow-arena-legends/auth/feature-login": [
+        "libs/auth/feature-login/src/index.ts"
+      ],
+      "@shadow-arena-legends/auth/feature-logout": [
+        "libs/auth/feature-logout/src/index.ts"
+      ],
+      "@shadow-arena-legends/auth/feature-no-access": [
+        "libs/auth/feature-no-access/src/index.ts"
+      ],
+      "@shadow-arena-legends/leaderboard/feature-dashboard": [
+        "libs/leaderboard/feature-dashboard/src/index.ts"
+      ],
+      "@shadow-arena-legends/leaderboard/feature-navigation": [
+        "libs/leaderboard/feature-navigation/src/index.ts"
+      ],
+      "@shadow-arena-legends/tournaments/feature-landing": [
+        "libs/tournaments/feature-landing/src/index.ts"
+      ],
+      "@shadow-arena-legends/teams/feature-landing": [
+        "libs/teams/feature-landing/src/index.ts"
+      ],
+      "@shadow-arena-legends/players/feature-landing": [
+        "libs/players/feature-landing/src/index.ts"
+      ],
+      "@shadow-arena-legends/players/ui-player-list": [
+        "libs/players/ui-player-list/src/index.ts"
+      ],
+      "@shadow-arena-legends/shared/util-material-deps": [
+        "libs/shared/util-material-deps/src/index.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

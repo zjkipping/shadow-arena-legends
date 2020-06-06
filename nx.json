@@ -32,6 +32,54 @@
     "admin-system-e2e": {
       "tags": [],
       "implicitDependencies": ["admin-system"]
+    },
+    "admin-feature-navigation": {
+      "tags": []
+    },
+    "admin-feature-dashboard": {
+      "tags": []
+    },
+    "tournaments-data-layer": {
+      "tags": []
+    },
+    "teams-data-layer": {
+      "tags": []
+    },
+    "players-data-layer": {
+      "tags": []
+    },
+    "auth-data-layer": {
+      "tags": []
+    },
+    "auth-feature-login": {
+      "tags": []
+    },
+    "auth-feature-logout": {
+      "tags": []
+    },
+    "auth-feature-no-access": {
+      "tags": []
+    },
+    "leaderboard-feature-dashboard": {
+      "tags": []
+    },
+    "leaderboard-feature-navigation": {
+      "tags": []
+    },
+    "tournaments-feature-landing": {
+      "tags": []
+    },
+    "teams-feature-landing": {
+      "tags": []
+    },
+    "players-feature-landing": {
+      "tags": []
+    },
+    "players-ui-player-list": {
+      "tags": []
+    },
+    "shared-util-material-deps": {
+      "tags": []
     }
   }
 }

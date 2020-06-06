@@ -1,16 +1,6 @@
-import { firebaseConfig } from './firebase';
+import { Environment } from '@shadow-arena-legends/shared/util-types';
 
-export interface Environment {
-  production: boolean;
-  firebaseConfig: {
-    apiKey: string;
-    authDomain: string;
-    databaseURL: string;
-    projectId: string;
-    storageBucket: string;
-    messagingSenderId: string;
-  };
-}
+import { firebaseConfig } from './firebase';
 
 export const environment: Environment = {
   production: false,

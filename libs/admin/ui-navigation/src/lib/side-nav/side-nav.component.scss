@@ -1,0 +1,30 @@
+mat-drawer-container {
+  height: 100%;
+  width: 100%;
+
+  mat-drawer {
+    width: 10em;
+
+    mat-nav-list {
+      padding: 0;
+
+      a[mat-list-item] {
+        &.active {
+          background-color: #626262;
+        }
+      }
+    }
+  }
+
+  mat-drawer-content {
+    display: grid;
+    grid-template-columns: 1.75em 1fr;
+
+    div {
+      cursor: pointer;
+      background-color: #607d8b;
+      display: grid;
+      place-items: center;
+    }
+  }
+}

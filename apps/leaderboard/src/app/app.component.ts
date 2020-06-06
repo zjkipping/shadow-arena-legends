@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'shadow-arena-legends-root',
+  selector: 'sal-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })

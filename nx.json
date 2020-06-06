@@ -33,7 +33,7 @@
       "tags": [],
       "implicitDependencies": ["admin-system"]
     },
-    "admin-feature-navigation": {
+    "admin-ui-navigation": {
       "tags": []
     },
     "admin-feature-dashboard": {
@@ -63,7 +63,7 @@
     "leaderboard-feature-dashboard": {
       "tags": []
     },
-    "leaderboard-feature-navigation": {
+    "leaderboard-ui-navigation": {
       "tags": []
     },
     "tournaments-feature-landing": {
@@ -79,6 +79,9 @@
       "tags": []
     },
     "shared-util-material-deps": {
+      "tags": []
+    },
+    "shared-util-types": {
       "tags": []
     }
   }

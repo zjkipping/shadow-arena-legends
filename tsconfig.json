@@ -21,8 +21,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@shadow-arena-legends/admin/feature-navigation": [
-        "libs/admin/feature-navigation/src/index.ts"
+      "@shadow-arena-legends/admin/ui-navigation": [
+        "libs/admin/ui-navigation/src/index.ts"
       ],
       "@shadow-arena-legends/admin/feature-dashboard": [
         "libs/admin/feature-dashboard/src/index.ts"
@@ -51,8 +51,8 @@
       "@shadow-arena-legends/leaderboard/feature-dashboard": [
         "libs/leaderboard/feature-dashboard/src/index.ts"
       ],
-      "@shadow-arena-legends/leaderboard/feature-navigation": [
-        "libs/leaderboard/feature-navigation/src/index.ts"
+      "@shadow-arena-legends/leaderboard/ui-navigation": [
+        "libs/leaderboard/ui-navigation/src/index.ts"
       ],
       "@shadow-arena-legends/tournaments/feature-landing": [
         "libs/tournaments/feature-landing/src/index.ts"
@@ -68,6 +68,9 @@
       ],
       "@shadow-arena-legends/shared/util-material-deps": [
         "libs/shared/util-material-deps/src/index.ts"
+      ],
+      "@shadow-arena-legends/shared/util-types": [
+        "libs/shared/util-types/src/index.ts"
       ]
     }
   },

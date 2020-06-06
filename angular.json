@@ -249,32 +249,29 @@
         }
       }
     },
-    "admin-feature-navigation": {
+    "admin-ui-navigation": {
       "projectType": "library",
-      "root": "libs/admin/feature-navigation",
-      "sourceRoot": "libs/admin/feature-navigation/src",
+      "root": "libs/admin/ui-navigation",
+      "sourceRoot": "libs/admin/ui-navigation/src",
       "prefix": "sal",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "libs/admin/feature-navigation/tsconfig.lib.json",
-              "libs/admin/feature-navigation/tsconfig.spec.json"
+              "libs/admin/ui-navigation/tsconfig.lib.json",
+              "libs/admin/ui-navigation/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/admin/feature-navigation/**"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/admin/ui-navigation/**"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/admin/feature-navigation/jest.config.js",
-            "tsConfig": "libs/admin/feature-navigation/tsconfig.spec.json",
+            "jestConfig": "libs/admin/ui-navigation/jest.config.js",
+            "tsConfig": "libs/admin/ui-navigation/tsconfig.spec.json",
             "passWithNoTests": true,
-            "setupFile": "libs/admin/feature-navigation/src/test-setup.ts"
+            "setupFile": "libs/admin/ui-navigation/src/test-setup.ts"
           }
         }
       },
@@ -578,32 +575,32 @@
         }
       }
     },
-    "leaderboard-feature-navigation": {
+    "leaderboard-ui-navigation": {
       "projectType": "library",
-      "root": "libs/leaderboard/feature-navigation",
-      "sourceRoot": "libs/leaderboard/feature-navigation/src",
+      "root": "libs/leaderboard/ui-navigation",
+      "sourceRoot": "libs/leaderboard/ui-navigation/src",
       "prefix": "sal",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "libs/leaderboard/feature-navigation/tsconfig.lib.json",
-              "libs/leaderboard/feature-navigation/tsconfig.spec.json"
+              "libs/leaderboard/ui-navigation/tsconfig.lib.json",
+              "libs/leaderboard/ui-navigation/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**",
-              "!libs/leaderboard/feature-navigation/**"
+              "!libs/leaderboard/ui-navigation/**"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/leaderboard/feature-navigation/jest.config.js",
-            "tsConfig": "libs/leaderboard/feature-navigation/tsconfig.spec.json",
+            "jestConfig": "libs/leaderboard/ui-navigation/jest.config.js",
+            "tsConfig": "libs/leaderboard/ui-navigation/tsconfig.spec.json",
             "passWithNoTests": true,
-            "setupFile": "libs/leaderboard/feature-navigation/src/test-setup.ts"
+            "setupFile": "libs/leaderboard/ui-navigation/src/test-setup.ts"
           }
         }
       },
@@ -773,6 +770,38 @@
             "tsConfig": "libs/shared/util-material-deps/tsconfig.spec.json",
             "passWithNoTests": true,
             "setupFile": "libs/shared/util-material-deps/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "shared-util-types": {
+      "projectType": "library",
+      "root": "libs/shared/util-types",
+      "sourceRoot": "libs/shared/util-types/src",
+      "prefix": "shadow-arena-legends",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/shared/util-types/tsconfig.lib.json",
+              "libs/shared/util-types/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/shared/util-types/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/shared/util-types/jest.config.js",
+            "tsConfig": "libs/shared/util-types/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/shared/util-types/src/test-setup.ts"
           }
         }
       },

@@ -31,6 +31,8 @@
 
   section {
     grid-area: content;
+    height: 100%;
+    overflow: auto;
     color: white;
   }
 }

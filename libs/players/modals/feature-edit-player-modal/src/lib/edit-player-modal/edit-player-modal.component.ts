@@ -5,7 +5,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { PlayerEntity } from '@shadow-arena-legends/players/data-layer';
 
 @Component({
-  selector: 'shadow-arena-legends-edit-player-modal',
+  selector: 'sal-edit-player-modal',
   templateUrl: './edit-player-modal.component.html',
   styleUrls: ['./edit-player-modal.component.scss'],
 })

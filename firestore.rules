@@ -2,24 +2,24 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
     match /roles/{roleId} {
-      allow read: if request.auth.uid == roleId
-      allow create: if request.auth.uid == roleId
+      allow read;
+      allow create;
     }
     match /profiles/{profileId} {
       allow read;
-      allow write: if request.auth.uid == profileId
+      allow write;
     }
     match /players/{playerId} {
       allow read;
-      allow write: if get(/databases/$(database)/documents/roles/$(request.auth.uid)).data.role == "admin"
+      allow write;
     }
     match /teams/{teamId} {
       allow read;
-      allow write: if get(/databases/$(database)/documents/roles/$(request.auth.uid)).data.role == "admin"
+      allow write;
     }
     match /tournaments/{tournamentsId} {
       allow read;
-      allow write: if get(/databases/$(database)/documents/roles/$(request.auth.uid)).data.role == "admin"
+      allow write;
     }
   }
 }

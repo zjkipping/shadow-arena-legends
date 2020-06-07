@@ -83,6 +83,15 @@
       ],
       "@shadow-arena-legends/shared/util-route-guards": [
         "libs/shared/util-route-guards/src/index.ts"
+      ],
+      "@shadow-arena-legends/teams/ui-teams-list": [
+        "libs/teams/ui-teams-list/src/index.ts"
+      ],
+      "@shadow-arena-legends/teams/modals/feature-delete-team-confirmation-modal": [
+        "libs/teams/modals/feature-delete-team-confirmation-modal/src/index.ts"
+      ],
+      "@shadow-arena-legends/teams/modals/feature-edit-team-modal": [
+        "libs/teams/modals/feature-edit-team-modal/src/index.ts"
       ]
     }
   },

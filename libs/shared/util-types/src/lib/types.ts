@@ -23,6 +23,11 @@ export interface NavLink {
   route: string;
 }
 
+export interface SelectOption {
+  label: string;
+  value: string | number;
+}
+
 export interface FirebaseEntity {
   referenceId: string;
 }

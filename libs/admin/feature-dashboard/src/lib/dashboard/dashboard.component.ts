@@ -27,8 +27,8 @@ export class DashboardComponent {
 
   constructor(private auth: AuthService, private router: Router) {}
 
-  logout() {
-    this.auth.logout();
-    this.router.navigate(['login']);
+  async logout() {
+    await this.auth.logout();
+    await this.router.navigate(['login']);
   }
 }

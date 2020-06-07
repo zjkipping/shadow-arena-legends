@@ -964,6 +964,108 @@
           "style": "scss"
         }
       }
+    },
+    "teams-ui-teams-list": {
+      "projectType": "library",
+      "root": "libs/teams/ui-teams-list",
+      "sourceRoot": "libs/teams/ui-teams-list/src",
+      "prefix": "shadow-arena-legends",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/teams/ui-teams-list/tsconfig.lib.json",
+              "libs/teams/ui-teams-list/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/teams/ui-teams-list/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/teams/ui-teams-list/jest.config.js",
+            "tsConfig": "libs/teams/ui-teams-list/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/teams/ui-teams-list/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "teams-modals-feature-delete-team-confirmation-modal": {
+      "projectType": "library",
+      "root": "libs/teams/modals/feature-delete-team-confirmation-modal",
+      "sourceRoot": "libs/teams/modals/feature-delete-team-confirmation-modal/src",
+      "prefix": "shadow-arena-legends",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/teams/modals/feature-delete-team-confirmation-modal/tsconfig.lib.json",
+              "libs/teams/modals/feature-delete-team-confirmation-modal/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/teams/modals/feature-delete-team-confirmation-modal/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/teams/modals/feature-delete-team-confirmation-modal/jest.config.js",
+            "tsConfig": "libs/teams/modals/feature-delete-team-confirmation-modal/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/teams/modals/feature-delete-team-confirmation-modal/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "teams-modals-feature-edit-team-modal": {
+      "projectType": "library",
+      "root": "libs/teams/modals/feature-edit-team-modal",
+      "sourceRoot": "libs/teams/modals/feature-edit-team-modal/src",
+      "prefix": "shadow-arena-legends",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/teams/modals/feature-edit-team-modal/tsconfig.lib.json",
+              "libs/teams/modals/feature-edit-team-modal/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/teams/modals/feature-edit-team-modal/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/teams/modals/feature-edit-team-modal/jest.config.js",
+            "tsConfig": "libs/teams/modals/feature-edit-team-modal/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/teams/modals/feature-edit-team-modal/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
     }
   },
   "cli": {

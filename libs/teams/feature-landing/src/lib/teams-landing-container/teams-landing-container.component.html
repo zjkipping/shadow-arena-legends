@@ -1,1 +1,15 @@
-<p>teams-landing-container works!</p>
+<h1>Teams Landing</h1>
+<button mat-raised-button color="primary" (click)="addNewTeam()">
+  Add New Team
+</button>
+<sal-teams-list
+  *ngIf="teamEntities | async as teamList; else loadingTeams"
+  [teams]="teamList"
+  (editClicked)="editTeam($event)"
+  (deleteClicked)="deleteTeam($event)"
+></sal-teams-list>
+<ng-template #loadingTeams>
+  <div class="loading">
+    <mat-spinner [diameter]="50"></mat-spinner>
+  </div>
+</ng-template>

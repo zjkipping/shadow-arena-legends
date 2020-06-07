@@ -1,0 +1,23 @@
+<mat-list *ngIf="teams?.length > 0" role="list">
+  <mat-list-item role="listitem" *ngFor="let team of teams">
+    <span>{{ team.name }}</span>
+    <span>{{ team.type | titlecase }}</span>
+    <button
+      mat-icon-button
+      color="accent"
+      aria-label="Edit Button"
+      (click)="editClicked.emit(team)"
+    >
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button
+      mat-icon-button
+      color="warn"
+      aria-label="Delete Button"
+      (click)="deleteClicked.emit(team)"
+    >
+      <mat-icon>delete</mat-icon>
+    </button>
+  </mat-list-item>
+</mat-list>
+<div *ngIf="teams?.length === 0">No teams found</div>

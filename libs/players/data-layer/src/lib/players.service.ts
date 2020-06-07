@@ -1,8 +1,13 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+
+import { TeamMember } from '@shadow-arena-legends/teams/data-layer';
 
 import { PlayerDoc, PlayerEntity } from '../types';
+
+const playersCollection = 'players';
 
 @Injectable({
   providedIn: 'root',
@@ -12,22 +17,48 @@ export class PlayersService {
 
   getPlayerEntities(): Observable<PlayerEntity[]> {
     return this.firestore
-      .collection<PlayerDoc>('players')
+      .collection<PlayerDoc>(playersCollection)
       .valueChanges({ idField: 'referenceId' });
   }
 
+  getPlayerEntitiesOnce(): Observable<PlayerEntity[]> {
+    return this.firestore
+      .collection<PlayerDoc>(playersCollection)
+      .get()
+      .pipe(
+        map((snapshot) =>
+          snapshot.docs.map((doc) => ({
+            referenceId: doc.id,
+            ...(doc.data() as PlayerDoc),
+          }))
+        )
+      );
+  }
+
+  getPlayersForMemberTypeAhead(): Observable<TeamMember[]> {
+    return this.getPlayerEntitiesOnce().pipe(
+      map((players) =>
+        players.map((player) => ({
+          name: player.name,
+          referenceId: player.referenceId,
+        }))
+      )
+    );
+  }
+
   addNewPlayer(player: PlayerDoc) {
-    return this.firestore.collection<PlayerDoc>('players').add(player);
+    return this.firestore.collection<PlayerDoc>(playersCollection).add(player);
   }
 
   updatePlayer(referenceId: string, player: PlayerDoc) {
     this.firestore
-      .collection<PlayerDoc>('players')
-      .doc(referenceId)
+      .doc<PlayerDoc>(`${playersCollection}/${referenceId}`)
       .update(player);
   }
 
   deletePlayer(referenceId: string) {
-    this.firestore.collection<PlayerDoc>('players').doc(referenceId).delete();
+    this.firestore
+      .doc<PlayerDoc>(`${playersCollection}/${referenceId}`)
+      .delete();
   }
 }

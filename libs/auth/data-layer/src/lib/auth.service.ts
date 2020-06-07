@@ -79,7 +79,7 @@ export class AuthService {
       const profile = await this.profilesService.getProfileOnce(user.uid);
       if (!profile.exists) {
         // default the profile & roles for a new google sign in
-        // could be done as a cloud function (consider moving after MVP)
+        // Should be done as a cloud function for auth onCreate (consider moving after MVP)
         this.profilesService.setProfile(user.uid, {
           name: user.email?.split('@')[0] || '',
           email: user.email || '',

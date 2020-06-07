@@ -1,2 +1,2 @@
-export * from './lib/teams-data-layer.module';
+export * from './lib/teams.service';
 export * from './types';

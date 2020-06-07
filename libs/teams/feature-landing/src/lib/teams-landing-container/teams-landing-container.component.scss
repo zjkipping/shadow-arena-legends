@@ -1,0 +1,24 @@
+:host {
+  display: grid;
+  grid-template-rows: min-content min-content 1fr;
+  row-gap: 1em;
+  text-align: center;
+  place-items: center;
+
+  h1 {
+    margin-bottom: 0;
+  }
+
+  button {
+    width: 100%;
+  }
+
+  sal-teams-list {
+    max-width: 450px;
+  }
+
+  .loading {
+    display: grid;
+    place-items: center;
+  }
+}

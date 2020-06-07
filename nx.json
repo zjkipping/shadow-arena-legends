@@ -95,6 +95,15 @@
     },
     "shared-util-route-guards": {
       "tags": []
+    },
+    "teams-ui-teams-list": {
+      "tags": []
+    },
+    "teams-modals-feature-delete-team-confirmation-modal": {
+      "tags": []
+    },
+    "teams-modals-feature-edit-team-modal": {
+      "tags": []
     }
   }
 }

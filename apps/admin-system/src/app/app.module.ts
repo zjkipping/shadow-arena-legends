@@ -1,11 +1,18 @@
 import { NgModule } from '@angular/core';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule, SETTINGS } from '@angular/fire/firestore';
-import { BrowserModule } from '@angular/platform-browser';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 
-import { AdminUINavigationModule } from '@shadow-arena-legends/admin/ui-navigation';
+import {
+  AdminDashboardGuardService,
+  AdminLoginGuardService,
+} from '@shadow-arena-legends/shared/util-route-guards';
+import {
+  ENVIRONMENT,
+  EnvironmentType,
+} from '@shadow-arena-legends/shared/util-types';
 
 import { environment } from '../environments/environment';
 
@@ -14,49 +21,58 @@ import { AppComponent } from './app.component';
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    BrowserModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     BrowserAnimationsModule,
-    AdminUINavigationModule,
+    MatSnackBarModule,
     RouterModule.forRoot([
       {
         path: '',
-        redirectTo: 'tournaments',
+        redirectTo: 'dashboard',
         pathMatch: 'full',
       },
       {
-        path: 'tournaments',
+        path: 'no-access',
         loadChildren: () =>
-          import('@shadow-arena-legends/tournaments/feature-landing').then(
-            (m) => m.TournamentsFeatureLandingModule
+          import('@shadow-arena-legends/auth/feature-no-access').then(
+            (m) => m.AuthFeatureNoAccessModule
           ),
       },
       {
-        path: 'teams',
+        path: 'dashboard',
         loadChildren: () =>
-          import('@shadow-arena-legends/teams/feature-landing').then(
-            (m) => m.TeamsFeatureLandingModule
+          import('@shadow-arena-legends/admin/feature-dashboard').then(
+            (m) => m.AdminFeatureDashboardModule
           ),
+        canLoad: [AdminDashboardGuardService],
       },
       {
-        path: 'players',
+        path: 'login',
         loadChildren: () =>
-          import('@shadow-arena-legends/players/feature-landing').then(
-            (m) => m.PlayersFeatureLandingModule
+          import('@shadow-arena-legends/admin/feature-login-screen').then(
+            (m) => m.AdminFeatureLoginScreenModule
           ),
+        canLoad: [AdminLoginGuardService],
+      },
+      {
+        path: '**',
+        redirectTo: 'dashboard',
       },
     ]),
   ],
   providers: [
-    {
-      provide: SETTINGS,
-      useValue: environment.production
-        ? undefined
-        : {
+    environment.type === EnvironmentType.Dev
+      ? {
+          provide: SETTINGS,
+          useValue: {
             host: 'localhost:8080',
             ssl: false,
           },
+        }
+      : [],
+    {
+      provide: ENVIRONMENT,
+      useValue: environment,
     },
   ],
   bootstrap: [AppComponent],

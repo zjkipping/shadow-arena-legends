@@ -36,11 +36,8 @@
       "@shadow-arena-legends/auth/data-layer": [
         "libs/auth/data-layer/src/index.ts"
       ],
-      "@shadow-arena-legends/auth/feature-login": [
-        "libs/auth/feature-login/src/index.ts"
-      ],
-      "@shadow-arena-legends/auth/feature-logout": [
-        "libs/auth/feature-logout/src/index.ts"
+      "@shadow-arena-legends/auth/ui-login": [
+        "libs/auth/ui-login/src/index.ts"
       ],
       "@shadow-arena-legends/auth/feature-no-access": [
         "libs/auth/feature-no-access/src/index.ts"
@@ -74,6 +71,18 @@
       ],
       "@shadow-arena-legends/players/modals/feature-edit-player-modal": [
         "libs/players/modals/feature-edit-player-modal/src/index.ts"
+      ],
+      "@shadow-arena-legends/profiles/data-layer": [
+        "libs/profiles/data-layer/src/index.ts"
+      ],
+      "@shadow-arena-legends/admin/feature-login-screen": [
+        "libs/admin/feature-login-screen/src/index.ts"
+      ],
+      "@shadow-arena-legends/admin/feature-dashboard": [
+        "libs/admin/feature-dashboard/src/index.ts"
+      ],
+      "@shadow-arena-legends/shared/util-route-guards": [
+        "libs/shared/util-route-guards/src/index.ts"
       ]
     }
   },

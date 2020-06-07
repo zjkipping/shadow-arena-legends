@@ -48,10 +48,7 @@
     "auth-data-layer": {
       "tags": []
     },
-    "auth-feature-login": {
-      "tags": []
-    },
-    "auth-feature-logout": {
+    "auth-ui-login": {
       "tags": []
     },
     "auth-feature-no-access": {
@@ -85,6 +82,18 @@
       "tags": []
     },
     "players-modals-feature-edit-player-modal": {
+      "tags": []
+    },
+    "profiles-data-layer": {
+      "tags": []
+    },
+    "admin-feature-login-screen": {
+      "tags": []
+    },
+    "admin-feature-dashboard": {
+      "tags": []
+    },
+    "shared-util-route-guards": {
       "tags": []
     }
   }

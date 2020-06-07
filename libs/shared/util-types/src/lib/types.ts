@@ -1,5 +1,13 @@
+import { InjectionToken } from '@angular/core';
+
+export enum EnvironmentType {
+  Production = 'prod',
+  Dev = 'dev',
+  Local = 'local',
+}
+
 export interface Environment {
-  production: boolean;
+  type: EnvironmentType;
   firebaseConfig: {
     apiKey: string;
     authDomain: string;
@@ -18,3 +26,5 @@ export interface NavLink {
 export interface FirebaseEntity {
   referenceId: string;
 }
+
+export const ENVIRONMENT = new InjectionToken<Environment>('ENVIRONMENT');

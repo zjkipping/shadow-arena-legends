@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { NavLink } from '@shadow-arena-legends/shared/util-types';
 
@@ -9,6 +9,7 @@ import { NavLink } from '@shadow-arena-legends/shared/util-types';
 })
 export class SideNavComponent {
   @Input() links: NavLink[] = [];
+  @Output() logoutClicked = new EventEmitter();
 
   navOpen = true;
 }

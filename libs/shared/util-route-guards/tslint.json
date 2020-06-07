@@ -1,0 +1,20 @@
+{
+  "extends": "../../../tslint.json",
+  "rules": {
+    "directive-selector": [
+      true,
+      "attribute",
+      "shadowArenaLegends",
+      "camelCase"
+    ],
+    "component-selector": [
+      true,
+      "element",
+      "shadow-arena-legends",
+      "kebab-case"
+    ]
+  },
+  "linterOptions": {
+    "exclude": ["!**/*"]
+  }
+}

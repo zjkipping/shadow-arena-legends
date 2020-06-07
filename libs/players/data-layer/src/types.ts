@@ -1,7 +1,7 @@
 import { FirebaseEntity } from '@shadow-arena-legends/shared/util-types';
 
-export interface PlayerEntity extends FirebaseEntity {
+export interface PlayerDoc {
   name: string;
 }
 
-export type PlayerDoc = Exclude<PlayerEntity, keyof FirebaseEntity>;
+export type PlayerEntity = PlayerDoc & FirebaseEntity;

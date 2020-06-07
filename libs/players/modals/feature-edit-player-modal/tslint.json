@@ -1,18 +1,8 @@
 {
   "extends": "../../../../tslint.json",
   "rules": {
-    "directive-selector": [
-      true,
-      "attribute",
-      "shadowArenaLegends",
-      "camelCase"
-    ],
-    "component-selector": [
-      true,
-      "element",
-      "shadow-arena-legends",
-      "kebab-case"
-    ]
+    "directive-selector": [true, "attribute", "sal", "camelCase"],
+    "component-selector": [true, "element", "sal", "kebab-case"]
   },
   "linterOptions": {
     "exclude": ["!**/*"]

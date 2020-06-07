@@ -154,6 +154,14 @@
             "scripts": []
           },
           "configurations": {
+            "local": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/admin-system/src/environments/environment.ts",
+                  "with": "apps/admin-system/src/environments/environment.local.ts"
+                }
+              ]
+            },
             "production": {
               "fileReplacements": [
                 {
@@ -192,6 +200,9 @@
           "configurations": {
             "production": {
               "browserTarget": "admin-system:build:production"
+            },
+            "local": {
+              "browserTarget": "admin-system:build:local"
             }
           }
         },
@@ -409,61 +420,29 @@
         }
       }
     },
-    "auth-feature-login": {
+    "auth-ui-login": {
       "projectType": "library",
-      "root": "libs/auth/feature-login",
-      "sourceRoot": "libs/auth/feature-login/src",
+      "root": "libs/auth/ui-login",
+      "sourceRoot": "libs/auth/ui-login/src",
       "prefix": "sal",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "libs/auth/feature-login/tsconfig.lib.json",
-              "libs/auth/feature-login/tsconfig.spec.json"
+              "libs/auth/ui-login/tsconfig.lib.json",
+              "libs/auth/ui-login/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/auth/feature-login/**"]
+            "exclude": ["**/node_modules/**", "!libs/auth/ui-login/**"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/auth/feature-login/jest.config.js",
-            "tsConfig": "libs/auth/feature-login/tsconfig.spec.json",
+            "jestConfig": "libs/auth/ui-login/jest.config.js",
+            "tsConfig": "libs/auth/ui-login/tsconfig.spec.json",
             "passWithNoTests": true,
-            "setupFile": "libs/auth/feature-login/src/test-setup.ts"
-          }
-        }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "scss"
-        }
-      }
-    },
-    "auth-feature-logout": {
-      "projectType": "library",
-      "root": "libs/auth/feature-logout",
-      "sourceRoot": "libs/auth/feature-logout/src",
-      "prefix": "sal",
-      "architect": {
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/auth/feature-logout/tsconfig.lib.json",
-              "libs/auth/feature-logout/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/auth/feature-logout/**"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "libs/auth/feature-logout/jest.config.js",
-            "tsConfig": "libs/auth/feature-logout/tsconfig.spec.json",
-            "passWithNoTests": true,
-            "setupFile": "libs/auth/feature-logout/src/test-setup.ts"
+            "setupFile": "libs/auth/ui-login/src/test-setup.ts"
           }
         }
       },
@@ -837,6 +816,143 @@
             "tsConfig": "libs/players/modals/feature-edit-player-modal/tsconfig.spec.json",
             "passWithNoTests": true,
             "setupFile": "libs/players/modals/feature-edit-player-modal/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "profiles-data-layer": {
+      "projectType": "library",
+      "root": "libs/profiles/data-layer",
+      "sourceRoot": "libs/profiles/data-layer/src",
+      "prefix": "shadow-arena-legends",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/profiles/data-layer/tsconfig.lib.json",
+              "libs/profiles/data-layer/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/profiles/data-layer/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/profiles/data-layer/jest.config.js",
+            "tsConfig": "libs/profiles/data-layer/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/profiles/data-layer/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "admin-feature-login-screen": {
+      "projectType": "library",
+      "root": "libs/admin/feature-login-screen",
+      "sourceRoot": "libs/admin/feature-login-screen/src",
+      "prefix": "shadow-arena-legends",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/admin/feature-login-screen/tsconfig.lib.json",
+              "libs/admin/feature-login-screen/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/admin/feature-login-screen/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/admin/feature-login-screen/jest.config.js",
+            "tsConfig": "libs/admin/feature-login-screen/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/admin/feature-login-screen/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "admin-feature-dashboard": {
+      "projectType": "library",
+      "root": "libs/admin/feature-dashboard",
+      "sourceRoot": "libs/admin/feature-dashboard/src",
+      "prefix": "shadow-arena-legends",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/admin/feature-dashboard/tsconfig.lib.json",
+              "libs/admin/feature-dashboard/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/admin/feature-dashboard/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/admin/feature-dashboard/jest.config.js",
+            "tsConfig": "libs/admin/feature-dashboard/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/admin/feature-dashboard/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "shared-util-route-guards": {
+      "projectType": "library",
+      "root": "libs/shared/util-route-guards",
+      "sourceRoot": "libs/shared/util-route-guards/src",
+      "prefix": "shadow-arena-legends",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/shared/util-route-guards/tsconfig.lib.json",
+              "libs/shared/util-route-guards/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/shared/util-route-guards/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/shared/util-route-guards/jest.config.js",
+            "tsConfig": "libs/shared/util-route-guards/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/shared/util-route-guards/src/test-setup.ts"
           }
         }
       },

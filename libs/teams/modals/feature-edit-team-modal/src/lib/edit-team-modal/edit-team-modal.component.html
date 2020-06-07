@@ -31,7 +31,7 @@
 
         <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
           <mat-option
-            *ngFor="let playerOption of pOptions"
+            *ngFor="let playerOption of pOptions | slice: 0:5"
             [value]="playerOption"
             >{{ playerOption.name }}</mat-option
           >

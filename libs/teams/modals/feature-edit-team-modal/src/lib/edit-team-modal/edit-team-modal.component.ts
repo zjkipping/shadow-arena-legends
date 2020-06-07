@@ -8,7 +8,7 @@ import {
 } from '@angular/forms';
 import { MatAutocompleteTrigger } from '@angular/material/autocomplete';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { combineLatest, defer, merge, Observable, Subject } from 'rxjs';
+import { combineLatest, defer, merge, Observable, of, Subject } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
 
 import { PlayersService } from '@shadow-arena-legends/players/data-layer';
@@ -55,21 +55,31 @@ export class EditTeamModalComponent implements OnDestroy {
       }
     );
 
+    this.membersTypeAhead = fb.control('');
     this.membersFormArray = this.teamForm.get('members') as FormArray;
 
     this.playerOptions = combineLatest([
       playersService.getPlayersForMemberTypeAhead(),
       merge(
-        defer(() => [this.membersFormArray.value]) as Observable<TeamMember[]>,
+        defer(() => of(this.membersFormArray.value)) as Observable<
+          TeamMember[]
+        >,
         this.membersFormArray.valueChanges as Observable<TeamMember[]>
       ).pipe(map((arr) => arr.map((o) => o.referenceId))),
+      merge(
+        defer(() => of(this.membersTypeAhead.value as string)),
+        this.membersTypeAhead.valueChanges as Observable<string>
+      ),
     ]).pipe(
-      map(([options, memberIds]) =>
-        options.filter((o) => !memberIds.includes(o.referenceId))
+      map(([options, memberIds, typeAhead]) =>
+        options.filter(
+          (o) =>
+            !memberIds.includes(o.referenceId) &&
+            o.name.toLowerCase().startsWith(typeAhead.toLowerCase())
+        )
       )
     );
 
-    this.membersTypeAhead = fb.control('');
     this.membersTypeAhead.valueChanges
       .pipe(takeUntil(this.destroy))
       .subscribe((typeAhead: string | TeamMember) => {

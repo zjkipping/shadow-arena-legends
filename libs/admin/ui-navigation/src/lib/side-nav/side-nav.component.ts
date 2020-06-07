@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+
 import { NavLink } from '@shadow-arena-legends/shared/util-types';
 
 @Component({
@@ -9,5 +10,5 @@ import { NavLink } from '@shadow-arena-legends/shared/util-types';
 export class SideNavComponent {
   @Input() links: NavLink[] = [];
 
-  constructor() {}
+  navOpen = true;
 }

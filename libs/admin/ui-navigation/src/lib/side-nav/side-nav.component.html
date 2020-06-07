@@ -1,35 +1,23 @@
-<mat-drawer-container hasBackdrop="false">
-  <mat-drawer #drawer opened="true" disableClose="true" mode="push">
-    <mat-nav-list>
-      <a
-        mat-list-item
-        [routerLink]="link.route"
-        routerLinkActive="active"
-        *ngFor="let link of links"
-      >
-        {{ link.label }}
-      </a>
-    </mat-nav-list>
-  </mat-drawer>
-  <mat-drawer-content>
-    <div (click)="drawer.toggle()">
-      <mat-icon
-        *ngIf="!drawer.opened"
-        aria-hidden="false"
-        aria-label="Open Sidenav"
-      >
-        chevron_right
-      </mat-icon>
-      <mat-icon
-        *ngIf="drawer.opened"
-        aria-hidden="false"
-        aria-label="Close Sidenav"
-      >
-        chevron_left
-      </mat-icon>
-    </div>
-    <section>
-      <router-outlet></router-outlet>
-    </section>
-  </mat-drawer-content>
-</mat-drawer-container>
+<nav *ngIf="navOpen">
+  <mat-nav-list>
+    <a
+      mat-list-item
+      [routerLink]="link.route"
+      routerLinkActive="active"
+      *ngFor="let link of links"
+    >
+      {{ link.label }}
+    </a>
+  </mat-nav-list>
+</nav>
+<div (click)="navOpen = !navOpen">
+  <mat-icon *ngIf="!navOpen" aria-hidden="false" aria-label="Open Sidenav">
+    chevron_right
+  </mat-icon>
+  <mat-icon *ngIf="navOpen" aria-hidden="false" aria-label="Close Sidenav">
+    chevron_left
+  </mat-icon>
+</div>
+<section>
+  <router-outlet></router-outlet>
+</section>

@@ -281,41 +281,6 @@
         }
       }
     },
-    "admin-feature-dashboard": {
-      "projectType": "library",
-      "root": "libs/admin/feature-dashboard",
-      "sourceRoot": "libs/admin/feature-dashboard/src",
-      "prefix": "sal",
-      "architect": {
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/admin/feature-dashboard/tsconfig.lib.json",
-              "libs/admin/feature-dashboard/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/admin/feature-dashboard/**"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "libs/admin/feature-dashboard/jest.config.js",
-            "tsConfig": "libs/admin/feature-dashboard/tsconfig.spec.json",
-            "passWithNoTests": true,
-            "setupFile": "libs/admin/feature-dashboard/src/test-setup.ts"
-          }
-        }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "style": "scss"
-        }
-      }
-    },
     "tournaments-data-layer": {
       "projectType": "library",
       "root": "libs/tournaments/data-layer",
@@ -802,6 +767,76 @@
             "tsConfig": "libs/shared/util-types/tsconfig.spec.json",
             "passWithNoTests": true,
             "setupFile": "libs/shared/util-types/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "players-modals-feature-delete-player-confirmation-modal": {
+      "projectType": "library",
+      "root": "libs/players/modals/feature-delete-player-confirmation-modal",
+      "sourceRoot": "libs/players/modals/feature-delete-player-confirmation-modal/src",
+      "prefix": "shadow-arena-legends",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/players/modals/feature-delete-player-confirmation-modal/tsconfig.lib.json",
+              "libs/players/modals/feature-delete-player-confirmation-modal/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/players/modals/feature-delete-player-confirmation-modal/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/players/modals/feature-delete-player-confirmation-modal/jest.config.js",
+            "tsConfig": "libs/players/modals/feature-delete-player-confirmation-modal/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/players/modals/feature-delete-player-confirmation-modal/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "players-modals-feature-edit-player-modal": {
+      "projectType": "library",
+      "root": "libs/players/modals/feature-edit-player-modal",
+      "sourceRoot": "libs/players/modals/feature-edit-player-modal/src",
+      "prefix": "shadow-arena-legends",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/players/modals/feature-edit-player-modal/tsconfig.lib.json",
+              "libs/players/modals/feature-edit-player-modal/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/players/modals/feature-edit-player-modal/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/players/modals/feature-edit-player-modal/jest.config.js",
+            "tsConfig": "libs/players/modals/feature-edit-player-modal/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/players/modals/feature-edit-player-modal/src/test-setup.ts"
           }
         }
       },

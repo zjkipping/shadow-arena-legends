@@ -24,9 +24,6 @@
       "@shadow-arena-legends/admin/ui-navigation": [
         "libs/admin/ui-navigation/src/index.ts"
       ],
-      "@shadow-arena-legends/admin/feature-dashboard": [
-        "libs/admin/feature-dashboard/src/index.ts"
-      ],
       "@shadow-arena-legends/tournaments/data-layer": [
         "libs/tournaments/data-layer/src/index.ts"
       ],
@@ -71,6 +68,12 @@
       ],
       "@shadow-arena-legends/shared/util-types": [
         "libs/shared/util-types/src/index.ts"
+      ],
+      "@shadow-arena-legends/players/modals/feature-delete-player-confirmation-modal": [
+        "libs/players/modals/feature-delete-player-confirmation-modal/src/index.ts"
+      ],
+      "@shadow-arena-legends/players/modals/feature-edit-player-modal": [
+        "libs/players/modals/feature-edit-player-modal/src/index.ts"
       ]
     }
   },

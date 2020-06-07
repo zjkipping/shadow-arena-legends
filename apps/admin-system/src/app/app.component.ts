@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+
 import { NavLink } from '@shadow-arena-legends/shared/util-types';
 
 @Component({

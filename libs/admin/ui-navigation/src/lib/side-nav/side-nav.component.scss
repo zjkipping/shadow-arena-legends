@@ -1,8 +1,12 @@
-mat-drawer-container {
+:host {
+  display: grid;
   height: 100%;
-  width: 100%;
+  grid-template-columns: auto 1.75em 1fr;
+  grid-template-areas: 'nav toggle content';
 
-  mat-drawer {
+  nav {
+    background-color: #424242;
+    grid-area: nav;
     width: 10em;
 
     mat-nav-list {
@@ -16,15 +20,17 @@ mat-drawer-container {
     }
   }
 
-  mat-drawer-content {
+  div {
+    grid-area: toggle;
+    cursor: pointer;
+    color: white;
+    background-color: #607d8b;
     display: grid;
-    grid-template-columns: 1.75em 1fr;
+    place-items: center;
+  }
 
-    div {
-      cursor: pointer;
-      background-color: #607d8b;
-      display: grid;
-      place-items: center;
-    }
+  section {
+    grid-area: content;
+    color: white;
   }
 }

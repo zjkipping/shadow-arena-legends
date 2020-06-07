@@ -7,7 +7,13 @@
     "ordered-imports": [
       true,
       {
-        "grouped-imports": true
+        "grouped-imports": true,
+        "groups": [
+          "^@(?!shadow-arena-legends).*|^[a-zA-Z].*",
+          "^@shadow-arena-legends.*",
+          "^\\.\\./",
+          "^\\./.*"
+        ]
       }
     ],
     "arrow-return-shorthand": true,

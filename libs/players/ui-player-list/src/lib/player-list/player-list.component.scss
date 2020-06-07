@@ -1,0 +1,27 @@
+:host {
+  display: block;
+  width: 100%;
+  border: 2px solid #607d8b;
+  border-radius: 5px;
+  padding: 10px;
+
+  mat-list {
+    padding: 0;
+
+    mat-list-item {
+      ::ng-deep div.mat-list-item-content {
+        display: grid;
+        grid-template-columns: 1fr 40px 40px;
+        column-gap: 1em;
+
+        span {
+          text-align: left;
+        }
+      }
+    }
+
+    mat-list-item:not(:last-child) {
+      border-bottom: 2px solid #525252;
+    }
+  }
+}

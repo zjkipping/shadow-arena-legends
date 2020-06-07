@@ -36,9 +36,6 @@
     "admin-ui-navigation": {
       "tags": []
     },
-    "admin-feature-dashboard": {
-      "tags": []
-    },
     "tournaments-data-layer": {
       "tags": []
     },
@@ -82,6 +79,12 @@
       "tags": []
     },
     "shared-util-types": {
+      "tags": []
+    },
+    "players-modals-feature-delete-player-confirmation-modal": {
+      "tags": []
+    },
+    "players-modals-feature-edit-player-modal": {
       "tags": []
     }
   }

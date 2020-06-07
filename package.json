@@ -15,6 +15,7 @@
     "deploy:leaderboard": "firebase deploy --only hosting:leaderboard-site",
     "test": "nx test --code-coverage",
     "lint": "nx workspace-lint && ng lint",
+    "lint:fix": "./node_modules/.bin/nx lint --fix && ng lint --fix",
     "e2e": "nx e2e",
     "affected:apps": "nx affected:apps",
     "affected:libs": "nx affected:libs",

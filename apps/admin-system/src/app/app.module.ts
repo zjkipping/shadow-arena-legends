@@ -4,6 +4,7 @@ import { AngularFirestoreModule, SETTINGS } from '@angular/fire/firestore';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
+
 import { AdminUINavigationModule } from '@shadow-arena-legends/admin/ui-navigation';
 
 import { environment } from '../environments/environment';

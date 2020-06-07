@@ -1,1 +1,15 @@
-<p>players-landing-container works!</p>
+<h1>Players Landing</h1>
+<button mat-raised-button color="primary" (click)="addNewPlayer()">
+  Add New Player
+</button>
+<sal-player-list
+  *ngIf="playerEntities | async as playerList; else loadingPlayers"
+  [players]="playerList"
+  (editClicked)="editPlayer($event)"
+  (deleteClicked)="deletePlayer($event)"
+></sal-player-list>
+<ng-template #loadingPlayers>
+  <div class="loading">
+    <mat-spinner [diameter]="50"></mat-spinner>
+  </div>
+</ng-template>

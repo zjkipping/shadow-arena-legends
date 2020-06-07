@@ -14,3 +14,7 @@ export interface NavLink {
   label: string;
   route: string;
 }
+
+export interface FirebaseEntity {
+  referenceId: string;
+}

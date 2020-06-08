@@ -48,14 +48,14 @@
         </mat-icon>
       </td>
       <td class="action">
-        <a mat-icon-button color="primary" aria-label="Manage Link">
+        <a mat-icon-button color="accent" aria-label="Manage Link">
           <mat-icon>build</mat-icon>
         </a>
       </td>
       <td class="action">
         <button
           mat-icon-button
-          color="accent"
+          class="edit"
           aria-label="Edit Button"
           [disabled]="row.live"
           (click)="editClicked.emit(row)"

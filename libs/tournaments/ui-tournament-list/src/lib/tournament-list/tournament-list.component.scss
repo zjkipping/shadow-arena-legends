@@ -1,0 +1,95 @@
+:host {
+  overflow: auto;
+  display: grid;
+  grid-template-rows: 50px 1fr;
+  row-gap: 1em;
+  width: 100%;
+
+  ::ng-deep table {
+    border: 2px solid #607d8b;
+    border-radius: 5px;
+    display: grid;
+    grid-template-rows: 56px minmax(0, 1fr);
+    grid-row-gap: 0px;
+    overflow: auto;
+    padding: 0;
+
+    tbody {
+      display: grid;
+      grid-auto-rows: 48px;
+
+      tr:not(:last-child) {
+        border-bottom: 2px solid #525252;
+      }
+    }
+
+    tr {
+      display: grid;
+      grid-auto-flow: column;
+      column-gap: 1em;
+      grid-template-columns:
+        minmax(100px, 1fr) minmax(100px, 1fr) minmax(100px, 1fr)
+        3em 4em 3em 4em;
+
+      td:first-child,
+      th:first-child {
+        padding-left: 1em;
+      }
+
+      td:last-child,
+      th:last-child {
+        padding-right: 1em;
+      }
+
+      td,
+      th {
+        text-align: left;
+        display: grid;
+        align-items: center;
+        justify-items: left;
+      }
+
+      th:not(.action) {
+        cursor: pointer;
+      }
+
+      th.selected {
+        border-bottom: 2px solid #c2185b;
+      }
+
+      th {
+        user-select: none;
+        display: flex;
+
+        mat-icon {
+          margin-left: 0.3em;
+        }
+      }
+
+      .mat-sort-header-container {
+        justify-content: center;
+
+        .mat-sort-header-button {
+          margin-left: 18px;
+        }
+      }
+    }
+
+    thead {
+      display: grid;
+      position: sticky;
+      top: 0;
+      z-index: 2;
+
+      tr {
+        background-color: #424242;
+      }
+    }
+  }
+}
+
+.action {
+  display: grid;
+  place-items: center;
+  user-select: none;
+}

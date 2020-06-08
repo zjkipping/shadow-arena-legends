@@ -92,6 +92,15 @@
       ],
       "@shadow-arena-legends/teams/modals/feature-edit-team-modal": [
         "libs/teams/modals/feature-edit-team-modal/src/index.ts"
+      ],
+      "@shadow-arena-legends/tournaments/ui-tournament-list": [
+        "libs/tournaments/ui-tournament-list/src/index.ts"
+      ],
+      "@shadow-arena-legends/tournaments/modals/feature-edit-tournament-modal": [
+        "libs/tournaments/modals/feature-edit-tournament-modal/src/index.ts"
+      ],
+      "@shadow-arena-legends/tournaments/modals/feature-delete-tournament-confirmation-modal": [
+        "libs/tournaments/modals/feature-delete-tournament-confirmation-modal/src/index.ts"
       ]
     }
   },

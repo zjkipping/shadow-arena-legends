@@ -1,0 +1,14 @@
+:host {
+  display: grid;
+  height: 100%;
+  grid-template-rows: min-content 1fr min-content;
+}
+
+::ng-deep div [mat-dialog-actions] {
+  display: flex;
+  justify-content: space-between;
+}
+
+p {
+  text-align: center;
+}

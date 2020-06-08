@@ -14,10 +14,10 @@ import { TeamsLandingContainerComponent } from './teams-landing-container/teams-
 @NgModule({
   imports: [
     CommonModule,
-    TeamsUiTeamsListModule,
     MatButtonModule,
     MatDialogModule,
     MatProgressSpinnerModule,
+    TeamsUiTeamsListModule,
     TeamsModalsFeatureDeleteTeamConfirmationModalModule,
     TeamsModalsFeatureEditTeamModalModule,
     RouterModule.forChild([

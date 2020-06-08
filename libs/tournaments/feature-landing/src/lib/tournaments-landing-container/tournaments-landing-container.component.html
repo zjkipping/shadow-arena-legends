@@ -1,1 +1,15 @@
-<p>tournaments-landing-container works!</p>
+<h1>Tournaments Landing</h1>
+<button mat-raised-button color="primary" (click)="addNewTournament()">
+  Add New Tournament
+</button>
+<sal-tournament-list
+  *ngIf="tournamentEntities | async as tournamentList; else loadingTournaments"
+  [tournaments]="tournamentList"
+  (editClicked)="editTournament($event)"
+  (deleteClicked)="deleteTournament($event)"
+></sal-tournament-list>
+<ng-template #loadingTournaments>
+  <div class="loading">
+    <mat-spinner [diameter]="50"></mat-spinner>
+  </div>
+</ng-template>

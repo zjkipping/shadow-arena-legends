@@ -1,1 +1,2 @@
-export * from './lib/tournaments-data-layer.module';
+export * from './lib/tournaments.service';
+export * from './types';

@@ -730,7 +730,7 @@
       "projectType": "library",
       "root": "libs/shared/util-types",
       "sourceRoot": "libs/shared/util-types/src",
-      "prefix": "shadow-arena-legends",
+      "prefix": "sal",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
@@ -762,7 +762,7 @@
       "projectType": "library",
       "root": "libs/players/modals/feature-delete-player-confirmation-modal",
       "sourceRoot": "libs/players/modals/feature-delete-player-confirmation-modal/src",
-      "prefix": "shadow-arena-legends",
+      "prefix": "sal",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
@@ -797,7 +797,7 @@
       "projectType": "library",
       "root": "libs/players/modals/feature-edit-player-modal",
       "sourceRoot": "libs/players/modals/feature-edit-player-modal/src",
-      "prefix": "shadow-arena-legends",
+      "prefix": "sal",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
@@ -832,7 +832,7 @@
       "projectType": "library",
       "root": "libs/profiles/data-layer",
       "sourceRoot": "libs/profiles/data-layer/src",
-      "prefix": "shadow-arena-legends",
+      "prefix": "sal",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
@@ -864,7 +864,7 @@
       "projectType": "library",
       "root": "libs/admin/feature-login-screen",
       "sourceRoot": "libs/admin/feature-login-screen/src",
-      "prefix": "shadow-arena-legends",
+      "prefix": "sal",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
@@ -899,7 +899,7 @@
       "projectType": "library",
       "root": "libs/admin/feature-dashboard",
       "sourceRoot": "libs/admin/feature-dashboard/src",
-      "prefix": "shadow-arena-legends",
+      "prefix": "sal",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
@@ -934,7 +934,7 @@
       "projectType": "library",
       "root": "libs/shared/util-route-guards",
       "sourceRoot": "libs/shared/util-route-guards/src",
-      "prefix": "shadow-arena-legends",
+      "prefix": "sal",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
@@ -969,7 +969,7 @@
       "projectType": "library",
       "root": "libs/teams/ui-teams-list",
       "sourceRoot": "libs/teams/ui-teams-list/src",
-      "prefix": "shadow-arena-legends",
+      "prefix": "sal",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
@@ -1001,7 +1001,7 @@
       "projectType": "library",
       "root": "libs/teams/modals/feature-delete-team-confirmation-modal",
       "sourceRoot": "libs/teams/modals/feature-delete-team-confirmation-modal/src",
-      "prefix": "shadow-arena-legends",
+      "prefix": "sal",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
@@ -1036,7 +1036,7 @@
       "projectType": "library",
       "root": "libs/teams/modals/feature-edit-team-modal",
       "sourceRoot": "libs/teams/modals/feature-edit-team-modal/src",
-      "prefix": "shadow-arena-legends",
+      "prefix": "sal",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
@@ -1066,6 +1066,111 @@
           "style": "scss"
         }
       }
+    },
+    "tournaments-ui-tournament-list": {
+      "projectType": "library",
+      "root": "libs/tournaments/ui-tournament-list",
+      "sourceRoot": "libs/tournaments/ui-tournament-list/src",
+      "prefix": "sal",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/tournaments/ui-tournament-list/tsconfig.lib.json",
+              "libs/tournaments/ui-tournament-list/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/tournaments/ui-tournament-list/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/tournaments/ui-tournament-list/jest.config.js",
+            "tsConfig": "libs/tournaments/ui-tournament-list/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/tournaments/ui-tournament-list/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "tournaments-modals-feature-edit-tournament-modal": {
+      "projectType": "library",
+      "root": "libs/tournaments/modals/feature-edit-tournament-modal",
+      "sourceRoot": "libs/tournaments/modals/feature-edit-tournament-modal/src",
+      "prefix": "sal",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/tournaments/modals/feature-edit-tournament-modal/tsconfig.lib.json",
+              "libs/tournaments/modals/feature-edit-tournament-modal/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/tournaments/modals/feature-edit-tournament-modal/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/tournaments/modals/feature-edit-tournament-modal/jest.config.js",
+            "tsConfig": "libs/tournaments/modals/feature-edit-tournament-modal/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/tournaments/modals/feature-edit-tournament-modal/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "tournaments-modals-feature-delete-tournament-confirmation-modal": {
+      "projectType": "library",
+      "root": "libs/tournaments/modals/feature-delete-tournament-confirmation-modal",
+      "sourceRoot": "libs/tournaments/modals/feature-delete-tournament-confirmation-modal/src",
+      "prefix": "sal",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/tournaments/modals/feature-delete-tournament-confirmation-modal/tsconfig.lib.json",
+              "libs/tournaments/modals/feature-delete-tournament-confirmation-modal/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/tournaments/modals/feature-delete-tournament-confirmation-modal/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/tournaments/modals/feature-delete-tournament-confirmation-modal/jest.config.js",
+            "tsConfig": "libs/tournaments/modals/feature-delete-tournament-confirmation-modal/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/tournaments/modals/feature-delete-tournament-confirmation-modal/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
     }
   },
   "cli": {
@@ -1078,7 +1183,8 @@
       "e2eTestRunner": "cypress"
     },
     "@nrwl/angular:library": {
-      "unitTestRunner": "jest"
+      "unitTestRunner": "jest",
+      "prefix": "sal"
     }
   },
   "defaultProject": "leaderboard"

@@ -5,6 +5,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { RouterModule } from '@angular/router';
 
+import { PlayersModalsFeatureDeletePlayerConfirmationModalModule } from '@shadow-arena-legends/players/modals/feature-delete-player-confirmation-modal';
 import { PlayersModalsFeatureEditPlayerModalModule } from '@shadow-arena-legends/players/modals/feature-edit-player-modal';
 import { PlayersUiPlayerListModule } from '@shadow-arena-legends/players/ui-player-list';
 
@@ -20,11 +21,12 @@ import { PlayersLandingContainerComponent } from './players-landing-container/pl
         children: [],
       },
     ]),
-    PlayersUiPlayerListModule,
     MatButtonModule,
     MatDialogModule,
     MatProgressSpinnerModule,
+    PlayersUiPlayerListModule,
     PlayersModalsFeatureEditPlayerModalModule,
+    PlayersModalsFeatureDeletePlayerConfirmationModalModule,
   ],
   declarations: [PlayersLandingContainerComponent],
 })

@@ -104,6 +104,15 @@
     },
     "teams-modals-feature-edit-team-modal": {
       "tags": []
+    },
+    "tournaments-ui-tournament-list": {
+      "tags": []
+    },
+    "tournaments-modals-feature-edit-tournament-modal": {
+      "tags": []
+    },
+    "tournaments-modals-feature-delete-tournament-confirmation-modal": {
+      "tags": []
     }
   }
 }

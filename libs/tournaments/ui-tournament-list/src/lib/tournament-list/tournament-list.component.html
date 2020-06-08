@@ -1,5 +1,5 @@
 <mat-form-field>
-  <mat-label>Search Teams</mat-label>
+  <mat-label>Search Tournaments</mat-label>
   <input matInput [formControl]="filterControl" />
 </mat-form-field>
 <table *ngIf="rows?.length > 0">
@@ -21,6 +21,12 @@
         </ng-container>
       </th>
       <th class="action">
+        Live
+      </th>
+      <th class="action">
+        Manage
+      </th>
+      <th class="action">
         Edit
       </th>
       <th class="action">
@@ -33,14 +39,25 @@
       <td>
         {{ row.name }}
       </td>
-      <td>
-        {{ row.type | titlecase }}
+      <td>{{ row.startDateTime | date: 'short' }}</td>
+      <td>{{ row.endDateTime | date: 'short' }}</td>
+      <td class="action">
+        <mat-icon *ngIf="row.live" aria-label="Live">visibility</mat-icon>
+        <mat-icon *ngIf="!row.live" aria-label="Not Live">
+          visibility_off
+        </mat-icon>
+      </td>
+      <td class="action">
+        <a mat-icon-button color="primary" aria-label="Manage Link">
+          <mat-icon>build</mat-icon>
+        </a>
       </td>
       <td class="action">
         <button
           mat-icon-button
           color="accent"
           aria-label="Edit Button"
+          [disabled]="row.live"
           (click)="editClicked.emit(row)"
         >
           <mat-icon>edit</mat-icon>
@@ -50,6 +67,7 @@
         <button
           mat-icon-button
           color="warn"
+          [disabled]="row.live"
           aria-label="Delete Button"
           (click)="deleteClicked.emit(row)"
         >
@@ -59,4 +77,4 @@
     </tr>
   </tbody>
 </table>
-<div *ngIf="rows?.length === 0">No Teams Found...</div>
+<div *ngIf="rows?.length === 0">No Tournaments Found...</div>

@@ -33,6 +33,11 @@ export interface SelectOption {
   value: string | number;
 }
 
+export interface TypeAheadOption {
+  name: string;
+  referenceId: string;
+}
+
 export interface FirebaseEntity {
   referenceId: string;
 }

@@ -1,0 +1,29 @@
+:host {
+  display: grid;
+  padding-top: 1em;
+  grid-template-rows: 50px 1fr;
+  row-gap: 1em;
+  width: 100%;
+  height: calc(100% - 1em);
+  max-width: 800px;
+}
+
+.search {
+  width: 20em;
+  margin: auto;
+
+  mat-form-field {
+    width: 100%;
+  }
+}
+
+.loading {
+  display: grid;
+  height: 100%;
+  place-items: center;
+}
+
+sal-participating-teams-list {
+  margin: 0 auto;
+  max-width: 400px;
+}

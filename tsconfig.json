@@ -113,6 +113,9 @@
       ],
       "@shadow-arena-legends/shared/util-route-params": [
         "libs/shared/util-route-params/src/index.ts"
+      ],
+      "@shadow-arena-legends/tournaments/modals/feature-remove-participating-team-confirmation-modal": [
+        "libs/tournaments/modals/feature-remove-participating-team-confirmation-modal/src/index.ts"
       ]
     }
   },

@@ -1,1 +1,41 @@
-<p>participating-teams works!</p>
+<div
+  class="search"
+  *ngIf="typeAheadOptions | async as options; else loadingTypeAheadOptions"
+>
+  <mat-form-field>
+    <input
+      #autocomplete="matAutocompleteTrigger"
+      type="text"
+      matInput
+      placeholder="Add Teams"
+      [formControl]="teamsTypeAhead"
+      [matAutocomplete]="auto"
+    />
+  </mat-form-field>
+
+  <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+    <mat-option *ngFor="let option of options | slice: 0:5" [value]="option">
+      {{ option.name }}
+    </mat-option>
+    <mat-option *ngIf="options.length === 0" disabled>
+      No Teams Left To Choose From
+    </mat-option>
+  </mat-autocomplete>
+</div>
+<ng-template #loadingTypeAheadOptions>
+  <div class="loading">
+    <mat-spinner [diameter]="50"></mat-spinner>
+  </div>
+</ng-template>
+
+<sal-participating-teams-list
+  *ngIf="teamsForTable | async as rows; else loadingTable"
+  [teams]="rows"
+  (deleteClicked)="removeTeam($event)"
+>
+</sal-participating-teams-list>
+<ng-template #loadingTable>
+  <div class="loading">
+    <mat-spinner [diameter]="50"></mat-spinner>
+  </div>
+</ng-template>

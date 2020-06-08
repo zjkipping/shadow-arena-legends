@@ -3,7 +3,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { TeamMember } from '@shadow-arena-legends/teams/data-layer';
+import { TypeAheadOption } from '@shadow-arena-legends/shared/util-types';
 
 import { PlayerDoc, PlayerEntity } from '../types';
 
@@ -35,7 +35,7 @@ export class PlayersService {
       );
   }
 
-  getPlayersForMemberTypeAhead(): Observable<TeamMember[]> {
+  getPlayersForMemberTypeAhead(): Observable<TypeAheadOption[]> {
     return this.getPlayerEntitiesOnce().pipe(
       map((players) =>
         players.map((player) => ({

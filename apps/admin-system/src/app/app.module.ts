@@ -3,7 +3,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule, SETTINGS } from '@angular/fire/firestore';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterModule } from '@angular/router';
+import { PreloadAllModules, RouterModule } from '@angular/router';
 
 import {
   AdminDashboardGuardService,
@@ -25,40 +25,46 @@ import { AppComponent } from './app.component';
     AngularFirestoreModule,
     BrowserAnimationsModule,
     MatSnackBarModule,
-    RouterModule.forRoot([
+    RouterModule.forRoot(
+      [
+        {
+          path: '',
+          redirectTo: 'dashboard',
+          pathMatch: 'full',
+        },
+        {
+          path: 'no-access',
+          loadChildren: () =>
+            import('@shadow-arena-legends/auth/feature-no-access').then(
+              (m) => m.AuthFeatureNoAccessModule
+            ),
+        },
+        {
+          path: 'dashboard',
+          loadChildren: () =>
+            import('@shadow-arena-legends/admin/feature-dashboard').then(
+              (m) => m.AdminFeatureDashboardModule
+            ),
+          canLoad: [AdminDashboardGuardService],
+        },
+        {
+          path: 'login',
+          loadChildren: () =>
+            import('@shadow-arena-legends/admin/feature-login-screen').then(
+              (m) => m.AdminFeatureLoginScreenModule
+            ),
+          canLoad: [AdminLoginGuardService],
+        },
+        {
+          path: '**',
+          redirectTo: 'dashboard',
+        },
+      ],
       {
-        path: '',
-        redirectTo: 'dashboard',
-        pathMatch: 'full',
-      },
-      {
-        path: 'no-access',
-        loadChildren: () =>
-          import('@shadow-arena-legends/auth/feature-no-access').then(
-            (m) => m.AuthFeatureNoAccessModule
-          ),
-      },
-      {
-        path: 'dashboard',
-        loadChildren: () =>
-          import('@shadow-arena-legends/admin/feature-dashboard').then(
-            (m) => m.AdminFeatureDashboardModule
-          ),
-        canLoad: [AdminDashboardGuardService],
-      },
-      {
-        path: 'login',
-        loadChildren: () =>
-          import('@shadow-arena-legends/admin/feature-login-screen').then(
-            (m) => m.AdminFeatureLoginScreenModule
-          ),
-        canLoad: [AdminLoginGuardService],
-      },
-      {
-        path: '**',
-        redirectTo: 'dashboard',
-      },
-    ]),
+        preloadingStrategy: PreloadAllModules,
+        paramsInheritanceStrategy: 'always',
+      }
+    ),
   ],
   providers: [
     environment.type === EnvironmentType.Dev

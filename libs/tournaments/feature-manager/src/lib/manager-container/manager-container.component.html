@@ -1,4 +1,7 @@
-<ng-container *ngIf="tournament | async as tourney; else loadingTournament">
+<div
+  class="content"
+  *ngIf="tournament | async as tourney; else loadingTournament"
+>
   <div class="title-bar">
     <a mat-button color="primary" routerLink="../../">
       <button mat-icon-button color="primary" aria-label="Manage Link">
@@ -35,8 +38,10 @@
       Stat Tallying System
     </a>
   </nav>
-  <router-outlet></router-outlet>
-</ng-container>
+  <section>
+    <router-outlet></router-outlet>
+  </section>
+</div>
 <ng-template #loadingTournament>
   <div class="loading">
     <mat-spinner [diameter]="50"></mat-spinner>

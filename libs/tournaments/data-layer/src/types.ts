@@ -1,7 +1,13 @@
 import { FirebaseEntity } from '@shadow-arena-legends/shared/util-types';
 
+export enum TournamentType {
+  Solos = 'solos',
+  Duos = 'duos',
+}
+
 export interface TournamentDoc {
   name: string;
+  type: TournamentType;
   startDateTime: string;
   endDateTime: string;
   live: boolean;
@@ -14,12 +20,11 @@ export interface TournamentDoc {
 export type TournamentEntity = TournamentDoc & FirebaseEntity;
 
 export interface ParticipatingTeam {
-  referenceId: string;
+  teamId: string;
 }
 
-export interface TournamentWithTeams extends TournamentDoc {
-  participatingTeams: ParticipatingTeam[];
-}
+export type ParticipatingTeamEntity = ParticipatingTeam & FirebaseEntity;
 
-export type TournamentsWithParticipatingTeamsEntity = ParticipatingTeam &
-  FirebaseEntity;
+export interface TournamentWithParticipatingTeams extends TournamentEntity {
+  participatingTeams: ParticipatingTeamEntity[];
+}

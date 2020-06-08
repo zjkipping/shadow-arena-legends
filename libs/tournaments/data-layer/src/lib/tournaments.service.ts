@@ -4,9 +4,11 @@ import { combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import {
+  ParticipatingTeam,
+  ParticipatingTeamEntity,
   TournamentDoc,
   TournamentEntity,
-  TournamentsWithParticipatingTeamsEntity,
+  TournamentWithParticipatingTeams,
 } from '../types';
 
 const tournamentsCollection = 'tournaments';
@@ -55,16 +57,12 @@ export class TournamentsService {
       );
   }
 
-  getTournamentWithParticipantsTeams(
+  getTournamentWithParticipatingTeams(
     referenceId: string
-  ): Observable<TournamentsWithParticipatingTeamsEntity | null> {
+  ): Observable<TournamentWithParticipatingTeams | null> {
     return combineLatest([
       this.getTournamentEntity(referenceId),
-      this.firestore
-        .collection(
-          `${tournamentsCollection}/${referenceId}/${participatingTeamsCollection}`
-        )
-        .valueChanges({ idField: 'referenceId' }),
+      this.getParticipatingTeamsInTournament(referenceId),
     ]).pipe(
       map(([tournament, participatingTeams]) => {
         if (tournament) {
@@ -77,6 +75,32 @@ export class TournamentsService {
         }
       })
     );
+  }
+
+  getParticipatingTeamsInTournament(
+    referenceId: string
+  ): Observable<ParticipatingTeamEntity[]> {
+    return this.firestore
+      .collection<ParticipatingTeam>(
+        `${tournamentsCollection}/${referenceId}/${participatingTeamsCollection}`
+      )
+      .valueChanges({ idField: 'referenceId' });
+  }
+
+  addTeamToTournamentParticipants(tournamentId: string, teamId: string) {
+    return this.firestore
+      .collection(
+        `${tournamentsCollection}/${tournamentId}/${participatingTeamsCollection}`
+      )
+      .add({ teamId });
+  }
+
+  removeTeamFromTournamentParticipants(tournamentId: string, teamId: string) {
+    return this.firestore
+      .doc(
+        `${tournamentsCollection}/${tournamentId}/${participatingTeamsCollection}/${teamId}`
+      )
+      .delete();
   }
 
   addNewTournament(tournament: TournamentDoc) {

@@ -13,11 +13,8 @@ import { map, takeUntil } from 'rxjs/operators';
 
 import { PlayersService } from '@shadow-arena-legends/players/data-layer';
 import { SelectOption } from '@shadow-arena-legends/shared/util-types';
-import {
-  TeamEntity,
-  TeamMember,
-  TeamType,
-} from '@shadow-arena-legends/teams/data-layer';
+import { TypeAheadOption } from '@shadow-arena-legends/shared/util-types';
+import { TeamEntity, TeamType } from '@shadow-arena-legends/teams/data-layer';
 
 @Component({
   selector: 'shadow-arena-legends-edit-team-modal',
@@ -32,7 +29,7 @@ export class EditTeamModalComponent implements OnDestroy {
     { label: 'Solos', value: 'solos' },
     { label: 'Duos', value: 'duos' },
   ];
-  playerOptions: Observable<TeamMember[]>;
+  playerOptions: Observable<TypeAheadOption[]>;
   membersTypeAhead: FormControl;
   membersFormArray: FormArray;
 
@@ -62,9 +59,9 @@ export class EditTeamModalComponent implements OnDestroy {
       playersService.getPlayersForMemberTypeAhead(),
       merge(
         defer(() => of(this.membersFormArray.value)) as Observable<
-          TeamMember[]
+          TypeAheadOption[]
         >,
-        this.membersFormArray.valueChanges as Observable<TeamMember[]>
+        this.membersFormArray.valueChanges as Observable<TypeAheadOption[]>
       ).pipe(map((arr) => arr.map((o) => o.referenceId))),
       merge(
         defer(() => of(this.membersTypeAhead.value as string)),
@@ -82,7 +79,7 @@ export class EditTeamModalComponent implements OnDestroy {
 
     this.membersTypeAhead.valueChanges
       .pipe(takeUntil(this.destroy))
-      .subscribe((typeAhead: string | TeamMember) => {
+      .subscribe((typeAhead: string | TypeAheadOption) => {
         if (
           typeof typeAhead !== 'string' &&
           !!typeAhead.name &&
@@ -129,7 +126,7 @@ export class EditTeamModalComponent implements OnDestroy {
     this.destroy.complete();
   }
 
-  displayFn(playerOption: TeamMember): string {
+  displayFn(playerOption: TypeAheadOption): string {
     return playerOption && playerOption.name ? playerOption.name : '';
   }
 

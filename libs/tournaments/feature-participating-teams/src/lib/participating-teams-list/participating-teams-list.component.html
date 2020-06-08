@@ -1,0 +1,48 @@
+<mat-form-field>
+  <mat-label>Filter Participating Teams</mat-label>
+  <input matInput [formControl]="filterControl" />
+</mat-form-field>
+<table *ngIf="rows?.length > 0">
+  <thead>
+    <tr>
+      <th
+        *ngFor="let column of sortableColumns"
+        (click)="headerClicked(column)"
+        [class.selected]="column === selectedColumn"
+      >
+        {{ column.label }}
+        <ng-container *ngIf="column === selectedColumn">
+          <ng-container *ngIf="sortDirection === 'asc'">
+            <mat-icon aria-label="Sorted Ascending">arrow_upward</mat-icon>
+          </ng-container>
+          <ng-container *ngIf="sortDirection === 'desc'">
+            <mat-icon aria-label="Sorted Descending">arrow_downward</mat-icon>
+          </ng-container>
+        </ng-container>
+      </th>
+      <th class="action">
+        Delete
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let row of rows">
+      <td>
+        {{ row.name }}
+      </td>
+      <td class="action">
+        <button
+          mat-icon-button
+          color="warn"
+          aria-label="Delete Button"
+          (click)="deleteClicked.emit(row)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div class="no-teams" *ngIf="rows?.length === 0">
+  No Partipating Teams Found...
+</div>

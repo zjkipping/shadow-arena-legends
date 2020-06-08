@@ -1,3 +1,9 @@
+.content {
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  height: 100%;
+}
+
 ::ng-deep div.mat-tab-links {
   display: grid !important;
   grid-template-columns: 1fr 1fr !important;
@@ -24,4 +30,10 @@
   h1 {
     margin: 0;
   }
+}
+
+section {
+  display: grid;
+  grid-template-rows: 0 1fr;
+  place-items: center;
 }

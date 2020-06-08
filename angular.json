@@ -1311,6 +1311,41 @@
           "style": "scss"
         }
       }
+    },
+    "tournaments-modals-feature-remove-participating-team-confirmation-modal": {
+      "projectType": "library",
+      "root": "libs/tournaments/modals/feature-remove-participating-team-confirmation-modal",
+      "sourceRoot": "libs/tournaments/modals/feature-remove-participating-team-confirmation-modal/src",
+      "prefix": "sal",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/tournaments/modals/feature-remove-participating-team-confirmation-modal/tsconfig.lib.json",
+              "libs/tournaments/modals/feature-remove-participating-team-confirmation-modal/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/tournaments/modals/feature-remove-participating-team-confirmation-modal/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/tournaments/modals/feature-remove-participating-team-confirmation-modal/jest.config.js",
+            "tsConfig": "libs/tournaments/modals/feature-remove-participating-team-confirmation-modal/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/tournaments/modals/feature-remove-participating-team-confirmation-modal/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
     }
   },
   "cli": {

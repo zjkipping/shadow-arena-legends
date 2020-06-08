@@ -1,0 +1,44 @@
+<ng-container *ngIf="tournament | async as tourney; else loadingTournament">
+  <div class="title-bar">
+    <a mat-button color="primary" routerLink="../../">
+      <button mat-icon-button color="primary" aria-label="Manage Link">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      Back to Landing
+    </a>
+    <h1>{{ tourney.name }}</h1>
+    <mat-slide-toggle
+      color="primary"
+      [checked]="tourney.live"
+      (click)="$event.preventDefault(); toggleLive(tourney)"
+    >
+      Live
+    </mat-slide-toggle>
+  </div>
+  <nav mat-tab-nav-bar>
+    <a
+      mat-tab-link
+      routerLink="participating-teams"
+      routerLinkActive
+      #participating="routerLinkActive"
+      [active]="participating.isActive"
+    >
+      Participating Teams
+    </a>
+    <a
+      mat-tab-link
+      routerLink="stats-tallier"
+      routerLinkActive
+      #stats="routerLinkActive"
+      [active]="stats.isActive"
+    >
+      Stat Tallying System
+    </a>
+  </nav>
+  <router-outlet></router-outlet>
+</ng-container>
+<ng-template #loadingTournament>
+  <div class="loading">
+    <mat-spinner [diameter]="50"></mat-spinner>
+  </div>
+</ng-template>

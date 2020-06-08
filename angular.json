@@ -1171,6 +1171,146 @@
           "style": "scss"
         }
       }
+    },
+    "tournaments-feature-manager": {
+      "projectType": "library",
+      "root": "libs/tournaments/feature-manager",
+      "sourceRoot": "libs/tournaments/feature-manager/src",
+      "prefix": "sal",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/tournaments/feature-manager/tsconfig.lib.json",
+              "libs/tournaments/feature-manager/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/tournaments/feature-manager/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/tournaments/feature-manager/jest.config.js",
+            "tsConfig": "libs/tournaments/feature-manager/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/tournaments/feature-manager/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "tournaments-feature-participating-teams": {
+      "projectType": "library",
+      "root": "libs/tournaments/feature-participating-teams",
+      "sourceRoot": "libs/tournaments/feature-participating-teams/src",
+      "prefix": "sal",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/tournaments/feature-participating-teams/tsconfig.lib.json",
+              "libs/tournaments/feature-participating-teams/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/tournaments/feature-participating-teams/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/tournaments/feature-participating-teams/jest.config.js",
+            "tsConfig": "libs/tournaments/feature-participating-teams/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/tournaments/feature-participating-teams/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "tournaments-feature-stats-tallier": {
+      "projectType": "library",
+      "root": "libs/tournaments/feature-stats-tallier",
+      "sourceRoot": "libs/tournaments/feature-stats-tallier/src",
+      "prefix": "sal",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/tournaments/feature-stats-tallier/tsconfig.lib.json",
+              "libs/tournaments/feature-stats-tallier/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/tournaments/feature-stats-tallier/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/tournaments/feature-stats-tallier/jest.config.js",
+            "tsConfig": "libs/tournaments/feature-stats-tallier/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/tournaments/feature-stats-tallier/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "shared-util-route-params": {
+      "projectType": "library",
+      "root": "libs/shared/util-route-params",
+      "sourceRoot": "libs/shared/util-route-params/src",
+      "prefix": "sal",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/shared/util-route-params/tsconfig.lib.json",
+              "libs/shared/util-route-params/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/shared/util-route-params/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/shared/util-route-params/jest.config.js",
+            "tsConfig": "libs/shared/util-route-params/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/shared/util-route-params/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
     }
   },
   "cli": {

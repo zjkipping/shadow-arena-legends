@@ -1,0 +1,27 @@
+::ng-deep div.mat-tab-links {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+}
+
+::ng-deep .mat-tab-header-pagination {
+  display: none !important;
+}
+
+.loading {
+  display: grid;
+  height: 100%;
+  place-items: center;
+}
+
+.title-bar {
+  padding: 1em 2em;
+  background-color: #464646;
+
+  display: grid;
+  grid-template-columns: 12em 1fr 12em;
+  place-items: center;
+
+  h1 {
+    margin: 0;
+  }
+}

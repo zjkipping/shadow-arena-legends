@@ -5,6 +5,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { RouterModule } from '@angular/router';
 
+import { TOURNAMENT_ID_ROUTE_PARAM } from '@shadow-arena-legends/shared/util-route-params';
 import { TournamentsModalsFeatureDeleteTournamentConfirmationModalModule } from '@shadow-arena-legends/tournaments/modals/feature-delete-tournament-confirmation-modal';
 import { TournamentsModalsFeatureEditTournamentModalModule } from '@shadow-arena-legends/tournaments/modals/feature-edit-tournament-modal';
 import { TournamentsUiTournamentListModule } from '@shadow-arena-legends/tournaments/ui-tournament-list';
@@ -18,7 +19,13 @@ import { TournamentsLandingContainerComponent } from './tournaments-landing-cont
       {
         path: '',
         component: TournamentsLandingContainerComponent,
-        children: [],
+      },
+      {
+        path: `manage/:${TOURNAMENT_ID_ROUTE_PARAM}`,
+        loadChildren: () =>
+          import('@shadow-arena-legends/tournaments/feature-manager').then(
+            (m) => m.TournamentsFeatureManagerModule
+          ),
       },
     ]),
     MatButtonModule,

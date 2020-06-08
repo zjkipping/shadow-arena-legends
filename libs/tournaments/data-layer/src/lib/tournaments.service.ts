@@ -38,24 +38,44 @@ export class TournamentsService {
       );
   }
 
+  getTournamentEntity(
+    referenceId: string
+  ): Observable<TournamentEntity | null> {
+    return this.firestore
+      .doc<TournamentDoc>(`${tournamentsCollection}/${referenceId}`)
+      .valueChanges()
+      .pipe(
+        map((tourney) => {
+          if (tourney) {
+            return { ...tourney, referenceId };
+          } else {
+            return null;
+          }
+        })
+      );
+  }
+
   getTournamentWithParticipantsTeams(
     referenceId: string
-  ): Observable<TournamentsWithParticipatingTeamsEntity> {
+  ): Observable<TournamentsWithParticipatingTeamsEntity | null> {
     return combineLatest([
-      this.firestore
-        .doc<TournamentDoc>(`${tournamentsCollection}/${referenceId}`)
-        .valueChanges(),
+      this.getTournamentEntity(referenceId),
       this.firestore
         .collection(
           `${tournamentsCollection}/${referenceId}/${participatingTeamsCollection}`
         )
         .valueChanges({ idField: 'referenceId' }),
     ]).pipe(
-      map(([tournament, participatingTeams]) => ({
-        ...tournament,
-        referenceId,
-        participatingTeams,
-      }))
+      map(([tournament, participatingTeams]) => {
+        if (tournament) {
+          return {
+            ...tournament,
+            participatingTeams,
+          };
+        } else {
+          return null;
+        }
+      })
     );
   }
 

@@ -101,6 +101,18 @@
       ],
       "@shadow-arena-legends/tournaments/modals/feature-delete-tournament-confirmation-modal": [
         "libs/tournaments/modals/feature-delete-tournament-confirmation-modal/src/index.ts"
+      ],
+      "@shadow-arena-legends/tournaments/feature-manager": [
+        "libs/tournaments/feature-manager/src/index.ts"
+      ],
+      "@shadow-arena-legends/tournaments/feature-participating-teams": [
+        "libs/tournaments/feature-participating-teams/src/index.ts"
+      ],
+      "@shadow-arena-legends/tournaments/feature-stats-tallier": [
+        "libs/tournaments/feature-stats-tallier/src/index.ts"
+      ],
+      "@shadow-arena-legends/shared/util-route-params": [
+        "libs/shared/util-route-params/src/index.ts"
       ]
     }
   },

@@ -113,6 +113,18 @@
     },
     "tournaments-modals-feature-delete-tournament-confirmation-modal": {
       "tags": []
+    },
+    "tournaments-feature-manager": {
+      "tags": []
+    },
+    "tournaments-feature-participating-teams": {
+      "tags": []
+    },
+    "tournaments-feature-stats-tallier": {
+      "tags": []
+    },
+    "shared-util-route-params": {
+      "tags": []
     }
   }
 }

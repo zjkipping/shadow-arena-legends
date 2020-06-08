@@ -48,7 +48,12 @@
         </mat-icon>
       </td>
       <td class="action">
-        <a mat-icon-button color="accent" aria-label="Manage Link">
+        <a
+          mat-icon-button
+          color="accent"
+          aria-label="Manage Link"
+          [routerLink]="['manage', row.referenceId]"
+        >
           <mat-icon>build</mat-icon>
         </a>
       </td>

@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { RouterModule } from '@angular/router';
 
 import { TournamentListComponent } from './tournament-list/tournament-list.component';
 
@@ -16,6 +17,7 @@ import { TournamentListComponent } from './tournament-list/tournament-list.compo
     MatInputModule,
     MatButtonModule,
     MatIconModule,
+    RouterModule,
   ],
   declarations: [TournamentListComponent],
   exports: [TournamentListComponent],

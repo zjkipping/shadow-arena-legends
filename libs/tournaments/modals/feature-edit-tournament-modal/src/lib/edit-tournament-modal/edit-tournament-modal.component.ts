@@ -47,7 +47,7 @@ export class EditTournamentModalComponent {
     this.tournamentForm = fb.group(
       {
         name: fb.control(tournament?.name || '', Validators.required),
-        type: fb.control(tournament?.name || '', Validators.required),
+        type: fb.control(tournament?.type || '', Validators.required),
         live: fb.control(false),
         startDateTime: fb.control(
           tournament?.startDateTime

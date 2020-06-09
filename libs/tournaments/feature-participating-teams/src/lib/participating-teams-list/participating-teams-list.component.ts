@@ -10,8 +10,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { TableColumn } from '@shadow-arena-legends/shared/util-types';
-
-import { ParticipatingTeamForTable } from '../../types';
+import { ParticipatingTeamForTable } from '@shadow-arena-legends/tournaments/data-layer';
 
 @Component({
   selector: 'sal-participating-teams-list',

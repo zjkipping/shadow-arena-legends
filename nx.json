@@ -128,6 +128,9 @@
     },
     "tournaments-modals-feature-remove-participating-team-confirmation-modal": {
       "tags": []
+    },
+    "teams-modals-util-modal-types": {
+      "tags": []
     }
   }
 }

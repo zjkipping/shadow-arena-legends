@@ -1,14 +1,21 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { combineLatest, Observable, of } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 
 import { TypeAheadOption } from '@shadow-arena-legends/shared/util-types';
 import { TournamentType } from '@shadow-arena-legends/tournaments/data-layer';
 
-import { TeamDoc, TeamEntity } from '../types';
+import {
+  TeamDoc,
+  TeamEntity,
+  TeamMember,
+  TeamMemberEntity,
+  TeamWithMembers,
+} from '../types';
 
-const teamsCollections = 'teams';
+const teamsCollection = 'teams';
+const membersCollection = 'members';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +25,7 @@ export class TeamsService {
 
   getTeamEntity(referenceId: string): Observable<TeamEntity | null> {
     return this.firestore
-      .doc<TeamDoc>(`${teamsCollections}/${referenceId}`)
+      .doc<TeamDoc>(`${teamsCollection}/${referenceId}`)
       .valueChanges()
       .pipe(
         map((team) => {
@@ -33,15 +40,39 @@ export class TeamsService {
 
   getTeamEntities(): Observable<TeamEntity[]> {
     return this.firestore
-      .collection<TeamDoc>(teamsCollections)
+      .collection<TeamDoc>(teamsCollection)
       .valueChanges({ idField: 'referenceId' });
+  }
+
+  getTeamMembers(teamId: string): Observable<TeamMemberEntity[]> {
+    return this.firestore
+      .collection<TeamMember>(
+        `${teamsCollection}/${teamId}/${membersCollection}`
+      )
+      .valueChanges({ idField: 'referenceId' });
+  }
+
+  getTeamsWithMembers(): Observable<TeamWithMembers[]> {
+    return this.getTeamEntities().pipe(
+      switchMap((teams) =>
+        !teams.length
+          ? of([])
+          : combineLatest(
+              teams.map((team) =>
+                this.getTeamMembers(team.referenceId).pipe(
+                  map((members) => ({ ...team, members }))
+                )
+              )
+            )
+      )
+    );
   }
 
   getTeamsForTypeAhead(
     tournamentType: TournamentType
   ): Observable<TypeAheadOption[]> {
     return this.firestore
-      .collection<TeamDoc>(teamsCollections, (ref) =>
+      .collection<TeamDoc>(teamsCollection, (ref) =>
         ref.where('type', '==', tournamentType)
       )
       .valueChanges({ idField: 'referenceId' })
@@ -56,16 +87,28 @@ export class TeamsService {
   }
 
   addNewTeam(player: TeamDoc) {
-    return this.firestore.collection<TeamDoc>(teamsCollections).add(player);
+    return this.firestore.collection<TeamDoc>(teamsCollection).add(player);
   }
 
   updateTeam(referenceId: string, player: TeamDoc) {
     this.firestore
-      .doc<TeamDoc>(`${teamsCollections}/${referenceId}`)
+      .doc<TeamDoc>(`${teamsCollection}/${referenceId}`)
       .update(player);
   }
 
   deleteTeam(referenceId: string) {
-    this.firestore.doc<TeamDoc>(`${teamsCollections}/${referenceId}`).delete();
+    this.firestore.doc<TeamDoc>(`${teamsCollection}/${referenceId}`).delete();
+  }
+
+  addMember(referenceId: string, playerId: string) {
+    this.firestore
+      .collection(`${teamsCollection}/${referenceId}/${membersCollection}`)
+      .add({ playerId });
+  }
+
+  removeMember(referenceId: string, memberId: string) {
+    this.firestore
+      .doc(`${teamsCollection}/${referenceId}/${membersCollection}/${memberId}`)
+      .delete();
   }
 }

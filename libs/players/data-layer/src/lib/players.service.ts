@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, take } from 'rxjs/operators';
 
 import { TypeAheadOption } from '@shadow-arena-legends/shared/util-types';
 
@@ -14,6 +14,22 @@ const playersCollection = 'players';
 })
 export class PlayersService {
   constructor(private firestore: AngularFirestore) {}
+
+  async getPlayerEntityOnce(referenceId: string): Promise<PlayerEntity | null> {
+    const doc = await this.firestore
+      .doc<PlayerDoc>(`${playersCollection}/${referenceId}`)
+      .get()
+      .pipe(take(1))
+      .toPromise();
+    if (doc.exists) {
+      return {
+        ...(doc.data() as PlayerDoc),
+        referenceId,
+      };
+    } else {
+      return null;
+    }
+  }
 
   getPlayerEntities(): Observable<PlayerEntity[]> {
     return this.firestore

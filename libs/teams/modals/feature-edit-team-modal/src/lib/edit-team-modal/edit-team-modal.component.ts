@@ -1,4 +1,4 @@
-import { Component, Inject, OnDestroy, ViewChild } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import {
   FormArray,
   FormBuilder,
@@ -9,54 +9,76 @@ import {
 import { MatAutocompleteTrigger } from '@angular/material/autocomplete';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { combineLatest, defer, merge, Observable, of, Subject } from 'rxjs';
-import { map, takeUntil } from 'rxjs/operators';
+import { last, map, takeUntil } from 'rxjs/operators';
 
 import { PlayersService } from '@shadow-arena-legends/players/data-layer';
 import { SelectOption } from '@shadow-arena-legends/shared/util-types';
 import { TypeAheadOption } from '@shadow-arena-legends/shared/util-types';
-import { TeamEntity, TeamType } from '@shadow-arena-legends/teams/data-layer';
+import { TeamType } from '@shadow-arena-legends/teams/data-layer';
+import {
+  EditTeamModalData,
+  EditTeamModalResult,
+} from '@shadow-arena-legends/teams/modals/util-modal-types';
 
 @Component({
   selector: 'shadow-arena-legends-edit-team-modal',
   templateUrl: './edit-team-modal.component.html',
   styleUrls: ['./edit-team-modal.component.scss'],
 })
-export class EditTeamModalComponent implements OnDestroy {
+export class EditTeamModalComponent implements OnInit, OnDestroy {
   @ViewChild(MatAutocompleteTrigger)
   autocomplete?: MatAutocompleteTrigger;
-  teamForm: FormGroup;
+  teamForm!: FormGroup;
   teamTypes: SelectOption[] = [
     { label: 'Solos', value: 'solos' },
     { label: 'Duos', value: 'duos' },
   ];
-  playerOptions: Observable<TypeAheadOption[]>;
-  membersTypeAhead: FormControl;
-  membersFormArray: FormArray;
+  playerOptions!: Observable<TypeAheadOption[]>;
+  membersTypeAhead!: FormControl;
+  membersFormArray!: FormArray;
+  loading = true;
 
   destroy = new Subject();
+  data?: EditTeamModalData;
 
   constructor(
-    fb: FormBuilder,
-    playersService: PlayersService,
+    private fb: FormBuilder,
+    private playersService: PlayersService,
     private dialogRef: MatDialogRef<EditTeamModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public team?: TeamEntity
-  ) {
-    this.teamForm = fb.group(
+    @Inject(MAT_DIALOG_DATA)
+    public data$?: Observable<EditTeamModalData | undefined>
+  ) {}
+
+  async ngOnInit() {
+    this.data = await this.data$?.pipe(last()).toPromise();
+    this.loading = false;
+    this.teamForm = this.fb.group(
       {
-        name: fb.control(team?.name || '', [Validators.required]),
-        type: fb.control(team?.type || '', [Validators.required]),
-        members: fb.array(team?.members.map((m) => fb.control(m)) || []),
+        name: this.fb.control(this.data?.team.name || '', [
+          Validators.required,
+        ]),
+        type: this.fb.control(this.data?.team.type || '', [
+          Validators.required,
+        ]),
+        members: this.fb.array(
+          this.data?.members.map((m) =>
+            this.fb.control({ name: m.name, referenceId: m.playerId })
+          ) || []
+        ),
       },
       {
         validators: [validateMembersLengthToTeamType],
       }
     );
 
-    this.membersTypeAhead = fb.control('');
+    this.membersTypeAhead = this.fb.control('');
     this.membersFormArray = this.teamForm.get('members') as FormArray;
+    if (!this.checkIfMembersUnderLimit()) {
+      this.membersTypeAhead.disable();
+    }
 
     this.playerOptions = combineLatest([
-      playersService.getPlayersForMemberTypeAhead(),
+      this.playersService.getPlayersForMemberTypeAhead(),
       merge(
         defer(() => of(this.membersFormArray.value)) as Observable<
           TypeAheadOption[]
@@ -68,13 +90,17 @@ export class EditTeamModalComponent implements OnDestroy {
         this.membersTypeAhead.valueChanges as Observable<string>
       ),
     ]).pipe(
-      map(([options, memberIds, typeAhead]) =>
-        options.filter(
+      map(([options, memberIds, typeAhead]) => {
+        let typeAheadFilter = '';
+        if (typeof typeAhead === 'string') {
+          typeAheadFilter = typeAhead.toLowerCase();
+        }
+        return options.filter(
           (o) =>
             !memberIds.includes(o.referenceId) &&
-            o.name.toLowerCase().startsWith(typeAhead.toLowerCase())
-        )
-      )
+            o.name.toLowerCase().startsWith(typeAheadFilter)
+        );
+      })
     );
 
     this.membersTypeAhead.valueChanges
@@ -86,7 +112,7 @@ export class EditTeamModalComponent implements OnDestroy {
           !!typeAhead.referenceId
         ) {
           this.membersTypeAhead.setValue('');
-          this.membersFormArray.push(fb.control(typeAhead));
+          this.membersFormArray.push(this.fb.control(typeAhead));
           if (this.checkIfMembersUnderLimit()) {
             setTimeout(() => {
               if (this.autocomplete) {
@@ -142,7 +168,27 @@ export class EditTeamModalComponent implements OnDestroy {
   }
 
   submit() {
-    this.dialogRef.close(this.teamForm.value);
+    const formValue = this.teamForm.value;
+    const membersToRemove = this.data?.members.filter(
+      (m) => !formValue.members.find((mv: any) => mv.referenceId === m.playerId)
+    );
+    const membersToAdd = !this.data?.members
+      ? formValue.members
+      : formValue.members.filter(
+          (m: any) =>
+            // tslint:disable-next-line: no-non-null-assertion
+            !this.data!.members.find((mv) => mv.playerId === m.referenceId)
+        );
+    const result: EditTeamModalResult = {
+      team: {
+        name: formValue.name,
+        type: formValue.type,
+        image: '',
+      },
+      membersToRemove,
+      membersToAdd,
+    };
+    this.dialogRef.close(result);
   }
 }
 

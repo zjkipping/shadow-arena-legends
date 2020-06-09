@@ -1346,6 +1346,41 @@
           "style": "scss"
         }
       }
+    },
+    "teams-modals-util-modal-types": {
+      "projectType": "library",
+      "root": "libs/teams/modals/util-modal-types",
+      "sourceRoot": "libs/teams/modals/util-modal-types/src",
+      "prefix": "sal",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/teams/modals/util-modal-types/tsconfig.lib.json",
+              "libs/teams/modals/util-modal-types/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/teams/modals/util-modal-types/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/teams/modals/util-modal-types/jest.config.js",
+            "tsConfig": "libs/teams/modals/util-modal-types/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/teams/modals/util-modal-types/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
     }
   },
   "cli": {

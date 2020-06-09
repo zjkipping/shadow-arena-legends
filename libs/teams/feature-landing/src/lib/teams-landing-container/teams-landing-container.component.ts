@@ -60,7 +60,7 @@ export class TeamsLandingContainerComponent {
         DeleteTeamConfirmationModalComponent,
         {
           width: '400px',
-          height: '200px',
+          height: '225px',
           data: team,
         }
       )

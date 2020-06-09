@@ -17,6 +17,10 @@ service cloud.firestore {
       allow read;
       allow write;
     }
+    match /teams/{teamId}/members/{memberId} {
+      allow read;
+      allow write;
+    }
     match /tournaments/{tournamentsId} {
       allow read;
       allow write;

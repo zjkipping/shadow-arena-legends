@@ -10,6 +10,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 
 import { EditTournamentModalComponent } from './edit-tournament-modal/edit-tournament-modal.component';
 
@@ -21,6 +22,7 @@ import { EditTournamentModalComponent } from './edit-tournament-modal/edit-tourn
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    MatSelectModule,
     MatDatepickerModule,
     NgxMatDatetimePickerModule,
     NgxMatNativeDateModule,

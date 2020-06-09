@@ -10,12 +10,11 @@ import { TOURNAMENT_ID_ROUTE_PARAM } from '@shadow-arena-legends/shared/util-rou
 import { TypeAheadOption } from '@shadow-arena-legends/shared/util-types';
 import { TeamsService } from '@shadow-arena-legends/teams/data-layer';
 import {
+  ParticipatingTeamForTable,
   TournamentEntity,
   TournamentsService,
 } from '@shadow-arena-legends/tournaments/data-layer';
 import { RemoveParticipatingTeamConfirmationModalComponent } from '@shadow-arena-legends/tournaments/modals/feature-remove-participating-team-confirmation-modal';
-
-import { ParticipatingTeamForTable } from '../../types';
 
 interface TeamTypeAheadOption extends TypeAheadOption {
   tournamentId: string;
@@ -67,7 +66,6 @@ export class ParticipatingTeamsComponent implements OnDestroy {
     );
 
     this.teamsForTable = participatingTeams.pipe(
-      tap((t) => console.log(t)),
       switchMap((pTeams) =>
         pTeams.length > 0
           ? combineLatest(
@@ -149,7 +147,7 @@ export class ParticipatingTeamsComponent implements OnDestroy {
         boolean
       >(RemoveParticipatingTeamConfirmationModalComponent, {
         width: '500px',
-        height: '200px',
+        height: '225px',
         data: team,
       })
       .afterClosed()

@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-import { ParticipatingTeamForTable } from '@shadow-arena-legends/tournaments/feature-participating-teams';
+import { ParticipatingTeamForTable } from '@shadow-arena-legends/tournaments/data-layer';
 
 @Component({
   selector: 'sal-remove-participating-team-confirmation-modal',

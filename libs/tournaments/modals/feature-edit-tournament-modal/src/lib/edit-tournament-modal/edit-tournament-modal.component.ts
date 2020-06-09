@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
+import { SelectOption } from '@shadow-arena-legends/shared/util-types';
 import { TournamentEntity } from '@shadow-arena-legends/tournaments/data-layer';
 
 @Component({
@@ -11,6 +12,11 @@ import { TournamentEntity } from '@shadow-arena-legends/tournaments/data-layer';
 })
 export class EditTournamentModalComponent {
   tournamentForm: FormGroup;
+
+  tournamentTypes: SelectOption[] = [
+    { label: 'Solos', value: 'solos' },
+    { label: 'Duos', value: 'duos' },
+  ];
 
   constructor(
     fb: FormBuilder,
@@ -41,6 +47,7 @@ export class EditTournamentModalComponent {
     this.tournamentForm = fb.group(
       {
         name: fb.control(tournament?.name || '', Validators.required),
+        type: fb.control(tournament?.name || '', Validators.required),
         live: fb.control(false),
         startDateTime: fb.control(
           tournament?.startDateTime

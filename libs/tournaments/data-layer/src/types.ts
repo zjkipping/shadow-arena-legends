@@ -28,3 +28,9 @@ export type ParticipatingTeamEntity = ParticipatingTeam & FirebaseEntity;
 export interface TournamentWithParticipatingTeams extends TournamentEntity {
   participatingTeams: ParticipatingTeamEntity[];
 }
+
+export interface ParticipatingTeamForTable {
+  tournamentId: string;
+  referenceId: string;
+  name: string;
+}

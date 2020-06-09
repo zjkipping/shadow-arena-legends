@@ -69,7 +69,7 @@ export class TournamentsLandingContainerComponent {
         DeleteTournamentConfirmationModalComponent,
         {
           width: '400px',
-          height: '200px',
+          height: '225px',
           data: tournament,
         }
       )

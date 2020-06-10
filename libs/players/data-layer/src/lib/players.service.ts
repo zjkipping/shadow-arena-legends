@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+import * as firebase from 'firebase/app';
 import { combineLatest, Observable } from 'rxjs';
 import { map, switchMap, take } from 'rxjs/operators';
 
@@ -9,6 +10,7 @@ import { PlayerDoc, PlayerEntity, PlayerForList } from '../types';
 
 const playersCollection = 'players';
 const teamReferencesCollection = 'teamRefs';
+const statsCollection = 'stats';
 
 @Injectable({
   providedIn: 'root',
@@ -103,6 +105,16 @@ export class PlayersService {
         `${playersCollection}/${playerId}/${teamReferencesCollection}/${teamId}`
       )
       .delete();
+  }
+
+  incrementKillsStat(playerId: string, tournamentId: string) {
+    return this.firestore
+      .doc(
+        `${playersCollection}/${playerId}/${statsCollection}/${tournamentId}`
+      )
+      .update({
+        kills: firebase.firestore.FieldValue.increment(1),
+      });
   }
 
   addNewPlayer(player: PlayerDoc) {

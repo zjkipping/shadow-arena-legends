@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+import * as firebase from 'firebase/app';
 import { combineLatest, Observable, of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 
@@ -16,6 +17,7 @@ import {
 
 const teamsCollection = 'teams';
 const membersCollection = 'members';
+const statsCollection = 'stats';
 
 @Injectable({
   providedIn: 'root',
@@ -42,6 +44,54 @@ export class TeamsService {
     return this.firestore
       .collection<TeamDoc>(teamsCollection)
       .valueChanges({ idField: 'referenceId' });
+  }
+
+  incrementFirstPlaceStat(teamId: string, tournamentId: string) {
+    return this.firestore
+      .doc(`${teamsCollection}/${teamId}/${statsCollection}/${tournamentId}`)
+      .update({
+        firstPlace: firebase.firestore.FieldValue.increment(1),
+      });
+  }
+
+  incrementSecondPlaceStat(teamId: string, tournamentId: string) {
+    return this.firestore
+      .doc(`${teamsCollection}/${teamId}/${statsCollection}/${tournamentId}`)
+      .update({
+        secondPlace: firebase.firestore.FieldValue.increment(1),
+      });
+  }
+
+  incrementThirdPlaceStat(teamId: string, tournamentId: string) {
+    return this.firestore
+      .doc(`${teamsCollection}/${teamId}/${statsCollection}/${tournamentId}`)
+      .update({
+        thirdPlace: firebase.firestore.FieldValue.increment(1),
+      });
+  }
+
+  decrementFirstPlaceStat(teamId: string, tournamentId: string) {
+    return this.firestore
+      .doc(`${teamsCollection}/${teamId}/${statsCollection}/${tournamentId}`)
+      .update({
+        firstPlace: firebase.firestore.FieldValue.increment(-1),
+      });
+  }
+
+  decrementSecondPlaceStat(teamId: string, tournamentId: string) {
+    return this.firestore
+      .doc(`${teamsCollection}/${teamId}/${statsCollection}/${tournamentId}`)
+      .update({
+        secondPlace: firebase.firestore.FieldValue.increment(-1),
+      });
+  }
+
+  decrementThirdPlaceStat(teamId: string, tournamentId: string) {
+    return this.firestore
+      .doc(`${teamsCollection}/${teamId}/${statsCollection}/${tournamentId}`)
+      .update({
+        thirdPlace: firebase.firestore.FieldValue.increment(-1),
+      });
   }
 
   getTeamMembers(teamId: string): Observable<TeamMemberEntity[]> {

@@ -17,11 +17,19 @@ service cloud.firestore {
       allow read;
       allow write;
     }
+    match /players/{playerId}/stats/{tournamentId} {
+      allow read;
+      allow write;
+    }
     match /teams/{teamId} {
       allow read;
       allow write;
     }
     match /teams/{teamId}/members/{memberId} {
+      allow read;
+      allow write;
+    }
+    match /teams/{teamId}/stats/{tournamentId} {
       allow read;
       allow write;
     }

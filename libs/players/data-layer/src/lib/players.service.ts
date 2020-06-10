@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
-import { map, take } from 'rxjs/operators';
+import { combineLatest, Observable } from 'rxjs';
+import { map, switchMap, take } from 'rxjs/operators';
 
 import { TypeAheadOption } from '@shadow-arena-legends/shared/util-types';
 
-import { PlayerDoc, PlayerEntity } from '../types';
+import { PlayerDoc, PlayerEntity, PlayerForList } from '../types';
 
 const playersCollection = 'players';
+const teamReferencesCollection = 'teamRefs';
 
 @Injectable({
   providedIn: 'root',
@@ -37,6 +38,23 @@ export class PlayersService {
       .valueChanges({ idField: 'referenceId' });
   }
 
+  // TODO: realistically a count variable should be incremented/decremented on the player doc
+  // using cloud functions.
+  // I'm just too lazy to set that up right now
+  getPlayersForTable(): Observable<PlayerForList[]> {
+    return this.getPlayerEntities().pipe(
+      switchMap((players) =>
+        combineLatest(
+          players.map((player) =>
+            this.getPlayerTeamReferences(player.referenceId).pipe(
+              map((refs) => ({ ...player, canDelete: refs.length === 0 }))
+            )
+          )
+        )
+      )
+    );
+  }
+
   getPlayerEntitiesOnce(): Observable<PlayerEntity[]> {
     return this.firestore
       .collection<PlayerDoc>(playersCollection)
@@ -60,6 +78,31 @@ export class PlayersService {
         }))
       )
     );
+  }
+
+  getPlayerTeamReferences(referenceId: string): Observable<string[]> {
+    return this.firestore
+      .collection(
+        `${playersCollection}/${referenceId}/${teamReferencesCollection}`
+      )
+      .valueChanges({ idField: 'ref' })
+      .pipe(map((teamRefs) => teamRefs.map((tr) => tr.ref)));
+  }
+
+  addTeamReferenceToPlayer(playerId: string, teamId: string) {
+    return this.firestore
+      .doc(
+        `${playersCollection}/${playerId}/${teamReferencesCollection}/${teamId}`
+      )
+      .set({});
+  }
+
+  removeTeamReferenceFromPlayer(playerId: string, teamId: string) {
+    return this.firestore
+      .doc(
+        `${playersCollection}/${playerId}/${teamReferencesCollection}/${teamId}`
+      )
+      .delete();
   }
 
   addNewPlayer(player: PlayerDoc) {

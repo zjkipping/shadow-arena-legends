@@ -49,10 +49,15 @@ export class TeamsLandingContainerComponent {
 
     if (result) {
       const doc = await this.teamsService.addNewTeam(result.team);
-      result.membersToAdd.forEach(
-        async (member) =>
-          await this.teamsService.addMember(doc.id, member.referenceId)
-      );
+      result.membersToAdd.forEach(async (member) => {
+        await Promise.all([
+          this.teamsService.addMember(doc.id, member.referenceId),
+          this.playersService.addTeamReferenceToPlayer(
+            member.referenceId,
+            doc.id
+          ),
+        ]);
+      });
     }
   }
 
@@ -99,19 +104,27 @@ export class TeamsLandingContainerComponent {
 
     if (result) {
       this.teamsService.updateTeam(team.referenceId, result.team);
-      result.membersToRemove?.forEach(
-        async (member) =>
+      result.membersToRemove?.forEach(async (member) =>
+        Promise.all([
           await this.teamsService.removeMember(
             team.referenceId,
             member.referenceId
-          )
+          ),
+          await this.playersService.removeTeamReferenceFromPlayer(
+            member.playerId,
+            team.referenceId
+          ),
+        ])
       );
       result.membersToAdd.forEach(
         async (member) =>
-          await this.teamsService.addMember(
-            team.referenceId,
-            member.referenceId
-          )
+          await Promise.all([
+            this.teamsService.addMember(team.referenceId, member.referenceId),
+            this.playersService.addTeamReferenceToPlayer(
+              member.referenceId,
+              team.referenceId
+            ),
+          ])
       );
     }
   }
@@ -132,6 +145,13 @@ export class TeamsLandingContainerComponent {
 
     if (result) {
       this.teamsService.deleteTeam(team.referenceId);
+      team.members.forEach(
+        async (member) =>
+          await this.playersService.removeTeamReferenceFromPlayer(
+            member.playerId,
+            team.referenceId
+          )
+      );
     }
   }
 }

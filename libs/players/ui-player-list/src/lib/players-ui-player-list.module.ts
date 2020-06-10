@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { PlayerListComponent } from './player-list/player-list.component';
 
@@ -16,6 +17,7 @@ import { PlayerListComponent } from './player-list/player-list.component';
     MatInputModule,
     MatButtonModule,
     MatIconModule,
+    MatTooltipModule,
   ],
   declarations: [PlayerListComponent],
   exports: [PlayerListComponent],

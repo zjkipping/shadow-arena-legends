@@ -5,3 +5,7 @@ export interface PlayerDoc {
 }
 
 export type PlayerEntity = PlayerDoc & FirebaseEntity;
+
+export interface PlayerForList extends PlayerEntity {
+  canDelete: boolean;
+}

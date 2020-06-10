@@ -9,7 +9,7 @@ import { FormControl } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { PlayerEntity } from '@shadow-arena-legends/players/data-layer';
+import { PlayerForList } from '@shadow-arena-legends/players/data-layer';
 import { TableColumn } from '@shadow-arena-legends/shared/util-types';
 
 // this could be rewritten to be more reactive, but wait until after MVP
@@ -20,13 +20,13 @@ import { TableColumn } from '@shadow-arena-legends/shared/util-types';
   styleUrls: ['./player-list.component.scss'],
 })
 export class PlayerListComponent implements OnDestroy {
-  @Input() set players(value: PlayerEntity[] | null) {
+  @Input() set players(value: PlayerForList[] | null) {
     this._players = value || [];
     this.filterSortData();
   }
 
-  @Output() editClicked = new EventEmitter<PlayerEntity>();
-  @Output() deleteClicked = new EventEmitter<PlayerEntity>();
+  @Output() editClicked = new EventEmitter<PlayerForList>();
+  @Output() deleteClicked = new EventEmitter<PlayerForList>();
 
   filterControl = new FormControl('');
   destroy = new Subject();
@@ -42,8 +42,8 @@ export class PlayerListComponent implements OnDestroy {
   sortDirection: 'asc' | 'desc' | '' = '';
   filter = '';
 
-  private _players: PlayerEntity[] = [];
-  rows: PlayerEntity[] = [];
+  private _players: PlayerForList[] = [];
+  rows: PlayerForList[] = [];
 
   constructor() {
     this.filterControl.valueChanges

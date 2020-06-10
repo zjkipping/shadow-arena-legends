@@ -5,7 +5,7 @@ import { take } from 'rxjs/operators';
 
 import {
   PlayerDoc,
-  PlayerEntity,
+  PlayerForList,
   PlayersService,
 } from '@shadow-arena-legends/players/data-layer';
 import { DeletePlayerConfirmationModalComponent } from '@shadow-arena-legends/players/modals/feature-delete-player-confirmation-modal';
@@ -17,13 +17,13 @@ import { EditPlayerModalComponent } from '@shadow-arena-legends/players/modals/f
   styleUrls: ['./players-landing-container.component.scss'],
 })
 export class PlayersLandingContainerComponent {
-  playerEntities: Observable<PlayerEntity[]>;
+  playerEntities: Observable<PlayerForList[]>;
 
   constructor(
     private playersService: PlayersService,
     private dialog: MatDialog
   ) {
-    this.playerEntities = playersService.getPlayerEntities();
+    this.playerEntities = playersService.getPlayersForTable();
   }
 
   async addNewPlayer() {
@@ -44,7 +44,7 @@ export class PlayersLandingContainerComponent {
     }
   }
 
-  async editPlayer(player: PlayerEntity) {
+  async editPlayer(player: PlayerForList) {
     const result = await this.dialog
       .open<EditPlayerModalComponent, any, PlayerDoc>(
         EditPlayerModalComponent,
@@ -63,7 +63,7 @@ export class PlayersLandingContainerComponent {
     }
   }
 
-  async deletePlayer(player: PlayerEntity) {
+  async deletePlayer(player: PlayerForList) {
     const result = await this.dialog
       .open<DeletePlayerConfirmationModalComponent, any, boolean>(
         DeletePlayerConfirmationModalComponent,

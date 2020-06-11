@@ -2,7 +2,10 @@
   class="search"
   *ngIf="typeAheadOptions | async as options; else loadingTypeAheadOptions"
 >
-  <mat-form-field>
+  <mat-form-field
+    [matTooltip]="(isTourneyFinished | async) ? 'Tourney is already done' : ''"
+    matTooltipPosition="right"
+  >
     <input
       #autocomplete="matAutocompleteTrigger"
       type="text"
@@ -31,6 +34,7 @@
 <sal-participating-teams-list
   *ngIf="teamsForTable | async as rows; else loadingTable"
   [teams]="rows"
+  [isTourneyFinished]="isTourneyFinished | async"
   (deleteClicked)="removeTeam($event)"
 >
 </sal-participating-teams-list>

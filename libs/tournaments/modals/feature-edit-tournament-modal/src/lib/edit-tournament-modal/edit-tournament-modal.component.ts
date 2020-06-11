@@ -92,8 +92,8 @@ export class EditTournamentModalComponent {
     const formValue = this.tournamentForm.value;
     this.dialogRef.close({
       ...formValue,
-      startDateTime: formValue.startDateTime.toISOString(),
-      endDateTime: formValue.endDateTime.toISOString(),
+      startDateTime: Number(formValue.startDateTime),
+      endDateTime: Number(formValue.endDateTime),
     });
   }
 }

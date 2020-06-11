@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { filter, map, switchMap, tap } from 'rxjs/operators';
+import { filter, map, switchMap, take, tap } from 'rxjs/operators';
 
 import { TOURNAMENT_ID_ROUTE_PARAM } from '@shadow-arena-legends/shared/util-route-params';
 import {
   TournamentEntity,
   TournamentsService,
 } from '@shadow-arena-legends/tournaments/data-layer';
+import { SetLiveConfirmationModalComponent } from '@shadow-arena-legends/tournaments/modals/feature-set-live-confirmation-modal';
 
 @Component({
   selector: 'sal-manager-container',
@@ -19,6 +21,7 @@ export class ManagerContainerComponent {
 
   constructor(
     private tournamentsService: TournamentsService,
+    private dialog: MatDialog,
     route: ActivatedRoute,
     router: Router
   ) {
@@ -34,5 +37,25 @@ export class ManagerContainerComponent {
     );
   }
 
-  toggleLive(_tourney: TournamentEntity) {}
+  async toggleLive(tourney: TournamentEntity) {
+    if (!tourney.live) {
+      const result = await this.dialog
+        .open<SetLiveConfirmationModalComponent, TournamentEntity, boolean>(
+          SetLiveConfirmationModalComponent,
+          {
+            height: '300px',
+            width: '500px',
+            data: tourney,
+          }
+        )
+        .afterClosed()
+        .pipe(take(1))
+        .toPromise();
+
+      if (result) {
+        this.tournamentsService.setTourneyToLive(tourney.referenceId);
+      }
+      // display modal verifying they want to go "live" with the tourney
+    }
+  }
 }

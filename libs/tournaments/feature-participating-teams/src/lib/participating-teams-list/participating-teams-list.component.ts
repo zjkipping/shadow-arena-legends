@@ -23,6 +23,8 @@ export class ParticipatingTeamsListComponent implements OnDestroy {
     this.filterSortData();
   }
 
+  @Input() isTourneyFinished = true;
+
   @Output() deleteClicked = new EventEmitter<ParticipatingTeamForTable>();
 
   filterControl = new FormControl('');

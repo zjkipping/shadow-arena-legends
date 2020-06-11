@@ -119,6 +119,9 @@
       ],
       "@shadow-arena-legends/teams/modals/util-modal-types": [
         "libs/teams/modals/util-modal-types/src/index.ts"
+      ],
+      "@shadow-arena-legends/tournaments/modals/feature-set-live-confirmation-modal": [
+        "libs/tournaments/modals/feature-set-live-confirmation-modal/src/index.ts"
       ]
     }
   },

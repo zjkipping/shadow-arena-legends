@@ -34,6 +34,7 @@ export class ParticipatingTeamsComponent implements OnDestroy {
   teamsForTable: Observable<ParticipatingTeamForTable[]>;
 
   tournamentReferenceId: Observable<string>;
+  isTourneyFinished: Observable<boolean>;
 
   destroy = new Subject();
 
@@ -56,6 +57,24 @@ export class ParticipatingTeamsComponent implements OnDestroy {
       }),
       filter((tournament): tournament is TournamentEntity => !!tournament)
     );
+
+    this.isTourneyFinished = tournamentEntity.pipe(
+      map((tourney) => {
+        const endDate = new Date(tourney.endDateTime);
+        endDate.setDate(endDate.getDate() + 1);
+        return Number(new Date()) >= Number(endDate);
+      })
+    );
+
+    this.isTourneyFinished
+      .pipe(takeUntil(this.destroy))
+      .subscribe((isFinished) => {
+        if (isFinished) {
+          this.teamsTypeAhead.disable();
+        } else {
+          this.teamsTypeAhead.enable();
+        }
+      });
 
     const participatingTeams = this.tournamentReferenceId.pipe(
       switchMap((id) =>

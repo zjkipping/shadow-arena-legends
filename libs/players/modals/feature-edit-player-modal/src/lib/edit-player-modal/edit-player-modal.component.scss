@@ -12,3 +12,7 @@ mat-form-field {
   display: flex;
   justify-content: space-between;
 }
+
+::ng-deep h1.mat-dialog-title {
+  text-align: center !important;
+}

@@ -35,9 +35,15 @@
           mat-icon-button
           color="warn"
           aria-label="Delete Button"
+          [disabled]="isTourneyFinished"
           (click)="deleteClicked.emit(row)"
         >
-          <mat-icon>delete</mat-icon>
+          <mat-icon
+            [matTooltip]="isTourneyFinished ? 'Tourney is already done' : ''"
+            matTooltipPosition="right"
+          >
+            delete
+          </mat-icon>
         </button>
       </td>
     </tr>

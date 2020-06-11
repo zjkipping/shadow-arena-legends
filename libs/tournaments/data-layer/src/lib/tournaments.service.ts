@@ -103,6 +103,14 @@ export class TournamentsService {
       .delete();
   }
 
+  setTourneyToLive(referenceId: string) {
+    return this.firestore
+      .doc(`${tournamentsCollection}/${referenceId}`)
+      .update({
+        live: true,
+      });
+  }
+
   addNewTournament(tournament: TournamentDoc) {
     return this.firestore
       .collection<TournamentDoc>(tournamentsCollection)

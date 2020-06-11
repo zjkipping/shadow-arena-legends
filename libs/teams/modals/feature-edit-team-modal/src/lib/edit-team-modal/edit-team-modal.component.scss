@@ -45,3 +45,7 @@ mat-list {
 h3 {
   margin-top: 0;
 }
+
+::ng-deep h1.mat-dialog-title {
+  text-align: center !important;
+}

@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterModule } from '@angular/router';
 
 import { ParticipatingTeamsListComponent } from './participating-teams-list/participating-teams-list.component';
@@ -25,6 +26,7 @@ import { ParticipatingTeamsComponent } from './participating-teams/participating
     MatProgressSpinnerModule,
     MatInputModule,
     MatDialogModule,
+    MatTooltipModule,
     ReactiveFormsModule,
     RouterModule.forChild([
       {

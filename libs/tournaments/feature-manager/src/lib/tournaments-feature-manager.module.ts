@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -17,6 +18,7 @@ import { ManagerContainerComponent } from './manager-container/manager-container
     MatButtonModule,
     MatIconModule,
     MatSlideToggleModule,
+    MatDialogModule,
     RouterModule.forChild([
       {
         path: '',

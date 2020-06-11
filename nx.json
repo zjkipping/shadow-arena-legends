@@ -131,6 +131,9 @@
     },
     "teams-modals-util-modal-types": {
       "tags": []
+    },
+    "tournaments-modals-feature-set-live-confirmation-modal": {
+      "tags": []
     }
   }
 }

@@ -37,3 +37,8 @@ section {
   grid-template-rows: 0 1fr;
   place-items: center;
 }
+
+::ng-deep mat-slide-toggle.mat-checked,
+::ng-deep mat-slide-toggle.mat-checked * {
+  cursor: default !important;
+}

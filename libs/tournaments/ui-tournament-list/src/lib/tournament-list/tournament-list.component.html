@@ -65,7 +65,12 @@
           [disabled]="row.live"
           (click)="editClicked.emit(row)"
         >
-          <mat-icon>edit</mat-icon>
+          <mat-icon
+            [matTooltip]="row.live ? 'Tourney is already live' : ''"
+            matTooltipPosition="right"
+          >
+            edit
+          </mat-icon>
         </button>
       </td>
       <td class="action">
@@ -76,7 +81,12 @@
           aria-label="Delete Button"
           (click)="deleteClicked.emit(row)"
         >
-          <mat-icon>delete</mat-icon>
+          <mat-icon
+            [matTooltip]="row.live ? 'Tourney is already live' : ''"
+            matTooltipPosition="right"
+          >
+            delete
+          </mat-icon>
         </button>
       </td>
     </tr>

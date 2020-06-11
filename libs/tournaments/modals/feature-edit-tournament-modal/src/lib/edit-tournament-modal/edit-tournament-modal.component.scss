@@ -24,3 +24,7 @@ mat-form-field {
   text-align: center;
   color: rgb(248, 71, 71);
 }
+
+::ng-deep h1.mat-dialog-title {
+  text-align: center !important;
+}

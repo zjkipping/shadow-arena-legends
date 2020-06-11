@@ -1,0 +1,17 @@
+<h1 mat-dialog-title>Set Tournament Live Confirmation</h1>
+<div mat-dialog-content>
+  <p>Are you sure you want to make {{ tournament.name }} live?</p>
+  <p>
+    You will not be able to edit the basic settings of the tournament once this
+    is done.
+  </p>
+  <p>This is a one time operation and cannot be undone.</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button color="accent" [mat-dialog-close]="false">
+    Cancel
+  </button>
+  <button mat-raised-button color="warn" [mat-dialog-close]="true">
+    Confirm
+  </button>
+</div>

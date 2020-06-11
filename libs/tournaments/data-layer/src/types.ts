@@ -8,8 +8,8 @@ export enum TournamentType {
 export interface TournamentDoc {
   name: string;
   type: TournamentType;
-  startDateTime: string;
-  endDateTime: string;
+  startDateTime: number;
+  endDateTime: number;
   live: boolean;
   pointsPerKill: number;
   pointsPerFirst: number;

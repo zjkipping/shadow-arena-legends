@@ -10,7 +10,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { TableColumn } from '@shadow-arena-legends/shared/util-types';
-import { TeamEntity } from '@shadow-arena-legends/teams/data-layer';
+import { TeamForList } from '@shadow-arena-legends/teams/data-layer';
 
 @Component({
   selector: 'sal-teams-list',
@@ -18,13 +18,13 @@ import { TeamEntity } from '@shadow-arena-legends/teams/data-layer';
   styleUrls: ['./teams-list.component.scss'],
 })
 export class TeamsListComponent implements OnDestroy {
-  @Input() set teams(value: TeamEntity[] | null) {
+  @Input() set teams(value: TeamForList[] | null) {
     this._teams = value || [];
     this.filterSortData();
   }
 
-  @Output() editClicked = new EventEmitter<TeamEntity>();
-  @Output() deleteClicked = new EventEmitter<TeamEntity>();
+  @Output() editClicked = new EventEmitter<TeamForList>();
+  @Output() deleteClicked = new EventEmitter<TeamForList>();
 
   filterControl = new FormControl('');
   destroy = new Subject();
@@ -44,8 +44,8 @@ export class TeamsListComponent implements OnDestroy {
   sortDirection: 'asc' | 'desc' | '' = '';
   filter = '';
 
-  private _teams: TeamEntity[] = [];
-  rows: TeamEntity[] = [];
+  private _teams: TeamForList[] = [];
+  rows: TeamForList[] = [];
 
   constructor() {
     this.filterControl.valueChanges

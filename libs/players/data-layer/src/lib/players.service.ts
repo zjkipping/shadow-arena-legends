@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import * as firebase from 'firebase/app';
-import { combineLatest, Observable } from 'rxjs';
+import { combineLatest, Observable, of } from 'rxjs';
 import { map, switchMap, take } from 'rxjs/operators';
 
 import { TypeAheadOption } from '@shadow-arena-legends/shared/util-types';
@@ -46,13 +46,15 @@ export class PlayersService {
   getPlayersForTable(): Observable<PlayerForList[]> {
     return this.getPlayerEntities().pipe(
       switchMap((players) =>
-        combineLatest(
-          players.map((player) =>
-            this.getPlayerTeamReferences(player.referenceId).pipe(
-              map((refs) => ({ ...player, canDelete: refs.length === 0 }))
+        !players.length
+          ? of([])
+          : combineLatest(
+              players.map((player) =>
+                this.getPlayerTeamReferences(player.referenceId).pipe(
+                  map((refs) => ({ ...player, canDelete: refs.length === 0 }))
+                )
+              )
             )
-          )
-        )
       )
     );
   }

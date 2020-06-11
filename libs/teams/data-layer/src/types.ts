@@ -26,3 +26,7 @@ export type TeamMemberEntity = TeamMember & FirebaseEntity;
 export interface TeamMemberWithName extends TeamMemberEntity {
   name: string;
 }
+
+export interface TeamForList extends TeamWithMembers {
+  canDelete: boolean;
+}

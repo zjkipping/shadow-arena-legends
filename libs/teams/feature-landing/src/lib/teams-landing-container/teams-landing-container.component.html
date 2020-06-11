@@ -3,7 +3,7 @@
   Add New Team
 </button>
 <sal-teams-list
-  *ngIf="teamEntities | async as teamList; else loadingTeams"
+  *ngIf="teams | async as teamList; else loadingTeams"
   [teams]="teamList"
   (editClicked)="editTeam($event)"
   (deleteClicked)="deleteTeam($event)"

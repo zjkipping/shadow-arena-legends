@@ -110,13 +110,13 @@ export class TournamentsService {
   }
 
   updateTournament(referenceId: string, tournament: TournamentDoc) {
-    this.firestore
+    return this.firestore
       .doc<TournamentDoc>(`${tournamentsCollection}/${referenceId}`)
       .update(tournament);
   }
 
   deleteTournament(referenceId: string) {
-    this.firestore
+    return this.firestore
       .doc<TournamentDoc>(`${tournamentsCollection}/${referenceId}`)
       .delete();
   }

@@ -5,9 +5,9 @@ import { map, take } from 'rxjs/operators';
 
 import { PlayersService } from '@shadow-arena-legends/players/data-layer';
 import {
+  TeamForList,
   TeamMemberWithName,
   TeamsService,
-  TeamWithMembers,
 } from '@shadow-arena-legends/teams/data-layer';
 import { DeleteTeamConfirmationModalComponent } from '@shadow-arena-legends/teams/modals/feature-delete-team-confirmation-modal';
 import { EditTeamModalComponent } from '@shadow-arena-legends/teams/modals/feature-edit-team-modal';
@@ -22,14 +22,14 @@ import {
   styleUrls: ['./teams-landing-container.component.scss'],
 })
 export class TeamsLandingContainerComponent {
-  teamEntities: Observable<TeamWithMembers[]>;
+  teams: Observable<TeamForList[]>;
 
   constructor(
     private teamsService: TeamsService,
     private playersService: PlayersService,
     private dialog: MatDialog
   ) {
-    this.teamEntities = teamsService.getTeamsWithMembers();
+    this.teams = teamsService.getTeamsForList();
   }
 
   async addNewTeam() {
@@ -61,7 +61,7 @@ export class TeamsLandingContainerComponent {
     }
   }
 
-  async editTeam(team: TeamWithMembers) {
+  async editTeam(team: TeamForList) {
     const loading = new BehaviorSubject<EditTeamModalData | undefined>(
       undefined
     );
@@ -129,7 +129,7 @@ export class TeamsLandingContainerComponent {
     }
   }
 
-  async deleteTeam(team: TeamWithMembers) {
+  async deleteTeam(team: TeamForList) {
     const result = await this.dialog
       .open<DeleteTeamConfirmationModalComponent, any, boolean>(
         DeleteTeamConfirmationModalComponent,

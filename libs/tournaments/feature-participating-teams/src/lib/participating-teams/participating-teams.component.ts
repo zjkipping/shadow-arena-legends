@@ -33,6 +33,8 @@ export class ParticipatingTeamsComponent implements OnDestroy {
 
   teamsForTable: Observable<ParticipatingTeamForTable[]>;
 
+  tournamentReferenceId: Observable<string>;
+
   destroy = new Subject();
 
   constructor(
@@ -42,10 +44,10 @@ export class ParticipatingTeamsComponent implements OnDestroy {
     private tournamentsService: TournamentsService,
     private dialog: MatDialog
   ) {
-    const tournamentReferenceId = route.paramMap.pipe(
+    this.tournamentReferenceId = route.paramMap.pipe(
       map((params) => params.get(TOURNAMENT_ID_ROUTE_PARAM) as string)
     );
-    const tournamentEntity = tournamentReferenceId.pipe(
+    const tournamentEntity = this.tournamentReferenceId.pipe(
       switchMap((id) => this.tournamentsService.getTournamentEntity(id)),
       tap((tournament) => {
         if (!tournament) {
@@ -55,7 +57,7 @@ export class ParticipatingTeamsComponent implements OnDestroy {
       filter((tournament): tournament is TournamentEntity => !!tournament)
     );
 
-    const participatingTeams = tournamentReferenceId.pipe(
+    const participatingTeams = this.tournamentReferenceId.pipe(
       switchMap((id) =>
         this.tournamentsService
           .getParticipatingTeamsInTournament(id)
@@ -67,8 +69,9 @@ export class ParticipatingTeamsComponent implements OnDestroy {
 
     this.teamsForTable = participatingTeams.pipe(
       switchMap((pTeams) =>
-        pTeams.length > 0
-          ? combineLatest(
+        !pTeams.length
+          ? of([])
+          : combineLatest(
               pTeams.map((pTeam) =>
                 this.teamsService.getTeamEntity(pTeam.teamId).pipe(
                   map((team) => {
@@ -77,6 +80,7 @@ export class ParticipatingTeamsComponent implements OnDestroy {
                         name: team.name,
                         tournamentId: pTeam.tournamentId,
                         referenceId: pTeam.referenceId,
+                        teamId: team.referenceId,
                       };
                     } else {
                       return null;
@@ -91,7 +95,6 @@ export class ParticipatingTeamsComponent implements OnDestroy {
                 )
               )
             )
-          : of([])
       )
     );
 
@@ -137,6 +140,10 @@ export class ParticipatingTeamsComponent implements OnDestroy {
       team.tournamentId,
       team.referenceId
     );
+    await this.teamsService.addTournamentReference(
+      team.referenceId,
+      team.tournamentId
+    );
   }
 
   async removeTeam(team: ParticipatingTeamForTable) {
@@ -157,6 +164,10 @@ export class ParticipatingTeamsComponent implements OnDestroy {
       await this.tournamentsService.removeTeamFromTournamentParticipants(
         team.tournamentId,
         team.referenceId
+      );
+      await this.teamsService.removeTournamentReference(
+        team.teamId,
+        team.tournamentId
       );
     }
   }

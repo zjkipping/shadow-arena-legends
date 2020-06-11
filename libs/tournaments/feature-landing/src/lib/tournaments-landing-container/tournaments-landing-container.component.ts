@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 
+import { TeamsService } from '@shadow-arena-legends/teams/data-layer';
 import {
   TournamentDoc,
   TournamentEntity,
@@ -21,6 +22,7 @@ export class TournamentsLandingContainerComponent {
 
   constructor(
     private tournamentsService: TournamentsService,
+    private teamsService: TeamsService,
     private dialog: MatDialog
   ) {
     this.tournamentEntities = tournamentsService.getTournamentEntities();
@@ -40,7 +42,7 @@ export class TournamentsLandingContainerComponent {
       .toPromise();
 
     if (result) {
-      this.tournamentsService.addNewTournament(result);
+      await this.tournamentsService.addNewTournament(result);
     }
   }
 
@@ -59,7 +61,10 @@ export class TournamentsLandingContainerComponent {
       .toPromise();
 
     if (result) {
-      this.tournamentsService.updateTournament(tournament.referenceId, result);
+      await this.tournamentsService.updateTournament(
+        tournament.referenceId,
+        result
+      );
     }
   }
 
@@ -78,7 +83,21 @@ export class TournamentsLandingContainerComponent {
       .toPromise();
 
     if (result) {
-      this.tournamentsService.deleteTournament(tournament.referenceId);
+      await this.tournamentsService.deleteTournament(tournament.referenceId);
+      // remove tournament from all team's references.
+      // TODO: this should probably be a cloud function effect
+      const teams = await this.tournamentsService
+        .getParticipatingTeamsInTournament(tournament.referenceId)
+        .pipe(take(1))
+        .toPromise();
+      await Promise.all(
+        teams.map((team) =>
+          this.teamsService.removeTournamentReference(
+            team.teamId,
+            tournament.referenceId
+          )
+        )
+      );
     }
   }
 }

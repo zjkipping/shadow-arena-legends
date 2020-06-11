@@ -10,6 +10,7 @@ import { TournamentType } from '@shadow-arena-legends/tournaments/data-layer';
 import {
   TeamDoc,
   TeamEntity,
+  TeamForList,
   TeamMember,
   TeamMemberEntity,
   TeamWithMembers,
@@ -18,6 +19,7 @@ import {
 const teamsCollection = 'teams';
 const membersCollection = 'members';
 const statsCollection = 'stats';
+const tourneyRefsCollection = 'tourneyRefs';
 
 @Injectable({
   providedIn: 'root',
@@ -44,6 +46,29 @@ export class TeamsService {
     return this.firestore
       .collection<TeamDoc>(teamsCollection)
       .valueChanges({ idField: 'referenceId' });
+  }
+
+  getTeamsForList(): Observable<TeamForList[]> {
+    return this.getTeamsWithMembers().pipe(
+      switchMap((teams) =>
+        !teams.length
+          ? of([])
+          : combineLatest(
+              teams.map((team) =>
+                this.getTournamentRefs(team.referenceId).pipe(
+                  map((refs) => ({ ...team, canDelete: refs.length === 0 }))
+                )
+              )
+            )
+      )
+    );
+  }
+
+  getTournamentRefs(referenceId: string): Observable<string[]> {
+    return this.firestore
+      .collection(`${teamsCollection}/${referenceId}/${tourneyRefsCollection}`)
+      .valueChanges({ idField: 'ref' })
+      .pipe(map((tourneyRefs) => tourneyRefs.map((tr) => tr.ref)));
   }
 
   incrementFirstPlaceStat(teamId: string, tournamentId: string) {
@@ -134,6 +159,22 @@ export class TeamsService {
           }))
         )
       );
+  }
+
+  addTournamentReference(teamId: string, tournamentId: string) {
+    return this.firestore
+      .doc(
+        `${teamsCollection}/${teamId}/${tourneyRefsCollection}/${tournamentId}`
+      )
+      .set({});
+  }
+
+  removeTournamentReference(teamId: string, tournamentId: string) {
+    return this.firestore
+      .doc(
+        `${teamsCollection}/${teamId}/${tourneyRefsCollection}/${tournamentId}`
+      )
+      .delete();
   }
 
   addNewTeam(player: TeamDoc) {

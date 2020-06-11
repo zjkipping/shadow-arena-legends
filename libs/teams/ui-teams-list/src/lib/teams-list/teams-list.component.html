@@ -51,9 +51,15 @@
           mat-icon-button
           color="warn"
           aria-label="Delete Button"
+          [disabled]="!row.canDelete"
           (click)="deleteClicked.emit(row)"
         >
-          <mat-icon>delete</mat-icon>
+          <mat-icon
+            [matTooltip]="row.canDelete ? '' : 'Team is a part of a tournament'"
+            matTooltipPosition="right"
+          >
+            delete
+          </mat-icon>
         </button>
       </td>
     </tr>

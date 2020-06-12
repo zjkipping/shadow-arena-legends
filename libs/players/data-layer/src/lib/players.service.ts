@@ -6,7 +6,13 @@ import { map, switchMap, take } from 'rxjs/operators';
 
 import { TypeAheadOption } from '@shadow-arena-legends/shared/util-types';
 
-import { PlayerDoc, PlayerEntity, PlayerForList } from '../types';
+import {
+  PlayerDoc,
+  PlayerEntity,
+  PlayerForList,
+  PlayerStatsDoc,
+  PlayerStatsForTourney,
+} from '../types';
 
 const playersCollection = 'players';
 const teamReferencesCollection = 'teamRefs';
@@ -32,6 +38,24 @@ export class PlayersService {
     } else {
       return null;
     }
+  }
+
+  getPlayerEntity(referenceId: string): Observable<PlayerEntity | null> {
+    return this.firestore
+      .doc<PlayerDoc>(`${playersCollection}/${referenceId}`)
+      .valueChanges()
+      .pipe(
+        map((player) => {
+          if (!!player) {
+            return {
+              ...player,
+              referenceId,
+            };
+          } else {
+            return null;
+          }
+        })
+      );
   }
 
   getPlayerEntities(): Observable<PlayerEntity[]> {
@@ -84,6 +108,33 @@ export class PlayersService {
     );
   }
 
+  getPlayerStatsForTourney(
+    playerId: string,
+    tourneyId: string
+  ): Observable<PlayerStatsForTourney | null> {
+    return this.getPlayerEntity(playerId).pipe(
+      switchMap((player) => {
+        if (!!player) {
+          return this.firestore
+            .doc<PlayerStatsDoc>(
+              `${playersCollection}/${playerId}/${statsCollection}/${tourneyId}`
+            )
+            .valueChanges()
+            .pipe(
+              map((stats) => ({
+                name: player.name,
+                playerId,
+                tourneyId,
+                kills: stats?.kills || 0,
+              }))
+            );
+        } else {
+          return of(null);
+        }
+      })
+    );
+  }
+
   getPlayerTeamReferences(referenceId: string): Observable<string[]> {
     return this.firestore
       .collection(
@@ -117,6 +168,34 @@ export class PlayersService {
       .update({
         kills: firebase.firestore.FieldValue.increment(1),
       });
+  }
+
+  decrementKillsStat(playerId: string, tournamentId: string) {
+    return this.firestore
+      .doc(
+        `${playersCollection}/${playerId}/${statsCollection}/${tournamentId}`
+      )
+      .update({
+        kills: firebase.firestore.FieldValue.increment(-1),
+      });
+  }
+
+  initializeStatsForTourney(playerId: string, tournamentId: string) {
+    return this.firestore
+      .doc(
+        `${playersCollection}/${playerId}/${statsCollection}/${tournamentId}`
+      )
+      .set({
+        kills: 0,
+      });
+  }
+
+  removeStatsForTourney(playerId: string, tournamentId: string) {
+    return this.firestore
+      .doc(
+        `${playersCollection}/${playerId}/${statsCollection}/${tournamentId}`
+      )
+      .delete();
   }
 
   addNewPlayer(player: PlayerDoc) {

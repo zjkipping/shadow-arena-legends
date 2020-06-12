@@ -1,0 +1,7 @@
+<h3>{{ playerStats?.name }}</h3>
+<sal-stat-tally
+  label="Kills"
+  [value]="playerStats?.kills"
+  (incremented)="addKill()"
+  (decremented)="subtractKill()"
+></sal-stat-tally>

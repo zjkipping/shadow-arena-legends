@@ -30,3 +30,20 @@ export interface TeamMemberWithName extends TeamMemberEntity {
 export interface TeamForList extends TeamWithMembers {
   canDelete: boolean;
 }
+
+export interface StatsDoc {
+  firstPlace: number;
+  secondPlace: number;
+  thirdPlace: number;
+}
+
+export interface TeamStatsForTourney extends StatsDoc {
+  name: string;
+  image: string;
+  tourneyId: string;
+  teamId: string;
+}
+
+export interface TeamWithMembersAndStats extends TeamWithMembers {
+  stats: TeamStatsForTourney | null;
+}

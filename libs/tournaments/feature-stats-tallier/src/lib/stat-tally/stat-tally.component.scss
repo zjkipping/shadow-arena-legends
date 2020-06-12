@@ -1,0 +1,35 @@
+:host {
+  display: grid;
+  grid-template-rows: min-content 1fr;
+  place-items: center;
+}
+
+.actions {
+  margin-top: 5px;
+  display: grid;
+  place-items: center;
+  grid-template-columns: min-content min-content min-content;
+  column-gap: 10px;
+}
+
+.subtract {
+  background-color: red;
+}
+
+.add {
+  background-color: green;
+}
+
+button[mat-icon-button] {
+  color: white;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+
+  ::ng-deep mat-icon {
+    font-size: 16px;
+    height: 16px;
+    width: 16px;
+    line-height: 16px;
+  }
+}

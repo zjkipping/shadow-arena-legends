@@ -1,0 +1,24 @@
+<label>{{ label }}</label>
+<div class="actions">
+  <button
+    mat-icon-button
+    class="subtract"
+    [attr.aria-label]="'Subtract from ' + label"
+    (click)="decremented.emit()"
+  >
+    <mat-icon>
+      remove
+    </mat-icon>
+  </button>
+  <div>{{ value }}</div>
+  <button
+    mat-icon-button
+    class="add"
+    [attr.aria-label]="'Add to ' + label"
+    (click)="incremented.emit()"
+  >
+    <mat-icon>
+      add
+    </mat-icon>
+  </button>
+</div>

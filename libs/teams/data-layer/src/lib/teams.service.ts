@@ -8,12 +8,15 @@ import { TypeAheadOption } from '@shadow-arena-legends/shared/util-types';
 import { TournamentType } from '@shadow-arena-legends/tournaments/data-layer';
 
 import {
+  StatsDoc,
   TeamDoc,
   TeamEntity,
   TeamForList,
   TeamMember,
   TeamMemberEntity,
+  TeamStatsForTourney,
   TeamWithMembers,
+  TeamWithMembersAndStats,
 } from '../types';
 
 const teamsCollection = 'teams';
@@ -71,6 +74,22 @@ export class TeamsService {
       .pipe(map((tourneyRefs) => tourneyRefs.map((tr) => tr.ref)));
   }
 
+  initializeStatsForTourney(teamId: string, tournamentId: string) {
+    return this.firestore
+      .doc(`${teamsCollection}/${teamId}/${statsCollection}/${tournamentId}`)
+      .set({
+        firstPlace: 0,
+        secondPlace: 0,
+        thirdPlace: 0,
+      });
+  }
+
+  removeStatsForTourney(teamId: string, tournamentId: string) {
+    return this.firestore
+      .doc(`${teamsCollection}/${teamId}/${statsCollection}/${tournamentId}`)
+      .delete();
+  }
+
   incrementFirstPlaceStat(teamId: string, tournamentId: string) {
     return this.firestore
       .doc(`${teamsCollection}/${teamId}/${statsCollection}/${tournamentId}`)
@@ -125,6 +144,62 @@ export class TeamsService {
         `${teamsCollection}/${teamId}/${membersCollection}`
       )
       .valueChanges({ idField: 'referenceId' });
+  }
+
+  getTeamStatsForTourney(
+    teamId: string,
+    tourneyId: string
+  ): Observable<TeamStatsForTourney | null> {
+    return this.getTeamEntity(teamId).pipe(
+      switchMap((team) => {
+        if (!!team) {
+          return this.firestore
+            .doc<StatsDoc>(
+              `${teamsCollection}/${teamId}/${statsCollection}/${tourneyId}`
+            )
+            .valueChanges()
+            .pipe(
+              map((stats) => {
+                return {
+                  name: team.name,
+                  image: team.image,
+                  teamId,
+                  tourneyId,
+                  firstPlace: stats?.firstPlace || 0,
+                  secondPlace: stats?.secondPlace || 0,
+                  thirdPlace: stats?.thirdPlace || 0,
+                };
+              })
+            );
+        } else {
+          return of(null);
+        }
+      })
+    );
+  }
+
+  getTeamWithMembersAndStats(
+    teamId: string,
+    tourneyId: string
+  ): Observable<TeamWithMembersAndStats | null> {
+    return this.getTeamEntity(teamId).pipe(
+      switchMap((team) => {
+        if (!!team) {
+          return combineLatest([
+            this.getTeamMembers(team.referenceId),
+            this.getTeamStatsForTourney(teamId, tourneyId),
+          ]).pipe(
+            map(([members, stats]) => ({
+              ...team,
+              members,
+              stats,
+            }))
+          );
+        } else {
+          return of(null);
+        }
+      })
+    );
   }
 
   getTeamsWithMembers(): Observable<TeamWithMembers[]> {

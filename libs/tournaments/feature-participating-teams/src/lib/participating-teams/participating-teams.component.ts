@@ -4,8 +4,17 @@ import { MatAutocompleteTrigger } from '@angular/material/autocomplete';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { combineLatest, Observable, of, Subject } from 'rxjs';
-import { filter, map, switchMap, take, takeUntil, tap } from 'rxjs/operators';
+import {
+  filter,
+  map,
+  shareReplay,
+  switchMap,
+  take,
+  takeUntil,
+  tap,
+} from 'rxjs/operators';
 
+import { PlayersService } from '@shadow-arena-legends/players/data-layer';
 import { TOURNAMENT_ID_ROUTE_PARAM } from '@shadow-arena-legends/shared/util-route-params';
 import { TypeAheadOption } from '@shadow-arena-legends/shared/util-types';
 import { TeamsService } from '@shadow-arena-legends/teams/data-layer';
@@ -42,6 +51,7 @@ export class ParticipatingTeamsComponent implements OnDestroy {
     route: ActivatedRoute,
     router: Router,
     private teamsService: TeamsService,
+    private playersService: PlayersService,
     private tournamentsService: TournamentsService,
     private dialog: MatDialog
   ) {
@@ -55,7 +65,11 @@ export class ParticipatingTeamsComponent implements OnDestroy {
           router.navigate(['../../../'], { relativeTo: route });
         }
       }),
-      filter((tournament): tournament is TournamentEntity => !!tournament)
+      filter((tournament): tournament is TournamentEntity => !!tournament),
+      shareReplay({
+        bufferSize: 1,
+        refCount: true,
+      })
     );
 
     this.isTourneyFinished = tournamentEntity.pipe(
@@ -163,6 +177,20 @@ export class ParticipatingTeamsComponent implements OnDestroy {
       team.referenceId,
       team.tournamentId
     );
+    await this.teamsService.initializeStatsForTourney(
+      team.referenceId,
+      team.tournamentId
+    );
+    const members = await this.teamsService
+      .getTeamMembers(team.referenceId)
+      .pipe(take(1))
+      .toPromise();
+    members.forEach(async (member) =>
+      this.playersService.initializeStatsForTourney(
+        member.playerId,
+        team.tournamentId
+      )
+    );
   }
 
   async removeTeam(team: ParticipatingTeamForTable) {
@@ -187,6 +215,20 @@ export class ParticipatingTeamsComponent implements OnDestroy {
       await this.teamsService.removeTournamentReference(
         team.teamId,
         team.tournamentId
+      );
+      await this.teamsService.removeStatsForTourney(
+        team.teamId,
+        team.tournamentId
+      );
+      const members = await this.teamsService
+        .getTeamMembers(team.teamId)
+        .pipe(take(1))
+        .toPromise();
+      members.forEach(async (member) =>
+        this.playersService.removeStatsForTourney(
+          member.playerId,
+          team.tournamentId
+        )
       );
     }
   }

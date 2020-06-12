@@ -1,1 +1,16 @@
-<p>stats-tallier works!</p>
+<ng-container *ngIf="(isTourneyLive | async) === false; else isLive">
+  <h1>Tournament must be live before stats can be altered.</h1>
+</ng-container>
+<ng-template #isLive>
+  <div class="stats" *ngIf="stats | async as statsList; else loadingStats">
+    <sal-team-stats
+      *ngFor="let teamStats of statsList"
+      [teamStats]="teamStats"
+    ></sal-team-stats>
+  </div>
+  <ng-template #loadingStats>
+    <div class="loading">
+      <mat-spinner [diameter]="50"></mat-spinner>
+    </div>
+  </ng-template>
+</ng-template>

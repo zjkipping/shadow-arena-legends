@@ -1,0 +1,27 @@
+<h2>{{ teamStats?.name }}</h2>
+<div class="stats">
+  <sal-stat-tally
+    label="First Place"
+    [value]="teamStats?.firstPlace"
+    (incremented)="addFirst()"
+    (decremented)="subtractFirst()"
+  ></sal-stat-tally>
+  <sal-stat-tally
+    label="Second Place"
+    [value]="teamStats?.secondPlace"
+    (incremented)="addSecond()"
+    (decremented)="subtractSecond()"
+  ></sal-stat-tally>
+  <sal-stat-tally
+    label="Third Place"
+    [value]="teamStats?.thirdPlace"
+    (incremented)="addThird()"
+    (decremented)="subtractThird()"
+  ></sal-stat-tally>
+</div>
+<div class="players">
+  <sal-player-stats
+    *ngFor="let playerStats of teamStats?.members"
+    [playerStats]="playerStats"
+  ></sal-player-stats>
+</div>

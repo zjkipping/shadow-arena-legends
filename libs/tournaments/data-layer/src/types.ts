@@ -35,3 +35,7 @@ export interface ParticipatingTeamForTable {
   name: string;
   teamId: string;
 }
+
+export interface TournamentForList extends TournamentEntity {
+  canEditType: boolean;
+}

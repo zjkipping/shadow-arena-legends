@@ -6,7 +6,7 @@ import { take } from 'rxjs/operators';
 import { TeamsService } from '@shadow-arena-legends/teams/data-layer';
 import {
   TournamentDoc,
-  TournamentEntity,
+  TournamentForList,
   TournamentsService,
 } from '@shadow-arena-legends/tournaments/data-layer';
 import { DeleteTournamentConfirmationModalComponent } from '@shadow-arena-legends/tournaments/modals/feature-delete-tournament-confirmation-modal';
@@ -18,19 +18,19 @@ import { EditTournamentModalComponent } from '@shadow-arena-legends/tournaments/
   styleUrls: ['./tournaments-landing-container.component.scss'],
 })
 export class TournamentsLandingContainerComponent {
-  tournamentEntities: Observable<TournamentEntity[]>;
+  tournamentEntities: Observable<TournamentForList[]>;
 
   constructor(
     private tournamentsService: TournamentsService,
     private teamsService: TeamsService,
     private dialog: MatDialog
   ) {
-    this.tournamentEntities = tournamentsService.getTournamentEntities();
+    this.tournamentEntities = tournamentsService.getTournamentsForList();
   }
 
   async addNewTournament() {
     const result = await this.dialog
-      .open<EditTournamentModalComponent, any, TournamentDoc>(
+      .open<EditTournamentModalComponent, undefined, TournamentDoc>(
         EditTournamentModalComponent,
         {
           width: '600px',
@@ -46,9 +46,9 @@ export class TournamentsLandingContainerComponent {
     }
   }
 
-  async editTournament(tournament: TournamentEntity) {
+  async editTournament(tournament: TournamentForList) {
     const result = await this.dialog
-      .open<EditTournamentModalComponent, any, TournamentDoc>(
+      .open<EditTournamentModalComponent, TournamentForList, TournamentDoc>(
         EditTournamentModalComponent,
         {
           width: '600px',
@@ -68,16 +68,17 @@ export class TournamentsLandingContainerComponent {
     }
   }
 
-  async deleteTournament(tournament: TournamentEntity) {
+  async deleteTournament(tournament: TournamentForList) {
     const result = await this.dialog
-      .open<DeleteTournamentConfirmationModalComponent, any, boolean>(
+      .open<
         DeleteTournamentConfirmationModalComponent,
-        {
-          width: '400px',
-          height: '225px',
-          data: tournament,
-        }
-      )
+        TournamentForList,
+        boolean
+      >(DeleteTournamentConfirmationModalComponent, {
+        width: '400px',
+        height: '225px',
+        data: tournament,
+      })
       .afterClosed()
       .pipe(take(1))
       .toPromise();

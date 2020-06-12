@@ -3,7 +3,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { SelectOption } from '@shadow-arena-legends/shared/util-types';
-import { TournamentEntity } from '@shadow-arena-legends/tournaments/data-layer';
+import {
+  TournamentEntity,
+  TournamentForList,
+} from '@shadow-arena-legends/tournaments/data-layer';
 
 @Component({
   selector: 'sal-edit-tournament-modal',
@@ -21,7 +24,7 @@ export class EditTournamentModalComponent {
   constructor(
     fb: FormBuilder,
     private dialogRef: MatDialogRef<EditTournamentModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public tournament?: TournamentEntity
+    @Inject(MAT_DIALOG_DATA) public tournament?: TournamentForList
   ) {
     const now = new Date();
     const cleanToday = new Date(
@@ -47,7 +50,13 @@ export class EditTournamentModalComponent {
     this.tournamentForm = fb.group(
       {
         name: fb.control(tournament?.name || '', Validators.required),
-        type: fb.control(tournament?.type || '', Validators.required),
+        type: fb.control(
+          {
+            value: tournament?.type || '',
+            disabled: !(!tournament || tournament.canEditType),
+          },
+          Validators.required
+        ),
         live: fb.control(false),
         startDateTime: fb.control(
           tournament?.startDateTime

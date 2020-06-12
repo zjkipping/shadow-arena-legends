@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { combineLatest, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { combineLatest, Observable, of } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 
 import {
   ParticipatingTeam,
   ParticipatingTeamEntity,
   TournamentDoc,
   TournamentEntity,
+  TournamentForList,
   TournamentWithParticipatingTeams,
 } from '../types';
 
@@ -55,6 +56,27 @@ export class TournamentsService {
           }
         })
       );
+  }
+
+  getTournamentsForList(): Observable<TournamentForList[]> {
+    return this.getTournamentEntities().pipe(
+      switchMap((tourneys) =>
+        !tourneys.length
+          ? of([])
+          : combineLatest(
+              tourneys.map((tourney) =>
+                this.getParticipatingTeamsInTournament(
+                  tourney.referenceId
+                ).pipe(
+                  map((pTeams) => ({
+                    ...tourney,
+                    canEditType: pTeams.length === 0,
+                  }))
+                )
+              )
+            )
+      )
+    );
   }
 
   getTournamentWithParticipatingTeams(

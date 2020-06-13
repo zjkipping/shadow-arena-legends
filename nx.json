@@ -158,6 +158,9 @@
     },
     "leaderboard-ui-list-leaderboard": {
       "tags": []
+    },
+    "leaderboard-ui-leaderboard-row": {
+      "tags": []
     }
   }
 }

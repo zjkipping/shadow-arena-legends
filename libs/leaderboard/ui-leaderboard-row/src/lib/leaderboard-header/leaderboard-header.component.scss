@@ -1,0 +1,73 @@
+:host {
+  display: block;
+  width: 394px;
+  padding: 3px;
+  clip-path: polygon(5% 0, 100% 0%, 95% 100%, 0 100%);
+  background-color: rgba(0, 12, 27, 1);
+
+  box-shadow: 10px 10px 43px 20px rgba(0, 12, 27, 1);
+
+  position: relative;
+  opacity: 0.9;
+
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 50px;
+    height: 10px;
+    background-color: rgb(109, 201, 255);
+    animation-name: moveAroundEdge;
+    animation-duration: 8s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+  }
+}
+
+@keyframes moveAroundEdge {
+  0%,
+  100% {
+    transform: translate(-27px, -7px);
+  }
+  40% {
+    transform: translate(396px, -7px);
+  }
+  42% {
+    transform: translate(394px, 2px);
+  }
+  48% {
+    transform: translate(375px, 32px);
+  }
+  50% {
+    transform: translate(377px, 42px);
+  }
+  89% {
+    transform: translate(-47px, 42px);
+  }
+  92% {
+    transform: translate(-42px, 29px);
+  }
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  background: rgb(0, 18, 49);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 18, 49, 1) 16%,
+    rgba(0, 48, 96, 1) 90%
+  );
+  padding: 10px 15px;
+  column-gap: 10px;
+  clip-path: polygon(5% 0, 99.5% 0%, 95% 100%, 0.5% 100%);
+
+  * {
+    font-weight: bold;
+  }
+}
+
+.points {
+  text-align: center;
+}

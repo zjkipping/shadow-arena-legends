@@ -1693,6 +1693,41 @@
           "style": "scss"
         }
       }
+    },
+    "leaderboard-ui-leaderboard-row": {
+      "projectType": "library",
+      "root": "libs/leaderboard/ui-leaderboard-row",
+      "sourceRoot": "libs/leaderboard/ui-leaderboard-row/src",
+      "prefix": "sal",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/leaderboard/ui-leaderboard-row/tsconfig.lib.json",
+              "libs/leaderboard/ui-leaderboard-row/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/leaderboard/ui-leaderboard-row/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/leaderboard/ui-leaderboard-row/jest.config.js",
+            "tsConfig": "libs/leaderboard/ui-leaderboard-row/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/leaderboard/ui-leaderboard-row/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
     }
   },
   "cli": {

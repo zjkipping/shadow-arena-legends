@@ -18,6 +18,7 @@ import {
   template: `<sal-split-leaderboard
     [teams]="teams | async"
   ></sal-split-leaderboard>`,
+  styles: [':host { display: grid; place-items: center; height: 100%; }'],
 })
 export class StreamLeaderboardComponent {
   tournament: Observable<TournamentEntity>;
@@ -58,29 +59,7 @@ export class StreamLeaderboardComponent {
           pointsPerThird: tourney.pointsPerThird,
           pointsPerKill: tourney.pointsPerKill,
         })
-      ),
-      map((teams) => [
-        ...teams,
-        ...teams,
-        ...teams,
-        ...teams,
-        ...teams,
-        ...teams,
-        ...teams,
-        ...teams,
-        ...teams,
-        ...teams,
-        ...teams,
-        ...teams,
-        ...teams,
-        ...teams,
-        ...teams,
-        ...teams,
-        ...teams,
-        ...teams,
-        ...teams,
-        ...teams,
-      ])
+      )
     );
   }
 }

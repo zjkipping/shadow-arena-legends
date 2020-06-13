@@ -1,20 +1,23 @@
-<section>
-  <div class="header">
-    <div>Team</div>
-    <div class="number">Points</div>
+<div class="leaderboard" *ngIf="!loadingTeams; else loading">
+  <section>
+    <sal-leaderboard-header></sal-leaderboard-header>
+    <sal-leaderboard-row
+      *ngFor="let team of leftSide; index as i"
+      [index]="i + 1"
+      [team]="team"
+    ></sal-leaderboard-row>
+  </section>
+  <section>
+    <sal-leaderboard-header></sal-leaderboard-header>
+    <sal-leaderboard-row
+      *ngFor="let team of rightSide; index as i"
+      [index]="half + i + 1"
+      [team]="team"
+    ></sal-leaderboard-row>
+  </section>
+</div>
+<ng-template #loading>
+  <div class="loading">
+    <mat-spinner [diameter]="50"></mat-spinner>
   </div>
-  <div class="team" *ngFor="let team of leftSide">
-    <div>{{ team.name }}</div>
-    <div class="number">{{ team.points }}</div>
-  </div>
-</section>
-<section>
-  <div class="header">
-    <div>Team</div>
-    <div class="number">Points</div>
-  </div>
-  <div class="team" *ngFor="let team of rightSide">
-    <div>{{ team.name }}</div>
-    <div class="number">{{ team.points }}</div>
-  </div>
-</section>
+</ng-template>

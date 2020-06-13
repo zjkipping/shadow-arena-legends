@@ -58,29 +58,7 @@ export class SpectatingLeaderboardComponent {
           pointsPerThird: tourney.pointsPerThird,
           pointsPerKill: tourney.pointsPerKill,
         })
-      ),
-      map((teams) => [
-        ...teams,
-        ...teams,
-        ...teams,
-        ...teams,
-        ...teams,
-        ...teams,
-        ...teams,
-        ...teams,
-        ...teams,
-        ...teams,
-        ...teams,
-        ...teams,
-        ...teams,
-        ...teams,
-        ...teams,
-        ...teams,
-        ...teams,
-        ...teams,
-        ...teams,
-        ...teams,
-      ])
+      )
     );
   }
 }

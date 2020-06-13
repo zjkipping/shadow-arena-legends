@@ -1416,6 +1416,283 @@
           "style": "scss"
         }
       }
+    },
+    "leaderboard-feature-tournament": {
+      "projectType": "library",
+      "root": "libs/leaderboard/feature-tournament",
+      "sourceRoot": "libs/leaderboard/feature-tournament/src",
+      "prefix": "sal",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/leaderboard/feature-tournament/tsconfig.lib.json",
+              "libs/leaderboard/feature-tournament/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/leaderboard/feature-tournament/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/leaderboard/feature-tournament/jest.config.js",
+            "tsConfig": "libs/leaderboard/feature-tournament/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/leaderboard/feature-tournament/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "leaderboard-feature-main-leaderboard": {
+      "projectType": "library",
+      "root": "libs/leaderboard/feature-main-leaderboard",
+      "sourceRoot": "libs/leaderboard/feature-main-leaderboard/src",
+      "prefix": "sal",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/leaderboard/feature-main-leaderboard/tsconfig.lib.json",
+              "libs/leaderboard/feature-main-leaderboard/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/leaderboard/feature-main-leaderboard/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/leaderboard/feature-main-leaderboard/jest.config.js",
+            "tsConfig": "libs/leaderboard/feature-main-leaderboard/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/leaderboard/feature-main-leaderboard/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "leaderboard-feature-split-leaderboard": {
+      "projectType": "library",
+      "root": "libs/leaderboard/feature-split-leaderboard",
+      "sourceRoot": "libs/leaderboard/feature-split-leaderboard/src",
+      "prefix": "sal",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/leaderboard/feature-split-leaderboard/tsconfig.lib.json",
+              "libs/leaderboard/feature-split-leaderboard/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/leaderboard/feature-split-leaderboard/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/leaderboard/feature-split-leaderboard/jest.config.js",
+            "tsConfig": "libs/leaderboard/feature-split-leaderboard/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/leaderboard/feature-split-leaderboard/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "leaderboard-feature-spectating-leaderboard": {
+      "projectType": "library",
+      "root": "libs/leaderboard/feature-spectating-leaderboard",
+      "sourceRoot": "libs/leaderboard/feature-spectating-leaderboard/src",
+      "prefix": "sal",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/leaderboard/feature-spectating-leaderboard/tsconfig.lib.json",
+              "libs/leaderboard/feature-spectating-leaderboard/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/leaderboard/feature-spectating-leaderboard/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/leaderboard/feature-spectating-leaderboard/jest.config.js",
+            "tsConfig": "libs/leaderboard/feature-spectating-leaderboard/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/leaderboard/feature-spectating-leaderboard/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "leaderboard-data-layer": {
+      "projectType": "library",
+      "root": "libs/leaderboard/data-layer",
+      "sourceRoot": "libs/leaderboard/data-layer/src",
+      "prefix": "sal",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/leaderboard/data-layer/tsconfig.lib.json",
+              "libs/leaderboard/data-layer/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/leaderboard/data-layer/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/leaderboard/data-layer/jest.config.js",
+            "tsConfig": "libs/leaderboard/data-layer/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/leaderboard/data-layer/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "leaderboard-feature-stream-leaderboard": {
+      "projectType": "library",
+      "root": "libs/leaderboard/feature-stream-leaderboard",
+      "sourceRoot": "libs/leaderboard/feature-stream-leaderboard/src",
+      "prefix": "sal",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/leaderboard/feature-stream-leaderboard/tsconfig.lib.json",
+              "libs/leaderboard/feature-stream-leaderboard/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/leaderboard/feature-stream-leaderboard/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/leaderboard/feature-stream-leaderboard/jest.config.js",
+            "tsConfig": "libs/leaderboard/feature-stream-leaderboard/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/leaderboard/feature-stream-leaderboard/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "leaderboard-ui-split-leaderboard": {
+      "projectType": "library",
+      "root": "libs/leaderboard/ui-split-leaderboard",
+      "sourceRoot": "libs/leaderboard/ui-split-leaderboard/src",
+      "prefix": "sal",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/leaderboard/ui-split-leaderboard/tsconfig.lib.json",
+              "libs/leaderboard/ui-split-leaderboard/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/leaderboard/ui-split-leaderboard/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/leaderboard/ui-split-leaderboard/jest.config.js",
+            "tsConfig": "libs/leaderboard/ui-split-leaderboard/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/leaderboard/ui-split-leaderboard/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "leaderboard-ui-list-leaderboard": {
+      "projectType": "library",
+      "root": "libs/leaderboard/ui-list-leaderboard",
+      "sourceRoot": "libs/leaderboard/ui-list-leaderboard/src",
+      "prefix": "sal",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/leaderboard/ui-list-leaderboard/tsconfig.lib.json",
+              "libs/leaderboard/ui-list-leaderboard/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/leaderboard/ui-list-leaderboard/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/leaderboard/ui-list-leaderboard/jest.config.js",
+            "tsConfig": "libs/leaderboard/ui-list-leaderboard/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/leaderboard/ui-list-leaderboard/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
     }
   },
   "cli": {

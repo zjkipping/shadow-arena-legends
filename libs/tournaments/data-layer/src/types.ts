@@ -17,6 +17,13 @@ export interface TournamentDoc {
   pointsPerThird: number;
 }
 
+export interface TourneyPointsConfig {
+  pointsPerKill: number;
+  pointsPerFirst: number;
+  pointsPerSecond: number;
+  pointsPerThird: number;
+}
+
 export type TournamentEntity = TournamentDoc & FirebaseEntity;
 
 export interface ParticipatingTeam {

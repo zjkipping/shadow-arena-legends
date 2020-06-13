@@ -1,0 +1,20 @@
+<section>
+  <div class="header">
+    <div>Team</div>
+    <div class="number">Points</div>
+  </div>
+  <div class="team" *ngFor="let team of leftSide">
+    <div>{{ team.name }}</div>
+    <div class="number">{{ team.points }}</div>
+  </div>
+</section>
+<section>
+  <div class="header">
+    <div>Team</div>
+    <div class="number">Points</div>
+  </div>
+  <div class="team" *ngFor="let team of rightSide">
+    <div>{{ team.name }}</div>
+    <div class="number">{{ team.points }}</div>
+  </div>
+</section>

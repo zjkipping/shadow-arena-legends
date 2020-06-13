@@ -134,6 +134,30 @@
     },
     "tournaments-modals-feature-set-live-confirmation-modal": {
       "tags": []
+    },
+    "leaderboard-feature-tournament": {
+      "tags": []
+    },
+    "leaderboard-feature-main-leaderboard": {
+      "tags": []
+    },
+    "leaderboard-feature-split-leaderboard": {
+      "tags": []
+    },
+    "leaderboard-feature-spectating-leaderboard": {
+      "tags": []
+    },
+    "leaderboard-data-layer": {
+      "tags": []
+    },
+    "leaderboard-feature-stream-leaderboard": {
+      "tags": []
+    },
+    "leaderboard-ui-split-leaderboard": {
+      "tags": []
+    },
+    "leaderboard-ui-list-leaderboard": {
+      "tags": []
     }
   }
 }

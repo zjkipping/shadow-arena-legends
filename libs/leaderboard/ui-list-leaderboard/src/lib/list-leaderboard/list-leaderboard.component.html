@@ -1,0 +1,10 @@
+<section>
+  <div class="header">
+    <div>Team</div>
+    <div class="number">Points</div>
+  </div>
+  <div class="team" *ngFor="let team of teams">
+    <div>{{ team.name }}</div>
+    <div class="number">{{ team.points }}</div>
+  </div>
+</section>

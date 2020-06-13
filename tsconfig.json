@@ -122,6 +122,30 @@
       ],
       "@shadow-arena-legends/tournaments/modals/feature-set-live-confirmation-modal": [
         "libs/tournaments/modals/feature-set-live-confirmation-modal/src/index.ts"
+      ],
+      "@shadow-arena-legends/leaderboard/feature-tournament": [
+        "libs/leaderboard/feature-tournament/src/index.ts"
+      ],
+      "@shadow-arena-legends/leaderboard/feature-main-leaderboard": [
+        "libs/leaderboard/feature-main-leaderboard/src/index.ts"
+      ],
+      "@shadow-arena-legends/leaderboard/feature-split-leaderboard": [
+        "libs/leaderboard/feature-split-leaderboard/src/index.ts"
+      ],
+      "@shadow-arena-legends/leaderboard/feature-spectating-leaderboard": [
+        "libs/leaderboard/feature-spectating-leaderboard/src/index.ts"
+      ],
+      "@shadow-arena-legends/leaderboard/data-layer": [
+        "libs/leaderboard/data-layer/src/index.ts"
+      ],
+      "@shadow-arena-legends/leaderboard/feature-stream-leaderboard": [
+        "libs/leaderboard/feature-stream-leaderboard/src/index.ts"
+      ],
+      "@shadow-arena-legends/leaderboard/ui-split-leaderboard": [
+        "libs/leaderboard/ui-split-leaderboard/src/index.ts"
+      ],
+      "@shadow-arena-legends/leaderboard/ui-list-leaderboard": [
+        "libs/leaderboard/ui-list-leaderboard/src/index.ts"
       ]
     }
   },

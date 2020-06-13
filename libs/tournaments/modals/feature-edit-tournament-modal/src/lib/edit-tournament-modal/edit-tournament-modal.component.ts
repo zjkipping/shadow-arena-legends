@@ -3,10 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { SelectOption } from '@shadow-arena-legends/shared/util-types';
-import {
-  TournamentEntity,
-  TournamentForList,
-} from '@shadow-arena-legends/tournaments/data-layer';
+import { TournamentForList } from '@shadow-arena-legends/tournaments/data-layer';
 
 @Component({
   selector: 'sal-edit-tournament-modal',

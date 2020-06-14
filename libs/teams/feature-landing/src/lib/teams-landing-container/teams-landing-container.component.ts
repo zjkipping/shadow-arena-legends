@@ -147,6 +147,13 @@ export class TeamsLandingContainerComponent {
       this.teamsService.deleteTeam(team.referenceId);
       team.members.forEach(
         async (member) =>
+          await this.teamsService.removeMember(
+            team.referenceId,
+            member.referenceId
+          )
+      );
+      team.members.forEach(
+        async (member) =>
           await this.playersService.removeTeamReferenceFromPlayer(
             member.playerId,
             team.referenceId

@@ -2,6 +2,7 @@ export interface TeamWithPoints {
   name: string;
   image: string;
   points: number;
+  place: number;
 }
 
 export interface TeamWithStats {

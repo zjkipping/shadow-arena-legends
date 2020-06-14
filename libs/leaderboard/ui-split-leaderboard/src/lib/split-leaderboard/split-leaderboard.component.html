@@ -2,16 +2,14 @@
   <section>
     <sal-leaderboard-header></sal-leaderboard-header>
     <sal-leaderboard-row
-      *ngFor="let team of leftSide; index as i"
-      [index]="i + 1"
+      *ngFor="let team of leftSide"
       [team]="team"
     ></sal-leaderboard-row>
   </section>
   <section>
     <sal-leaderboard-header></sal-leaderboard-header>
     <sal-leaderboard-row
-      *ngFor="let team of rightSide; index as i"
-      [index]="half + i + 1"
+      *ngFor="let team of rightSide"
       [team]="team"
     ></sal-leaderboard-row>
   </section>

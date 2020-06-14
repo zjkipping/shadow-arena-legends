@@ -95,21 +95,23 @@ export class LeaderboardService {
       ),
       map((teams) => teams.filter((team): team is TeamWithPoints => !!team)),
       map((teams) =>
-        teams.sort((a, b) => {
-          if (a.points === b.points) {
-            if (a.name === b.name) {
-              return 0;
-            } else if (a.name > b.name) {
+        teams
+          .sort((a, b) => {
+            if (a.points === b.points) {
+              if (a.name === b.name) {
+                return 0;
+              } else if (a.name > b.name) {
+                return 1;
+              } else {
+                return -1;
+              }
+            } else if (a.points < b.points) {
               return 1;
             } else {
               return -1;
             }
-          } else if (a.points < b.points) {
-            return 1;
-          } else {
-            return -1;
-          }
-        })
+          })
+          .map((team, index) => ({ ...team, place: index + 1 }))
       )
     );
   }

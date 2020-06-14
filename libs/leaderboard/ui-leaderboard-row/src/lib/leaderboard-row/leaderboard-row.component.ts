@@ -8,6 +8,5 @@ import { TeamWithPoints } from '@shadow-arena-legends/leaderboard/data-layer';
   styleUrls: ['./leaderboard-row.component.scss'],
 })
 export class LeaderboardRowComponent {
-  @Input() index = 0;
   @Input() team?: TeamWithPoints;
 }

@@ -16,14 +16,12 @@ export class SplitLeaderboardComponent {
       }
       this.leftSide = val.slice(0, half);
       this.rightSide = val.slice(half, val.length);
-      this.half = half;
       this.loadingTeams = false;
     }
   }
 
   loadingTeams = true;
 
-  half = 0;
   leftSide: TeamWithPoints[] = [];
   rightSide: TeamWithPoints[] = [];
 }

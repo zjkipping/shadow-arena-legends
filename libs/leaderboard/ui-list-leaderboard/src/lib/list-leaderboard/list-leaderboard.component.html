@@ -1,8 +1,7 @@
-<section *ngIf="teams !== null; else loading">
+<section *ngIf="!loadingTeams; else loading">
   <sal-leaderboard-header></sal-leaderboard-header>
   <sal-leaderboard-row
-    *ngFor="let team of teams; index as i"
-    [index]="i + 1"
+    *ngFor="let team of teams"
     [team]="team"
   ></sal-leaderboard-row>
 </section>

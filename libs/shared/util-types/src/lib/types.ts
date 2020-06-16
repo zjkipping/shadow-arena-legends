@@ -38,6 +38,8 @@ export interface TypeAheadOption {
   referenceId: string;
 }
 
+export type FocusedTeamOption = TypeAheadOption;
+
 export interface FirebaseEntity {
   referenceId: string;
 }

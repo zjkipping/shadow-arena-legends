@@ -2,12 +2,39 @@
   <h1>Tournament must be live before stats can be altered.</h1>
 </ng-container>
 <ng-template #isLive>
-  <div class="stats" *ngIf="stats | async as statsList; else loadingStats">
-    <sal-team-stats
-      *ngFor="let teamStats of statsList"
-      [teamStats]="teamStats"
-    ></sal-team-stats>
-  </div>
+  <section *ngIf="stats | async as statsList; else loadingStats">
+    <div class="filters">
+      <mat-form-field>
+        <input
+          id="teamFilter"
+          placeholder="Filter By Team Name"
+          matInput
+          [formControl]="teamsFilter"
+        />
+      </mat-form-field>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="openFocusedTeamsModal()"
+      >
+        Set Focused Teams
+      </button>
+      <mat-form-field>
+        <input
+          id="playerFilter"
+          placeholder="Filter By Team Member Name"
+          matInput
+          [formControl]="playersFilters"
+        />
+      </mat-form-field>
+    </div>
+    <div class="stats">
+      <sal-team-stats
+        *ngFor="let teamStats of statsList"
+        [teamStats]="teamStats"
+      ></sal-team-stats>
+    </div>
+  </section>
   <ng-template #loadingStats>
     <div class="loading">
       <mat-spinner [diameter]="50"></mat-spinner>

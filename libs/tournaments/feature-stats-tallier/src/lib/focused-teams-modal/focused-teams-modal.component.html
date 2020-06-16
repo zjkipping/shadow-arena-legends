@@ -1,0 +1,33 @@
+<h1 mat-dialog-title>Set Focused Teams</h1>
+<div mat-dialog-content>
+  <ng-container *ngIf="!loading; else loadingTourneyTeams">
+    <div class="focus-buttons">
+      <button mat-raised-button color="accent" (click)="setAllValues(false)">
+        Un-Focus All
+      </button>
+      <button mat-raised-button color="accent" (click)="setAllValues(true)">
+        Focus All
+      </button>
+    </div>
+    <section>
+      <div *ngFor="let teamControl of focusedTeamsControl?.controls">
+        <mat-checkbox [formControl]="teamControl" labelPosition="before">
+          {{ teamControl['team']['name'] }}
+        </mat-checkbox>
+      </div>
+    </section>
+  </ng-container>
+  <ng-template #loadingTourneyTeams>
+    <div class="loading">
+      <mat-spinner [diameter]="50"></mat-spinner>
+    </div>
+  </ng-template>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button color="warn" mat-dialog-close>
+    Cancel
+  </button>
+  <button mat-raised-button color="primary" (click)="submit()">
+    Submit
+  </button>
+</div>

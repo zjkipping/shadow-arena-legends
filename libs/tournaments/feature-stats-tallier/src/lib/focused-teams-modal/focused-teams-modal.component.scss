@@ -1,0 +1,53 @@
+:host {
+  display: grid;
+  height: 100%;
+  grid-template-rows: min-content 1fr min-content;
+}
+
+::ng-deep div [mat-dialog-content] {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  row-gap: 10px;
+  overflow-y: auto;
+
+  .focus-buttons {
+    border-bottom: 2px solid #626262;
+    padding: 10px;
+  }
+
+  section {
+    display: grid;
+    grid-template-rows: repeat(auto-fill, auto);
+    row-gap: 10px;
+    overflow-y: auto;
+
+    div {
+      display: grid;
+      place-items: center;
+    }
+  }
+}
+
+::ng-deep div [mat-dialog-actions],
+.focus-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+p {
+  text-align: center;
+}
+
+h1 {
+  margin: 0;
+}
+
+::ng-deep h1.mat-dialog-title {
+  text-align: center !important;
+}
+
+.loading {
+  display: grid;
+  height: 100%;
+  place-items: center;
+}

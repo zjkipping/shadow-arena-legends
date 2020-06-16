@@ -1,3 +1,4 @@
+import { ClipboardModule } from '@angular/cdk/clipboard';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
@@ -9,6 +10,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { RouterModule } from '@angular/router';
 
 import { ManagerContainerComponent } from './manager-container/manager-container.component';
+import { TournamentLinksModalComponent } from './tournament-links-modal/tournament-links-modal.component';
 
 @NgModule({
   imports: [
@@ -19,6 +21,7 @@ import { ManagerContainerComponent } from './manager-container/manager-container
     MatIconModule,
     MatSlideToggleModule,
     MatDialogModule,
+    ClipboardModule,
     RouterModule.forChild([
       {
         path: '',
@@ -46,6 +49,7 @@ import { ManagerContainerComponent } from './manager-container/manager-container
       },
     ]),
   ],
-  declarations: [ManagerContainerComponent],
+  declarations: [ManagerContainerComponent, TournamentLinksModalComponent],
+  entryComponents: [TournamentLinksModalComponent],
 })
 export class TournamentsFeatureManagerModule {}

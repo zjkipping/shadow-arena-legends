@@ -1,0 +1,21 @@
+<h1 mat-dialog-title>Tournament Leaderboard Links</h1>
+<div mat-dialog-content>
+  <div class="link" *ngFor="let link of links">
+    <a [href]="link.url" target="_blank">
+      {{ link.label }}
+    </a>
+    <button
+      mat-icon-button
+      color="accent"
+      aria-label="Copy Link To Clipboard"
+      [cdkCopyToClipboard]="link.url"
+    >
+      <mat-icon>content_copy</mat-icon>
+    </button>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button color="primary" mat-dialog-close>
+    Close
+  </button>
+</div>

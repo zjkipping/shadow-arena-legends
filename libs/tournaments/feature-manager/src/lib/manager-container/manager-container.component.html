@@ -9,7 +9,17 @@
       </button>
       Back to Landing
     </a>
-    <h1>{{ tourney.name }}</h1>
+    <div class="tourney-info">
+      <h1>{{ tourney.name }}</h1>
+      <button
+        aria-label="Show Tournament Links Modal"
+        mat-icon-button
+        color="accent"
+        (click)="showTourneyLinks(tourney.referenceId)"
+      >
+        <mat-icon>info</mat-icon>
+      </button>
+    </div>
     <mat-slide-toggle
       color="primary"
       [checked]="tourney.live"

@@ -27,8 +27,14 @@
   grid-template-columns: 12em 1fr 12em;
   place-items: center;
 
-  h1 {
-    margin: 0;
+  .tourney-info {
+    h1 {
+      display: grid;
+      place-items: center;
+      margin: 0;
+    }
+    display: flex;
+    justify-content: center;
   }
 }
 

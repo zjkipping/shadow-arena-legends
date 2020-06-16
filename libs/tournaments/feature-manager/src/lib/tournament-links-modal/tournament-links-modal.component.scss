@@ -1,0 +1,40 @@
+:host {
+  display: grid;
+  height: 100%;
+  grid-template-rows: min-content 1fr min-content;
+}
+
+::ng-deep h1.mat-dialog-title {
+  font-size: 26px;
+  text-align: center !important;
+}
+
+::ng-deep div [mat-dialog-content] {
+  div.link {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+
+    button {
+      height: 100%;
+      display: grid;
+      place-items: center;
+    }
+
+    a {
+      display: grid;
+      place-items: center;
+      place-items: center;
+      text-align: center;
+      color: white;
+
+      font-size: 18px;
+    }
+  }
+}
+
+::ng-deep div [mat-dialog-actions],
+.focus-buttons {
+  display: flex;
+  justify-content: center;
+}

@@ -11,6 +11,8 @@ import {
 } from '@shadow-arena-legends/tournaments/data-layer';
 import { SetLiveConfirmationModalComponent } from '@shadow-arena-legends/tournaments/modals/feature-set-live-confirmation-modal';
 
+import { TournamentLinksModalComponent } from '../tournament-links-modal/tournament-links-modal.component';
+
 @Component({
   selector: 'sal-manager-container',
   templateUrl: './manager-container.component.html',
@@ -55,7 +57,14 @@ export class ManagerContainerComponent {
       if (result) {
         this.tournamentsService.setTourneyToLive(tourney.referenceId);
       }
-      // display modal verifying they want to go "live" with the tourney
     }
+  }
+
+  showTourneyLinks(tourneyId: string) {
+    this.dialog.open(TournamentLinksModalComponent, {
+      height: '400px',
+      width: '500px',
+      data: tourneyId,
+    });
   }
 }

@@ -147,8 +147,14 @@
       "@shadow-arena-legends/leaderboard/ui-list-leaderboard": [
         "libs/leaderboard/ui-list-leaderboard/src/index.ts"
       ],
-      "@shadow-arena-legends/leaderboard/ui-leaderboard-row": [
-        "libs/leaderboard/ui-leaderboard-row/src/index.ts"
+      "@shadow-arena-legends/leaderboard/ui-leaderboard-rows": [
+        "libs/leaderboard/ui-leaderboard-rows/src/index.ts"
+      ],
+      "@shadow-arena-legends/leaderboard/ui-player-kills-leaderboard": [
+        "libs/leaderboard/ui-player-kills-leaderboard/src/index.ts"
+      ],
+      "@shadow-arena-legends/leaderboard/feature-player-kills-ranking-leaderboard": [
+        "libs/leaderboard/feature-player-kills-ranking-leaderboard/src/index.ts"
       ]
     }
   },

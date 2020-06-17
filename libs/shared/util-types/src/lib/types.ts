@@ -8,6 +8,7 @@ export enum EnvironmentType {
 
 export interface Environment {
   type: EnvironmentType;
+  leaderboardDomain?: string;
   firebaseConfig: {
     apiKey: string;
     authDomain: string;

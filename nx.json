@@ -159,7 +159,13 @@
     "leaderboard-ui-list-leaderboard": {
       "tags": []
     },
-    "leaderboard-ui-leaderboard-row": {
+    "leaderboard-ui-leaderboard-rows": {
+      "tags": []
+    },
+    "leaderboard-ui-player-kills-leaderboard": {
+      "tags": []
+    },
+    "leaderboard-feature-player-kills-ranking-leaderboard": {
       "tags": []
     }
   }

@@ -1,9 +1,6 @@
 :host {
   font-size: 18px;
   color: rgb(205, 205, 205);
-
-  max-width: 860px;
-  margin: 0 auto;
 }
 
 .leaderboard {
@@ -11,14 +8,15 @@
   position: relative;
   column-gap: 20px;
   row-gap: 20px;
-  grid-template-columns: 400px 400px;
+  grid-auto-columns: 400px;
+  grid-auto-flow: column;
   padding: 20px;
   border-radius: 5px;
   background-color: rgba(0, 0, 0, 0.29);
   box-shadow: 0px 0px 35px 30px rgba(0, 0, 0, 0.3);
 }
 
-sal-leaderboard-team-points-row {
+sal-leaderboard-player-kills-row {
   margin-top: 10px;
 }
 

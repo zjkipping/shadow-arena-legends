@@ -12,7 +12,7 @@ import {
   TourneyPointsConfig,
 } from '@shadow-arena-legends/tournaments/data-layer';
 
-import { TeamWithPoints } from '../types';
+import { PlayerWithKills, TeamWithPoints } from '../types';
 
 @Injectable({
   providedIn: 'root',
@@ -117,6 +117,67 @@ export class LeaderboardService {
   }
 
   getTeamsWithStats(_tournamentId: string) {}
+
+  getPlayersWithKills(tournamentId: string): Observable<PlayerWithKills[]> {
+    return this.tournamentsService
+      .getParticipatingTeamsInTournament(tournamentId)
+      .pipe(
+        switchMap((pTeams) =>
+          !pTeams.length
+            ? of([])
+            : combineLatest(
+                pTeams.map((pTeam) =>
+                  this.teamsService
+                    .getTeamMembers(pTeam.teamId)
+                    .pipe(
+                      switchMap((members) =>
+                        !members.length
+                          ? of([])
+                          : combineLatest(
+                              members.map((member) =>
+                                this.playersService.getPlayerStatsForTourney(
+                                  member.playerId,
+                                  tournamentId
+                                )
+                              )
+                            ).pipe(
+                              map((playerStats) =>
+                                playerStats.filter(
+                                  (pStat): pStat is PlayerStatsForTourney =>
+                                    !!pStat
+                                )
+                              )
+                            )
+                      )
+                    )
+                )
+              ).pipe(
+                map((pStatsList) =>
+                  pStatsList.reduce((prev, curr) => [...prev, ...curr], [])
+                )
+              )
+        ),
+        map((players) =>
+          players
+            .sort((a, b) => {
+              if (a.kills === b.kills) {
+                if (a.name === b.name) {
+                  return 0;
+                } else if (a.name > b.name) {
+                  return 1;
+                } else {
+                  return -1;
+                }
+              } else if (a.kills < b.kills) {
+                return 1;
+              } else {
+                return -1;
+              }
+            })
+            .map((player, index) => ({ ...player, place: index + 1 }))
+        )
+      );
+  }
 }
 
 function calculateTotalTeamPoints(

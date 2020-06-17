@@ -1,9 +1,9 @@
 <section *ngIf="!loadingTeams; else loading">
-  <sal-leaderboard-header></sal-leaderboard-header>
-  <sal-leaderboard-row
+  <sal-leaderboard-team-points-header></sal-leaderboard-team-points-header>
+  <sal-leaderboard-team-points-row
     *ngFor="let team of teams"
     [team]="team"
-  ></sal-leaderboard-row>
+  ></sal-leaderboard-team-points-row>
 </section>
 <ng-template #loading>
   <div class="loading">

@@ -5,6 +5,12 @@ export interface TeamWithPoints {
   place: number;
 }
 
+export interface PlayerWithKills {
+  name: string;
+  kills: number;
+  place: number;
+}
+
 export interface TeamWithStats {
   name: string;
   image: string;

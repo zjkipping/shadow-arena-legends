@@ -5,15 +5,15 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 // tslint:disable-next-line: nx-enforce-module-boundaries
 import { LeaderboardUiLeaderboardRowModule } from '@shadow-arena-legends/leaderboard/ui-leaderboard-rows';
 
-import { SplitLeaderboardComponent } from './split-leaderboard/split-leaderboard.component';
+import { PlayerKillsLeaderboardComponent } from './player-kills-leaderboard/player-kills-leaderboard.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    LeaderboardUiLeaderboardRowModule,
     MatProgressSpinnerModule,
+    LeaderboardUiLeaderboardRowModule,
   ],
-  declarations: [SplitLeaderboardComponent],
-  exports: [SplitLeaderboardComponent],
+  declarations: [PlayerKillsLeaderboardComponent],
+  exports: [PlayerKillsLeaderboardComponent],
 })
-export class LeaderboardUiSplitLeaderboardModule {}
+export class LeaderboardUiPlayerKillsLeaderboardModule {}

@@ -31,6 +31,15 @@ import { RouterModule } from '@angular/router';
             '@shadow-arena-legends/leaderboard/feature-stream-leaderboard'
           ).then((m) => m.LeaderboardFeatureStreamLeaderboardModule),
       },
+      {
+        path: 'player-ranking',
+        loadChildren: () =>
+          import(
+            '@shadow-arena-legends/leaderboard/feature-player-kills-ranking-leaderboard'
+          ).then(
+            (m) => m.LeaderboardFeaturePlayerKillsRankingLeaderboardModule
+          ),
+      },
     ]),
   ],
 })

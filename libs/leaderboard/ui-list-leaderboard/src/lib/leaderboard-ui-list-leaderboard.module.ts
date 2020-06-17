@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 // tslint:disable-next-line: nx-enforce-module-boundaries
-import { LeaderboardUiLeaderboardRowModule } from '@shadow-arena-legends/leaderboard/ui-leaderboard-row';
+import { LeaderboardUiLeaderboardRowModule } from '@shadow-arena-legends/leaderboard/ui-leaderboard-rows';
 
 import { ListLeaderboardComponent } from './list-leaderboard/list-leaderboard.component';
 

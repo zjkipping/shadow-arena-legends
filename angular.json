@@ -1694,32 +1694,102 @@
         }
       }
     },
-    "leaderboard-ui-leaderboard-row": {
+    "leaderboard-ui-leaderboard-rows": {
       "projectType": "library",
-      "root": "libs/leaderboard/ui-leaderboard-row",
-      "sourceRoot": "libs/leaderboard/ui-leaderboard-row/src",
+      "root": "libs/leaderboard/ui-leaderboard-rows",
+      "sourceRoot": "libs/leaderboard/ui-leaderboard-rows/src",
       "prefix": "sal",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "libs/leaderboard/ui-leaderboard-row/tsconfig.lib.json",
-              "libs/leaderboard/ui-leaderboard-row/tsconfig.spec.json"
+              "libs/leaderboard/ui-leaderboard-rows/tsconfig.lib.json",
+              "libs/leaderboard/ui-leaderboard-rows/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**",
-              "!libs/leaderboard/ui-leaderboard-row/**"
+              "!libs/leaderboard/ui-leaderboard-rows/**"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/leaderboard/ui-leaderboard-row/jest.config.js",
-            "tsConfig": "libs/leaderboard/ui-leaderboard-row/tsconfig.spec.json",
+            "jestConfig": "libs/leaderboard/ui-leaderboard-rows/jest.config.js",
+            "tsConfig": "libs/leaderboard/ui-leaderboard-rows/tsconfig.spec.json",
             "passWithNoTests": true,
-            "setupFile": "libs/leaderboard/ui-leaderboard-row/src/test-setup.ts"
+            "setupFile": "libs/leaderboard/ui-leaderboard-rows/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "leaderboard-ui-player-kills-leaderboard": {
+      "projectType": "library",
+      "root": "libs/leaderboard/ui-player-kills-leaderboard",
+      "sourceRoot": "libs/leaderboard/ui-player-kills-leaderboard/src",
+      "prefix": "sal",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/leaderboard/ui-player-kills-leaderboard/tsconfig.lib.json",
+              "libs/leaderboard/ui-player-kills-leaderboard/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/leaderboard/ui-player-kills-leaderboard/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/leaderboard/ui-player-kills-leaderboard/jest.config.js",
+            "tsConfig": "libs/leaderboard/ui-player-kills-leaderboard/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/leaderboard/ui-player-kills-leaderboard/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "leaderboard-feature-player-kills-ranking-leaderboard": {
+      "projectType": "library",
+      "root": "libs/leaderboard/feature-player-kills-ranking-leaderboard",
+      "sourceRoot": "libs/leaderboard/feature-player-kills-ranking-leaderboard/src",
+      "prefix": "sal",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/leaderboard/feature-player-kills-ranking-leaderboard/tsconfig.lib.json",
+              "libs/leaderboard/feature-player-kills-ranking-leaderboard/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/leaderboard/feature-player-kills-ranking-leaderboard/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/leaderboard/feature-player-kills-ranking-leaderboard/jest.config.js",
+            "tsConfig": "libs/leaderboard/feature-player-kills-ranking-leaderboard/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/leaderboard/feature-player-kills-ranking-leaderboard/src/test-setup.ts"
           }
         }
       },

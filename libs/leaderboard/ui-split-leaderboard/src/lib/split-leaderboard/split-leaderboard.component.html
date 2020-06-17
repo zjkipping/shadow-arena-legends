@@ -1,17 +1,17 @@
 <div class="leaderboard" *ngIf="!loadingTeams; else loading">
   <section>
-    <sal-leaderboard-header></sal-leaderboard-header>
-    <sal-leaderboard-row
+    <sal-leaderboard-team-points-header></sal-leaderboard-team-points-header>
+    <sal-leaderboard-team-points-row
       *ngFor="let team of leftSide"
       [team]="team"
-    ></sal-leaderboard-row>
+    ></sal-leaderboard-team-points-row>
   </section>
   <section>
-    <sal-leaderboard-header></sal-leaderboard-header>
-    <sal-leaderboard-row
+    <sal-leaderboard-team-points-header></sal-leaderboard-team-points-header>
+    <sal-leaderboard-team-points-row
       *ngFor="let team of rightSide"
       [team]="team"
-    ></sal-leaderboard-row>
+    ></sal-leaderboard-team-points-row>
   </section>
 </div>
 <ng-template #loading>

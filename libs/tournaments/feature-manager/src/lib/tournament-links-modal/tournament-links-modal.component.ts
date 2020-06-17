@@ -1,6 +1,11 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
+import {
+  ENVIRONMENT,
+  Environment,
+} from '@shadow-arena-legends/shared/util-types';
+
 @Component({
   selector: 'sal-tournament-links-modal',
   templateUrl: './tournament-links-modal.component.html',
@@ -9,19 +14,26 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class TournamentLinksModalComponent {
   links: { label: string; url: string }[];
 
-  constructor(@Inject(MAT_DIALOG_DATA) tourneyRef: string) {
+  constructor(
+    @Inject(MAT_DIALOG_DATA) tourneyRef: string,
+    @Inject(ENVIRONMENT) env: Environment
+  ) {
     this.links = [
       {
         label: 'Public Tournament Leaderboards',
-        url: `https://sa-legends.com/tournaments/${tourneyRef}/leaderboard`,
+        url: `${env.leaderboardDomain}/tournaments/${tourneyRef}/leaderboard`,
       },
       {
         label: 'Stream Overlay Split Leaderboard',
-        url: `https://sa-legends.com/tournaments/${tourneyRef}/stream`,
+        url: `${env.leaderboardDomain}/tournaments/${tourneyRef}/stream`,
       },
       {
         label: 'Stream Overlay Scrolling Leaderboard',
-        url: `https://sa-legends.com/tournaments/${tourneyRef}/spectating`,
+        url: `${env.leaderboardDomain}/tournaments/${tourneyRef}/spectating`,
+      },
+      {
+        label: 'Stream Overlay Player Kills Ranking',
+        url: `${env.leaderboardDomain}/tournaments/${tourneyRef}/player-ranking`,
       },
     ];
   }

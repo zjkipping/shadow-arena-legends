@@ -3,7 +3,7 @@ import { FormControl } from '@angular/forms';
 import { MatAutocompleteTrigger } from '@angular/material/autocomplete';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { combineLatest, Observable, of, Subject } from 'rxjs';
+import { combineLatest, merge, Observable, of, Subject } from 'rxjs';
 import {
   filter,
   map,
@@ -137,11 +137,16 @@ export class ParticipatingTeamsComponent implements OnDestroy {
           participatingTeams.pipe(map((pts) => pts.map((pt) => pt.teamId))),
           this.teamsService.getTeamsForTypeAhead(tournament.type),
           of(tournament.referenceId),
+          merge<string>(of(''), this.teamsTypeAhead.valueChanges),
         ])
       ),
-      map(([currTeamIds, options, tournamentId]) =>
+      map(([currTeamIds, options, tournamentId, filter]) =>
         options
-          .filter((o) => !currTeamIds.includes(o.referenceId))
+          .filter(
+            (o) =>
+              !currTeamIds.includes(o.referenceId) &&
+              o.name.toLowerCase().startsWith(filter.toLowerCase())
+          )
           .map((o) => ({ ...o, tournamentId }))
       )
     );

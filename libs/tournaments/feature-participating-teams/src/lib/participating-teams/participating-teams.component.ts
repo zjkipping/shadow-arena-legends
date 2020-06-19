@@ -137,15 +137,16 @@ export class ParticipatingTeamsComponent implements OnDestroy {
           participatingTeams.pipe(map((pts) => pts.map((pt) => pt.teamId))),
           this.teamsService.getTeamsForTypeAhead(tournament.type),
           of(tournament.referenceId),
-          merge<string>(of(''), this.teamsTypeAhead.valueChanges),
+          merge<string | {}>(of(''), this.teamsTypeAhead.valueChanges),
         ])
       ),
-      map(([currTeamIds, options, tournamentId, filter]) =>
+      map(([currTeamIds, options, tournamentId, teamFilter]) =>
         options
           .filter(
             (o) =>
               !currTeamIds.includes(o.referenceId) &&
-              o.name.toLowerCase().startsWith(filter.toLowerCase())
+              (typeof teamFilter !== 'string' ||
+                o.name.toLowerCase().startsWith(teamFilter.toLowerCase()))
           )
           .map((o) => ({ ...o, tournamentId }))
       )

@@ -1,1 +1,29 @@
-<sal-split-leaderboard></sal-split-leaderboard>
+<div
+  class="content"
+  *ngIf="tournament | async as tourney; else loadingTournament"
+>
+  <div class="tourney-info">
+    <span class="tourney-name">{{ tourney.name }}</span>
+    <span>
+      ({{ tourney.startDateTime | date: 'short' }} -
+      {{ tourney.endDateTime | date: 'short' }})
+    </span>
+  </div>
+  <section class="leaderboards">
+    <mat-tab-group>
+      <mat-tab label="Team Rankings">
+        <sal-split-leaderboard [teams]="teams | async"></sal-split-leaderboard>
+      </mat-tab>
+      <mat-tab label="Player Rankings">
+        <sal-player-kills-leaderboard
+          [players]="players | async"
+        ></sal-player-kills-leaderboard>
+      </mat-tab>
+    </mat-tab-group>
+  </section>
+</div>
+<ng-template #loadingTournament>
+  <div class="loading">
+    <mat-spinner [diameter]="50"></mat-spinner>
+  </div>
+</ng-template>

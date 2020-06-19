@@ -1,0 +1,57 @@
+:host {
+  display: grid;
+  height: 100%;
+  place-items: center;
+
+  color: #cdcdcd;
+}
+
+.content {
+  display: grid;
+  height: 100%;
+  width: 100%;
+  grid-template-rows: min-content 1fr;
+}
+
+.tourney-info {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0 10px 0;
+
+  .tourney-name {
+    font-size: 24px;
+    font-weight: bold;
+    margin-right: 10px;
+  }
+}
+
+.leaderboards {
+  display: grid;
+  height: 100%;
+}
+
+::ng-deep .mat-tab-labels {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+}
+
+::ng-deep .mat-tab-body-content {
+  display: grid;
+  place-items: center;
+  height: 100%;
+}
+
+::ng-deep .mat-tab-body-wrapper {
+  height: 100%;
+}
+
+.loading {
+  display: grid;
+  height: 100%;
+  place-items: center;
+
+  ::ng-deep .mat-progress-spinner circle,
+  .mat-spinner circle {
+    stroke: rgb(109, 201, 255);
+  }
+}

@@ -1,8 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { RouterModule } from '@angular/router';
 
-// tslint:disable-next-line: nx-enforce-module-boundaries
+import { LeaderboardUiPlayerKillsLeaderboardModule } from '@shadow-arena-legends/leaderboard/ui-player-kills-leaderboard';
 import { LeaderboardUiSplitLeaderboardModule } from '@shadow-arena-legends/leaderboard/ui-split-leaderboard';
 
 import { MainLeaderboardComponent } from './main-leaderboard/main-leaderboard.component';
@@ -12,6 +14,9 @@ import { MainLeaderboardComponent } from './main-leaderboard/main-leaderboard.co
   imports: [
     CommonModule,
     LeaderboardUiSplitLeaderboardModule,
+    LeaderboardUiPlayerKillsLeaderboardModule,
+    MatTabsModule,
+    MatProgressSpinnerModule,
     RouterModule.forChild([
       {
         path: '',

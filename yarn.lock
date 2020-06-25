@@ -164,6 +164,13 @@
     ora "4.0.3"
     rxjs "6.5.4"
 
+"@angular-material-components/datetime-picker@^2.0.4":
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/@angular-material-components/datetime-picker/-/datetime-picker-2.0.4.tgz#3a298eb29fc4a8adbbb70fe09bab0ae916d0c186"
+  integrity sha512-3nXGFz7GXbFYeBI2/72rcmPFTWtcC1ERlgdkaY+65dFHXPIc8hKGv6o+JbtCoYPg7xmVCCy4xhmOgfd/CFGyOw==
+  dependencies:
+    tslib "^1.9.0"
+
 "@angular/animations@^9.1.0":
   version "9.1.9"
   resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-9.1.9.tgz#de54334ea195189402487855c9a98f5618605da4"
@@ -10182,6 +10189,11 @@ qs@~6.5.2:
   version "6.5.2"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.2.tgz#cb3ae806e8740444584ef154ce8ee98d403f3e36"
   integrity sha512-N5ZAX4/LxJmF+7wN74pUD6qAh9/wnvdQcjq9TZjevvXzSUo7bfmw91saqMjzGS2xq91/odN2dW/WOl7qQHNDGA==
+
+query-param-control@^0.0.6:
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/query-param-control/-/query-param-control-0.0.6.tgz#81bed83ce57d92102da167abb78cf4073c1d1600"
+  integrity sha512-nbqUiGJ4C2UVmPZNozsortnr02K+EkV6/aX7v/4zmBfMMLTWgCa2dw8ZwwzfkvqLnFOS+jFXtTGGHhWITTWrkQ==
 
 query-string@^4.1.0:
   version "4.3.4"

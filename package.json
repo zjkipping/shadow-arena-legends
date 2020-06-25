@@ -37,6 +37,7 @@
   },
   "private": true,
   "dependencies": {
+    "@angular-material-components/datetime-picker": "^2.0.4",
     "@angular/animations": "^9.1.0",
     "@angular/cdk": "^9.2.4",
     "@angular/common": "^9.1.0",
@@ -51,6 +52,7 @@
     "@nrwl/angular": "9.3.0",
     "core-js": "^2.5.4",
     "firebase": "^7.15.0",
+    "query-param-control": "^0.0.6",
     "rxjs": "~6.5.4",
     "zone.js": "^0.10.2"
   },

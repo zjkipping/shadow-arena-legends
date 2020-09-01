@@ -155,6 +155,9 @@
       ],
       "@shadow-arena-legends/leaderboard/feature-player-kills-ranking-leaderboard": [
         "libs/leaderboard/feature-player-kills-ranking-leaderboard/src/index.ts"
+      ],
+      "@shadow-arena-legends/leaderboard/ui-team-scores-leaderboard": [
+        "libs/leaderboard/ui-team-scores-leaderboard/src/index.ts"
       ]
     }
   },

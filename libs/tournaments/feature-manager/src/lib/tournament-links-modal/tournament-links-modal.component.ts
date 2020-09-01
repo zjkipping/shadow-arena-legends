@@ -24,15 +24,15 @@ export class TournamentLinksModalComponent {
         url: `${env.leaderboardDomain}/tournaments/${tourneyRef}/leaderboard`,
       },
       {
-        label: 'Stream Overlay Split Leaderboard',
+        label: 'Stream Overlay Team Scores Leaderboard',
         url: `${env.leaderboardDomain}/tournaments/${tourneyRef}/stream`,
       },
       {
-        label: 'Stream Overlay Scrolling Leaderboard',
+        label: 'Stream Overlay Scrolling Ranks Leaderboard',
         url: `${env.leaderboardDomain}/tournaments/${tourneyRef}/spectating`,
       },
       {
-        label: 'Stream Overlay Player Kills Ranking',
+        label: 'Stream Overlay Player Kills Leaderboard',
         url: `${env.leaderboardDomain}/tournaments/${tourneyRef}/player-ranking`,
       },
     ];

@@ -167,6 +167,9 @@
     },
     "leaderboard-feature-player-kills-ranking-leaderboard": {
       "tags": []
+    },
+    "leaderboard-ui-team-scores-leaderboard": {
+      "tags": []
     }
   }
 }

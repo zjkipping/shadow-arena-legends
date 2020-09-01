@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 // tslint:disable-next-line: nx-enforce-module-boundaries
-import { LeaderboardUiSplitLeaderboardModule } from '@shadow-arena-legends/leaderboard/ui-split-leaderboard';
+import { LeaderboardUiTeamScoresLeaderboardModule } from '@shadow-arena-legends/leaderboard/ui-team-scores-leaderboard';
 
 import { StreamLeaderboardComponent } from './stream-leaderboard.component';
 
@@ -17,7 +17,7 @@ import { StreamLeaderboardComponent } from './stream-leaderboard.component';
         component: StreamLeaderboardComponent,
       },
     ]),
-    LeaderboardUiSplitLeaderboardModule,
+    LeaderboardUiTeamScoresLeaderboardModule,
   ],
 })
 export class LeaderboardFeatureStreamLeaderboardModule {}

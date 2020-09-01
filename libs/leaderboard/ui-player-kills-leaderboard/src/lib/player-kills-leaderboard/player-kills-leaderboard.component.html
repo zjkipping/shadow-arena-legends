@@ -1,4 +1,4 @@
-<div class="leaderboard" *ngIf="!loadingTeams; else loading">
+<div class="leaderboard" *ngIf="!loadingPlayers; else loading">
   <section *ngFor="let column of columns">
     <sal-leaderboard-player-kills-header></sal-leaderboard-player-kills-header>
     <sal-leaderboard-player-kills-row

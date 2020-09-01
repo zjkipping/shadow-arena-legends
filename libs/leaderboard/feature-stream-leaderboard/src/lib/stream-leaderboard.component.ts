@@ -15,9 +15,9 @@ import {
 
 @Component({
   selector: 'sal-stream-leaderboard-component',
-  template: `<sal-split-leaderboard
+  template: `<sal-team-scores-leaderboard
     [teams]="teams | async"
-  ></sal-split-leaderboard>`,
+  ></sal-team-scores-leaderboard>`,
   styles: [':host { display: grid; place-items: center; height: 100%; }'],
 })
 export class StreamLeaderboardComponent {

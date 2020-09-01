@@ -9,7 +9,6 @@ import { PlayerWithKills } from '@shadow-arena-legends/leaderboard/data-layer';
 })
 export class PlayerKillsLeaderboardComponent {
   @Input() set players(val: PlayerWithKills[] | null) {
-    console.log(val);
     if (!!val) {
       const newColumns = [];
       const columnCount = Math.ceil(val.length / 10);
@@ -17,11 +16,11 @@ export class PlayerKillsLeaderboardComponent {
         newColumns.push(val.slice(i * 10, i * 10 + 10));
       }
       this.columns = newColumns;
-      this.loadingTeams = false;
+      this.loadingPlayers = false;
     }
   }
 
-  loadingTeams = true;
+  loadingPlayers = true;
 
   columns: PlayerWithKills[][] = [];
 }

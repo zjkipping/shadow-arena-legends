@@ -221,9 +221,21 @@ export class TeamsService {
   getTeamsForTypeAhead(
     tournamentType: TournamentType
   ): Observable<TypeAheadOption[]> {
+    let queryTournamentTypes: string[] = [];
+    if (tournamentType === TournamentType.Trios) {
+      queryTournamentTypes = [
+        TournamentType.Solos,
+        TournamentType.Duos,
+        TournamentType.Trios,
+      ];
+    } else if (tournamentType === TournamentType.Duos) {
+      queryTournamentTypes = [TournamentType.Solos, TournamentType.Duos];
+    } else {
+      queryTournamentTypes = [TournamentType.Solos];
+    }
     return this.firestore
       .collection<TeamDoc>(teamsCollection, (ref) =>
-        ref.where('type', '==', tournamentType)
+        ref.where('type', 'in', queryTournamentTypes)
       )
       .valueChanges({ idField: 'referenceId' })
       .pipe(

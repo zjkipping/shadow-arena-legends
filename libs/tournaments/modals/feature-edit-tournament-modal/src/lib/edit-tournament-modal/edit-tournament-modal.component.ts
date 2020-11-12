@@ -16,6 +16,7 @@ export class EditTournamentModalComponent {
   tournamentTypes: SelectOption[] = [
     { label: 'Solos', value: 'solos' },
     { label: 'Duos', value: 'duos' },
+    { label: 'Trios', value: 'trios' },
   ];
 
   constructor(

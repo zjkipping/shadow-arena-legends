@@ -40,8 +40,8 @@ export class TeamsListComponent implements OnDestroy {
     },
   ];
   selectedRow: any;
-  selectedColumn: TableColumn | null = null;
-  sortDirection: 'asc' | 'desc' | '' = '';
+  selectedColumn: TableColumn | null = this.sortableColumns[0];
+  sortDirection: 'asc' | 'desc' | '' = 'desc';
   filter = '';
 
   private _teams: TeamForList[] = [];

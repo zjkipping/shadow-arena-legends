@@ -2,4 +2,11 @@ h3 {
   margin: 0;
   margin-bottom: 5px;
   text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+:host {
+  padding-bottom: 10px;
 }

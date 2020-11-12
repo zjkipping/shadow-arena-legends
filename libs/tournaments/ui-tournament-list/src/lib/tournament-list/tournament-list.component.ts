@@ -44,8 +44,8 @@ export class TournamentListComponent implements OnDestroy {
     },
   ];
   selectedRow: any;
-  selectedColumn: TableColumn | null = null;
-  sortDirection: 'asc' | 'desc' | '' = '';
+  selectedColumn: TableColumn | null = this.sortableColumns[1];
+  sortDirection: 'asc' | 'desc' | '' = 'desc';
   filter = '';
 
   private _tournaments: TournamentEntity[] = [];
@@ -91,19 +91,28 @@ export class TournamentListComponent implements OnDestroy {
 
     if (this.selectedColumn && this.sortDirection) {
       newRows = newRows.sort((a, b) => {
-        const aValue = (a as any)[
-          this.selectedColumn?.property || ''
-        ].toLowerCase();
-        const bValue = (b as any)[
-          this.selectedColumn?.property || ''
-        ].toLowerCase();
+        let aValue = (a as any)[this.selectedColumn?.property || ''];
+        let bValue = (b as any)[this.selectedColumn?.property || ''];
 
-        if (aValue === bValue) {
-          return 0;
-        } else if (aValue < bValue) {
-          return this.sortDirection === 'asc' ? 1 : -1;
+        if (typeof aValue === 'string' && typeof bValue === 'string') {
+          aValue = aValue.toLowerCase();
+          bValue = bValue.toLowerCase();
+
+          if (aValue === bValue) {
+            return 0;
+          } else if (aValue < bValue) {
+            return this.sortDirection === 'asc' ? 1 : -1;
+          } else {
+            return this.sortDirection === 'asc' ? -1 : 1;
+          }
         } else {
-          return this.sortDirection === 'asc' ? -1 : 1;
+          if (aValue === bValue) {
+            return 0;
+          } else if (aValue > bValue) {
+            return this.sortDirection === 'asc' ? 1 : -1;
+          } else {
+            return this.sortDirection === 'asc' ? -1 : 1;
+          }
         }
       });
     }

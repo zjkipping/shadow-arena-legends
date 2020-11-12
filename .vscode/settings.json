@@ -13,9 +13,7 @@
     "statusBarItem.hoverBackground": "#34a1b4",
     "statusBar.foreground": "#e7e7e7",
     "activityBar.activeBackground": "#34a1b4",
-    "activityBar.activeBorder": "#f1ceeb",
-    "statusBar.border": "#297e8d",
-    "titleBar.border": "#297e8d"
+    "activityBar.activeBorder": "#f1ceeb"
   },
   "peacock.color": "#297e8d"
 }

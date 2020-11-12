@@ -3,6 +3,7 @@ import { FirebaseEntity } from '@shadow-arena-legends/shared/util-types';
 export enum TeamType {
   Solos = 'solos',
   Duos = 'duos',
+  Trios = 'trios',
 }
 
 export interface TeamDoc {

@@ -20,6 +20,12 @@ import {
   EditTeamModalResult,
 } from '@shadow-arena-legends/teams/modals/util-modal-types';
 
+const teamTypesLimit: Record<TeamType, number> = {
+  [TeamType.Solos]: 1,
+  [TeamType.Duos]: 2,
+  [TeamType.Trios]: 3,
+};
+
 @Component({
   selector: 'shadow-arena-legends-edit-team-modal',
   templateUrl: './edit-team-modal.component.html',
@@ -32,6 +38,7 @@ export class EditTeamModalComponent implements OnInit, OnDestroy {
   teamTypes: SelectOption[] = [
     { label: 'Solos', value: 'solos' },
     { label: 'Duos', value: 'duos' },
+    { label: 'Trios', value: 'trios' },
   ];
   playerOptions!: Observable<TypeAheadOption[]>;
   membersTypeAhead!: FormControl;
@@ -142,9 +149,8 @@ export class EditTeamModalComponent implements OnInit, OnDestroy {
     if (!type) {
       type = this.teamForm.get('type')?.value;
     }
-    return (
-      this.membersFormArray.controls.length < (type === TeamType.Solos ? 1 : 2)
-    );
+
+    return type && this.membersFormArray.controls.length < teamTypesLimit[type];
   }
 
   ngOnDestroy() {
@@ -193,9 +199,9 @@ export class EditTeamModalComponent implements OnInit, OnDestroy {
 }
 
 function validateMembersLengthToTeamType(form: FormGroup) {
-  const type = form.get('type')?.value;
+  const type: TeamType = form.get('type')?.value;
   if (type) {
-    const expectedLength = type === TeamType.Solos ? 1 : 2;
+    const expectedLength = teamTypesLimit[type];
     const membersArr = form.get('members') as FormArray;
     return expectedLength === membersArr.length
       ? null
